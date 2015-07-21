@@ -24,6 +24,8 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 # use devise for authentication
 gem 'devise'
+# use pundit to handle user permissions
+gem 'pundit'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
