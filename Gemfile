@@ -26,7 +26,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'devise'
 # use pundit to handle user permissions
 gem 'pundit'
-
+# responders gem
+gem 'responders'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

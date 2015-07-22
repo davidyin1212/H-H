@@ -1,43 +1,52 @@
 class CarController < ApplicationController
   def index
     @car = Car.all
+    respond_with(@car)
   end
 
   def create
     @car = Car.new(user_params)
-
-    respond_to do |format|
-      if @car.save
-        format.html { redirect_to @user, notice: 'User was successfully created.' }
-        format.json { render :show, status: :created, location: @user }
-      else
-        format.html { render :new }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
-      end
-    end
+    @car.save
+    respond_with(@car)
   end
 
   def update
-    respond_to do |format|
-      if @car.update(user_params)
-        format.html { redirect_to user_url, notice: 'User was successfully updated.' }
-        format.json { render :show, status: :ok, location: @user }
-      else
-        format.html { render :edit }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
-      end
-    end
+    @car.update(user_params)
+    respond_with(@car)
   end
 
-  def delete
+  def destroy
     @car.destroy
-    respond_to do |format|
-      format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    respond_with(@car)
   end
 
   def show
-    
+    @car = Car.find(params[:id])
+    respond_with(@car)
   end
+
+  def userCars
+    @car = Car.find_by(user_id: params[:user_id])
+  end
+
+  def addToUser
+    @car = Car.find(params[:car_id])
+    @car.user_id = current_user.id
+    @car.save
+  end
+
+  def carsOrdered
+  end
+
+  def carsInProgress
+  end
+
+  def carsShipped
+  end
+  
+  private
+    # Never trust parameters from the scary internet, only allow the white list through.
+    def user_params
+      params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation, :permission_lvl)
+    end
 end
