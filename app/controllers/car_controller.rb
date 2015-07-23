@@ -1,4 +1,6 @@
 class CarController < ApplicationController
+  # before_action :authenticate_user!
+
   module Status
     AVALIABLE = 0
     ORDER = 1
@@ -62,6 +64,6 @@ class CarController < ApplicationController
   private
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation, :permission_lvl)
+      params.require(:user).permit(:name, :make, :model, :engine, :exterior, :interior, :delivery_kms, :stock_num, :msrp, :additional_fees, :base_price, :status)
     end
 end
