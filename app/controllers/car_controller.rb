@@ -1,4 +1,11 @@
 class CarController < ApplicationController
+  module Status
+    AVALIABLE = 0
+    ORDER = 1
+    PROGRESS = 2
+    SHIPPED = 3
+  end
+
   def index
     @car = Car.all
     respond_with(@car)
@@ -27,21 +34,29 @@ class CarController < ApplicationController
 
   def userCars
     @car = Car.find_by(user_id: params[:user_id])
+    respond_with(@car)
   end
 
   def addToUser
     @car = Car.find(params[:car_id])
     @car.user_id = current_user.id
     @car.save
+    respond_with(@car)
   end
 
   def carsOrdered
+    @car = Car.find_by(status: Status::ORDER)
+    respond_with(@car)
   end
 
   def carsInProgress
+    @car = Car.find_by(status: Status::PROGRESS)
+    respond_with(@car)
   end
 
   def carsShipped
+    @car = Car.find_by(status: Status::SHIPPED)
+    respond_with(@car)
   end
   
   private
