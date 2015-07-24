@@ -27,18 +27,28 @@ class PermissionsController < ApplicationController
   	@user = User.find(params[:user_id])
   	@permission = Permission.find(params[:id])
   	@user.permissions << @permission
-  	@permissions.users << @user
+  	@permission.users << @user
+  	
+    respond_with(@permission)
   end
 
   def removeFromUser
   	@user = User.find(params[:user_id])
   	@permission = Permission.find(params[:id])
   	@user.permissions.delete(@permission)
-  	@permissions.users.delete(@user)
+  	@permission.users.delete(@user)
+
+    respond_with(@permission)
   end
 
   def userPermissions
-  	@permission = Permission.where(user_id: params[:user_id])
+  	if params[:user_id] == 0 then
+      @permission = Permission.where(user_id: current_user.id)
+    else
+      @permission = Permission.where(user_id: params[:user_id])
+    end
+
+    respond_with(@permission)
   end
 
   private
