@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   get '/orders' => 'cars#carsOrdered'
   get '/current' => 'cars#carsInProgress'
   get '/shiped' => 'cars#carsShiped'
+  get '/all' => 'cars#carsAll'
 
   resources :permissions, only: [:index, :create, :update, :destroy] do 
   end
