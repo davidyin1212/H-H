@@ -7,12 +7,15 @@ class UserPolicy < ApplicationPolicy
   end
 
   def index?
+    @user.permissions.exists?(Permission.find_by(name:"UserPrivilege"))
   end
 
   def create?
+    @user.permissions.exists?(Permission.find_by(name:"UserModifyPrivilege"))
   end
 
   def destroy?
+    @user.permissions.exists?(Permission.find_by(name:"UserModifyPrivilege"))
   end
 
 end
