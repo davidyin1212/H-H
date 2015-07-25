@@ -10,7 +10,7 @@ class CarsController < ApplicationController
   end
 
   def index
-    @car = Car.where(status: Status::AVALIABLE)
+    @car = Car.all
     respond_with(@car)
   end
 
@@ -54,12 +54,6 @@ class CarsController < ApplicationController
     @car = Car.find(params[:car_id])
     @car.user = current_user
     @car.save
-    respond_with(@car)
-  end
-
-  def carsAll
-    @car = Car.all
-    authorize @car, :carsQuery?
     respond_with(@car)
   end
 
