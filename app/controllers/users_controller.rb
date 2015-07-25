@@ -4,12 +4,14 @@ class UsersController < ApplicationController
 
   def index
     @user = User.all
+    authorize @user
     respond_with @user
   end
 
   def create
     # user_params.permit(:first_name, :last_name, :email, :password, :password_confirmation)
     @user = User.new(user_params)
+    authorize @user
     @user.save
     respond_with @user
   end
@@ -20,6 +22,7 @@ class UsersController < ApplicationController
   end
 
   def destroy
+    authorize @user
     @user.destroy
     respond_with @user
   end
