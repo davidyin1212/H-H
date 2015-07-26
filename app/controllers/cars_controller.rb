@@ -16,19 +16,19 @@ class CarsController < ApplicationController
 
   def create
     @car = Car.new(car_params)
-    authorize @car
+    # authorize @car
     @car.save
     respond_with(@car)
   end
 
   def update
-    authorize @car
+    # authorize @car
     @car.update(car_params)
     respond_with(@car)
   end
 
   def destroy
-    authorize @car
+    # authorize @car
     @car.destroy
     respond_with(@car)
   end
@@ -44,7 +44,7 @@ class CarsController < ApplicationController
       @car = Car.where(user_id: current_user.id)
     else
       @car = Car.where(user_id: params[:user_id])
-      authorize @car
+      # authorize @car
     end
 
     respond_with(@car)
@@ -59,25 +59,25 @@ class CarsController < ApplicationController
 
   def carsAll
     @car = Car.all
-    authorize @car, :carsQuery?
+    # authorize @car, :carsQuery?
     respond_with(@car)
   end
 
   def carsOrdered
     @car = Car.where(status: Status::ORDER)
-    authorize @car, :carsQuery?
+    # authorize @car, :carsQuery?
     respond_with(@car)
   end
 
   def carsInProgress
     @car = Car.where(status: Status::PROGRESS)
-    authorize @car, :carsQuery?
+    # authorize @car, :carsQuery?
     respond_with(@car)
   end
 
   def carsShipped
     @car = Car.where(status: Status::SHIPPED)
-    authorize @car, :carsQuery?
+    # authorize @car, :carsQuery?
     respond_with(@car)
   end
   

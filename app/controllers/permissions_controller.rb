@@ -4,25 +4,25 @@ class PermissionsController < ApplicationController
 
   def index
   	@permission = Permission.all
-    authorize @permission
+    # authorize @permission
   	respond_with @permission
   end
 
   def create
   	@permission = Permission.new(permission_params)
-    authorize @permission
+    # authorize @permission
     @permission.save
     respond_with @permission
   end
 
   def destroy
-    authorize @permission
+    # authorize @permission
   	@permission.destroy
   	respond_with @permission
   end
 
   def update
-    authorize @permission
+    # authorize @permission
   	@permission.update(permission_params)
   	respond_with @permission
   end
@@ -30,7 +30,7 @@ class PermissionsController < ApplicationController
   def addToUser
   	@user = User.find(params[:user_id])
   	@permission = Permission.find(params[:id])
-    authorize @permission, :permissionAccess?
+    # authorize @permission, :permissionAccess?
   	@user.permissions << @permission
   	@permission.users << @user
 
@@ -40,7 +40,7 @@ class PermissionsController < ApplicationController
   def removeFromUser
   	@user = User.find(params[:user_id])
   	@permission = Permission.find(params[:id])
-    authorize @permission, :permissionAccess?
+    # authorize @permission, :permissionAccess?
   	@user.permissions.delete(@permission)
   	@permission.users.delete(@user)
 
@@ -52,7 +52,7 @@ class PermissionsController < ApplicationController
       @permission = Permission.where(user_id: current_user.id)
     else
       @permission = Permission.where(user_id: params[:user_id])
-      authorize @permission, :permissionAccess?
+      # authorize @permission, :permissionAccess?
     end
 
     respond_with(@permission)
