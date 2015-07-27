@@ -8,29 +8,41 @@ angular.module('H&H')
     return $http.get(urlBase);
   }
 
-  dataFactory.getCustomers = function () {
-    return $http.get(urlBase);
-  };
+  carFactory.createCar = function (car) {
+    return $http.post(urlBase, car);
+  }
 
-  dataFactory.getCustomer = function (id) {
+  carFactory.getCar = function (id) {
     return $http.get(urlBase + '/' + id);
-  };
+  }
+  
+  carFactory.updateCar = function (id, car) {
+    return $http.put(urlBase + '/' + id, car);
+  }
 
-  dataFactory.insertCustomer = function (cust) {
-    return $http.post(urlBase, cust);
-  };
+  carFactory.deleteCar = function (id) {
+    return $http.delete(urlBase + '/' + id);
+  }
 
-  dataFactory.updateCustomer = function (cust) {
-    return $http.put(urlBase + '/' + cust.ID, cust)
-  };
+  carFactory.carsOrdered = function () {
+    return $http.get(urlBase + '/orders');
+  }
 
-  dataFactory.deleteCustomer = function (id) {
-      return $http.delete(urlBase + '/' + id);
-  };
+  carFactory.carsInProgress = function () {
+    return $http.get(urlBase + '/progress');
+  }
 
-  dataFactory.getOrders = function (id) {
-      return $http.get(urlBase + '/' + id + '/orders');
-  };
+  carFactory.carsShipped = function () {
+    return $http.get(urlBase + '/shipped');
+  }
 
-  return dataFactory;
+  carFactory.carsAll = function () {
+    return $http.get(urlBase + '/all');
+  }
+
+  carFactory.addCarToUser = function (car_id) {
+    return $http.get(urlBase + '/' + car_id + '/addToUser', "");
+  }
+
+  return carFactory;
 }]);
