@@ -14,10 +14,10 @@ Rails.application.routes.draw do
   resources :cars, only: [:index, :create, :update, :show, :destroy] do
     post '/addToUser' => 'cars#addToUser'
   end
-  get '/orders' => 'cars#carsOrdered'
-  get '/current' => 'cars#carsInProgress'
-  get '/shiped' => 'cars#carsShiped'
-  get '/all' => 'cars#carsAll'
+  get 'cars/orders' => 'cars#carsOrdered'
+  get 'cars/progress' => 'cars#carsInProgress'
+  get 'cars/shipped' => 'cars#carsShipped'
+  get 'cars/all' => 'cars#carsAll'
 
   resources :permissions, only: [:index, :create, :update, :destroy] do 
   end
