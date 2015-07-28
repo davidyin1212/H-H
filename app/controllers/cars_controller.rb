@@ -53,6 +53,15 @@ class CarsController < ApplicationController
   def addToUser
     @car = Car.find(params[:car_id])
     @car.user = current_user
+    @car.status = Status::ORDER
+    @car.save
+    respond_with(@car)
+  end
+
+  def removeFromUser
+    @car = Car.find(params[:car_id])
+    @car.user = nil
+    @car.status = Status::AVALIABLE
     @car.save
     respond_with(@car)
   end
@@ -78,6 +87,34 @@ class CarsController < ApplicationController
   def carsShipped
     @car = Car.where(status: Status::SHIPPED)
     # authorize @car, :carsQuery?
+    respond_with(@car)
+  end
+
+  def carsUpdateToAvaliable
+    @car = Car.find(params[:car_id])
+    # authorize @car, :carsQuery?
+    @car.status = Status::AVALIABLE
+    respond_with(@car)
+  end
+
+  def carsUpdateToOrdered
+    @car = Car.find(params[:car_id])
+    # authorize @car, :carsQuery?
+    @car.status = Status::ORDER
+    respond_with(@car)
+  end
+
+  def carsUpdateToInProgress
+    @car = Car.find(params[:car_id])
+    # authorize @car, :carsQuery?
+    @car.status = Status::PROGRESS
+    respond_with(@car)
+  end
+
+  def carsUpdateToShipped
+    @car = Car.find(params[:car_id])
+    # authorize @car, :carsQuery?
+    @car.status = Status::SHIPPED
     respond_with(@car)
   end
   
