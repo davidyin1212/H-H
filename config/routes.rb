@@ -13,6 +13,7 @@ Rails.application.routes.draw do
 
   resources :cars, only: [:index, :create, :update, :show, :destroy] do
     post '/addToUser' => 'cars#addToUser'
+    get '/getUser' => 'users#getUserOfCar'
   end
   get 'cars/orders' => 'cars#carsOrdered'
   get 'cars/progress' => 'cars#carsInProgress'
