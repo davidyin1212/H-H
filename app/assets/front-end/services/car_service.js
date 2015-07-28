@@ -44,7 +44,7 @@ angular.module('H&H')
     return $http.post(urlBase + '/' + car_id + '/addToUser', "");
   }
 
-  carFactory.getCarOfUser = function (car_id) {
+  carFactory.getUserOfCar = function (car_id) {
     return $http.get(urlBase + '/' + car_id + '/getUser');
   }
 
