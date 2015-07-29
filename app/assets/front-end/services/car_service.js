@@ -44,8 +44,28 @@ angular.module('H&H')
     return $http.post(urlBase + '/' + car_id + '/addToUser', "");
   }
 
+  carFactory.removeFromUser = function (car_id) {
+    return $http.delete(urlBase + '/' + car_id + '/removeFromUser');
+  }
+
   carFactory.getUserOfCar = function (car_id) {
     return $http.get(urlBase + '/' + car_id + '/getUser');
+  }
+
+  carFactory.setCarToAvaliable = function (car_id) {
+    return $http.post(urlBase + '/' + car_id + 'avaliable', "");
+  }
+
+  carFactory.setCarToOrdered = function (car_id) {
+    return $http.post(urlBase + '/' + car_id + 'orders', "");
+  }
+
+  carFactory.setCarToInProgress = function (car_id) {
+    return $http.post(urlBase + '/' + car_id + 'progress', "");
+  }
+
+  carFactory.setCarToShipped = function (car_id) {
+    return $http.post(urlBase + '/' + car_id + 'shipped', "");
   }
 
   return carFactory;
