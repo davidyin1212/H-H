@@ -1,5 +1,5 @@
 angular.module('H&H')
-.controller('UserInfoController', ['$scope', 'userFactory', 'carFactory',
+.controller('CarDetailsController', ['$scope', 'userFactory', 'carFactory',
   function($scope, userFactory, carFactory) {
   $scope.car
 
@@ -23,13 +23,53 @@ angular.module('H&H')
   	})
   }
 
-  function removeCar (id) {
-  	carFactory.addCarToUser(id)
+  function cancelPurchaseCar (id) {
+  	carFactory.removeFromUser(id)
   	.success(function (data) {
 
   	})
   	.error(function (error) {
 
+  	})
+  }
+
+  function setCarToAvaliable (id) {
+  	carFactory.setCarToAvaliable(id)
+  	.success(function (data) {
+
+  	})
+  	.error(function (error) {
+
+  	})
+  }
+
+  function setCarToOrdered (id) {
+  	carFactory.setCarToOrdered(id)
+  	.success(function (data) {
+
+  	})
+  	.error(function (error) {
+  		
+  	})
+  }
+
+  function setCarToInProgress (id) {
+  	carFactory.setCarToInProgress(id)
+  	.success(function (data) {
+
+  	})
+  	.error(function (error) {
+  		
+  	})
+  }
+
+  function setCarToShipped (id) {
+  	carFactory.setCarToShipped(id)
+  	.success(function (data) {
+
+  	})
+  	.error(function (error) {
+  		
   	})
   }
   
