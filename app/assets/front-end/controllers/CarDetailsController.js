@@ -32,45 +32,5 @@ angular.module('H&H')
 
   	})
   }
-
-  function setCarToAvaliable (id) {
-  	carFactory.setCarToAvaliable(id)
-  	.success(function (data) {
-
-  	})
-  	.error(function (error) {
-
-  	})
-  }
-
-  function setCarToOrdered (id) {
-  	carFactory.setCarToOrdered(id)
-  	.success(function (data) {
-
-  	})
-  	.error(function (error) {
-  		
-  	})
-  }
-
-  function setCarToInProgress (id) {
-  	carFactory.setCarToInProgress(id)
-  	.success(function (data) {
-
-  	})
-  	.error(function (error) {
-  		
-  	})
-  }
-
-  function setCarToShipped (id) {
-  	carFactory.setCarToShipped(id)
-  	.success(function (data) {
-
-  	})
-  	.error(function (error) {
-  		
-  	})
-  }
   
 }]);
