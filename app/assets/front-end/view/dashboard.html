@@ -1,5 +1,16 @@
 <div class="jumbotron text-center col-md-10 col-md-offset-1">
   <div ng-controller="DashboardController">
-  
+  	<ul>
+  	  <li ng-repeat="user in users">
+        
+  	  </li>
+  	</ul>
+  	<button>Add User</button>
+  	<div class="btn-group">
+        <label class="btn btn-primary" ng-model="radioModel" btn-radio="All" ng-click="setup()" uncheckable>All</label>
+        <label class="btn btn-primary" ng-model="radioModel" btn-radio="Ordered" ng-click="setup()" uncheckable>Ordered</label>
+        <label class="btn btn-primary" ng-model="radioModel" btn-radio="InProgress" ng-click="setup()" uncheckable>In Progress</label>
+        <label class="btn btn-primary" ng-model="radioModel" btn-radio="Shipped" ng-click="setup()" uncheckable>Shipped</label>
+    </div>
   </div>
 </div>

@@ -6,5 +6,12 @@
         {{car.base_price}}
   	  </li>
   	</ul>
+  	<div ng-if="" class="btn-group">
+        <label class="btn btn-primary" ng-model="radioModel" btn-radio="Avaliable" ng-click="setup()" uncheckable>Avaliable</label>
+        <label class="btn btn-primary" ng-model="radioModel" btn-radio="Ordered" ng-click="setup()" uncheckable>Ordered</label>
+        <label class="btn btn-primary" ng-model="radioModel" btn-radio="InProgress" ng-click="setup()" uncheckable>In Progress</label>
+        <label class="btn btn-primary" ng-model="radioModel" btn-radio="Shipped" ng-click="setup()" uncheckable>Shipped</label>
+        <label class="btn btn-primary" ng-model="radioModel" btn-radio="All" ng-click="setup()" uncheckable>All</label>
+    </div>
   </div>
 </div>
