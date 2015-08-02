@@ -1,10 +1,13 @@
 angular.module('H&H')
-.controller('CarDetailsController', ['$scope', 'userFactory', 'carFactory',
-  function($scope, userFactory, carFactory) {
+.controller('CarDetailsController', ['$scope', 'userFactory', 'carFactory', '$routeParams'
+  function($scope, $routeParams, userFactory, carFactory) {
   $scope.car
+  $scope.tax
 
-  function getCar(id) {
-  	carFactory.getCar(id)
+  getCar();
+
+  function getCar() {
+  	carFactory.getCar($routeParams.id)
   	.success(function (data) {
   		$scope.car = data
   	})
@@ -13,8 +16,8 @@ angular.module('H&H')
   	})
   }
 
-  function purchaseCar (id) {
-  	carFactory.addCarToUser(id)
+  function purchaseCar () {
+  	carFactory.addCarToUser($routeParams.id)
   	.success(function (data) {
 
   	})
@@ -23,8 +26,8 @@ angular.module('H&H')
   	})
   }
 
-  function cancelPurchaseCar (id) {
-  	carFactory.removeFromUser(id)
+  function cancelPurchaseCar () {
+  	carFactory.removeFromUser($routeParams.id)
   	.success(function (data) {
 
   	})
@@ -32,5 +35,7 @@ angular.module('H&H')
 
   	})
   }
+
+  function 
   
 }]);

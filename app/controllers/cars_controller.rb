@@ -1,6 +1,6 @@
 class CarsController < ApplicationController
 	# before_action :authenticate_user!
-  before_action :set_car
+  before_action :set_car, only: [:update, :destroy, :show]
 
   module Status
     AVALIABLE = 0
@@ -60,6 +60,9 @@ class CarsController < ApplicationController
 
   def removeFromUser
     @car = Car.find(params[:car_id])
+    if @car.user != current_user
+      # authorize @car
+    end
     @car.user = nil
     @car.status = Status::AVALIABLE
     @car.save

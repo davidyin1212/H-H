@@ -1,5 +1,21 @@
 <div class="jumbotron text-center col-md-10 col-md-offset-1">
   <div ng-controller="CarFormController">
-  
+    <form novalidate class="simple-form">
+      Name: <input type="text" ng-model="car.name" /><br />
+      Make: <input type="text" ng-model="car.make" /><br />
+      Model: <input type="text" ng-model="car.model" /><br />
+      Engine: <input type="text" ng-model="car.engine" /><br />
+      Exterior: <input type="text" ng-model="car.exterior" /><br />
+      Interior: <input type="text" ng-model="car.interior" /><br />
+      Delivery KMs: <input type="text" ng-model="car.delivery_kms" /><br />
+      Stock #: <input type="text" ng-model="car.stock_num" /><br />
+      Base MSRP: <input type="text" ng-model="car.msrp " /><br />
+      Vehicle Options & Delivery Fees: <input type="text" ng-model="car.additional_fees " /><br />
+      MSRP Subtotal: <input type="text" ng-model="car.base_price " /><br />
+      Price Over: <input type="text" ng-model="car.price_over " /><br />
+
+      <input type="button" ng-click="startup()" value="Reset" />
+      <input type="submit" ng-click="commit(car)" value="Save" />
+    </form>
   </div>
 </div>

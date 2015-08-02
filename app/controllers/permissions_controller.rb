@@ -1,6 +1,6 @@
 class PermissionsController < ApplicationController
   # before_action :authenticate_user!
-  before_action :set_permission
+  before_action :set_permission, only: [:update, :destroy, :addToUser, :removeFromUser]
 
   def index
   	@permission = Permission.all
@@ -29,7 +29,6 @@ class PermissionsController < ApplicationController
 
   def addToUser
   	@user = User.find(params[:user_id])
-  	@permission = Permission.find(params[:id])
     # authorize @permission, :permissionAccess?
   	@user.permissions << @permission
   	@permission.users << @user
@@ -39,12 +38,18 @@ class PermissionsController < ApplicationController
 
   def removeFromUser
   	@user = User.find(params[:user_id])
-  	@permission = Permission.find(params[:id])
     # authorize @permission, :permissionAccess?
   	@user.permissions.delete(@permission)
   	@permission.users.delete(@user)
 
     respond_with(@permission)
+  end
+
+  def updateUserPermissions
+    @user = User.find(params[:user_id])
+    # authorize @permission, :permissionAccess?
+    updatePermissions = params
+    @user.permissions = updatePermissions
   end
 
   def userPermissions

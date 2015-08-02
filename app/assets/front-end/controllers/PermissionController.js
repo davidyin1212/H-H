@@ -1,14 +1,25 @@
 angular.module('H&H')
-.controller('PermissionController', ['$scope', 'permissionFactory', 'userFactory'
-  function($scope, permissionFactory, userFactory) {
+.controller('PermissionController', ['$scope', 'permissionFactory', 'userFactory', '$routeParams'
+  function($scope, permissionFactory, userFactory, $routeParams) {
   $scope.user;
   $scope.userPermissions;
   $scope.permissions;
+  $scope.user_id = $routeParams.id
 
-  function getUserPermissions(id) {
-  	userFactory.getUserPermissions(id)
+  startUp();
+
+  function startUp() {
+
+  }
+
+  function commit() {
+    updatePermissionUser($scope.userPermissions);
+  }
+
+  function getUserPermissions() {
+  	userFactory.getUserPermissions(user_id)
   	.success(function (data) {
-  	  userPermissions = data;
+  	  $scope.userPermissions = data;
   	})
   	.error(function (error) {
 
@@ -18,23 +29,17 @@ angular.module('H&H')
   function getPermissions() {
   	permissionFactory.getPermissions()
   	.success(function (data) {
-  	  permissions = data;
+  	  $scope.permissions = data;
   	})
   	.error(function (error) {
 
   	})
   }
 
-  function addPermissionToUser(user_id, permission_id) {
-  	userFactory.addPermissionToUser(user_id, permission_id)
+  function updatePermissionUser(permissions) {
+  	userFactory.addPermissionToUser(user_id, permissions)
   	.success(function (data) {
-  	  for (var i = 0; i < $scope.permissions.length; i++) {
-  	  	var permission = $scope.permissions[i];
-        if (permission.ID === permission_id) {
-          $scope.userPermissions.push(data);
-          break;
-        }
-  	  }
+  	  getUserPermissions();
   	}) 
   	.error(function (error) {
 

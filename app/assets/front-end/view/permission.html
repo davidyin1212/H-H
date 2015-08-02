@@ -1,5 +1,17 @@
 <div class="jumbotron text-center col-md-10 col-md-offset-1">
   <div ng-controller="PermissionController">
-  
+    <ul>
+    <li ng-repeat="userPermission in userPermissions">
+      {{userPermission.name}}
+      {{userPermission.description}}
+    </li>
+    </ul>
+    <ul>
+    <li ng-repeat="permission in permissions">
+      {{permission.name}}
+      {{permission.description}}
+    </li>
+    <button ng-click="commit()"></button>
+    </ul>
   </div>
 </div>

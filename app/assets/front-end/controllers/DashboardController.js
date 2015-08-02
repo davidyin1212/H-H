@@ -1,5 +1,5 @@
 angular.module('H&H')
-.controller('UserFormController', ['$scope', 'userFactory', 'carFactory'
+.controller('UserFormController', ['$scope', 'userFactory', 'carFactory', 
   function($scope, userFactory, carFactory) {
   $scope.users;
 
@@ -15,7 +15,7 @@ angular.module('H&H')
   }
 
   function getUserCars(id) {
-  	userFactory.getUserCars()
+  	userFactory.getUserCars(id)
   	.success(function (data) {
   	  for (var i = 0; i < $scope.users.length; i++) {
   	  	var user = $scope.users[i]
