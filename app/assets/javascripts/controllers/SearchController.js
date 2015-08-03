@@ -1,4 +1,4 @@
-angular.module('H&H')
+angular.module('HH')
 .controller('SearchController', ['$scope', 'carFactory',
   function($scope, carFactory) {
   $scope.cars;

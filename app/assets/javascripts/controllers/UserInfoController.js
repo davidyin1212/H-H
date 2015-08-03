@@ -1,4 +1,4 @@
-angular.module('H&H')
+angular.module('HH')
 .controller('UserInfoController', ['$scope', 'userFactory',
   function($scope, userFactory) {
   $scope.userInfo

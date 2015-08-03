@@ -1,4 +1,4 @@
-angular.module('H&H')
+angular.module('HH')
 .controller('UserFormController', ['$scope', 'userFactory', 'carFactory', 
   function($scope, userFactory, carFactory) {
   $scope.users;

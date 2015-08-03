@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
   devise_for :users
 
-  root 'welcome#index'
+  # root 'welcome#index'
 
   #map to query parameters
   get 'cars/orders' => 'cars#carsOrdered'
@@ -34,4 +34,8 @@ Rails.application.routes.draw do
 
   resources :permissions, only: [:index, :create, :update, :destroy] do 
   end
+
+  root 'application#index'
+  get '*path' => 'application#index'
+ 
 end

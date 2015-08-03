@@ -1,4 +1,4 @@
-angular.module('H&H')
+angular.module('HH')
   .factory('carFactory', ['$http', function($http) {
 
   var urlBase = '/cars';

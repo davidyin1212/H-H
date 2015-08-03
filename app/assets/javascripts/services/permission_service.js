@@ -1,4 +1,4 @@
-angular.module('H&H')
+angular.module('HH')
   .factory('permissionFactory', ['$http', function($http) {
 
   var urlBase = '/permissions';

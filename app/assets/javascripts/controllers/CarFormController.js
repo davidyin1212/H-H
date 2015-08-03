@@ -1,5 +1,5 @@
-angular.module('H&H')
-.controller('CarFormController', ['$scope', 'carFactory','$routeParams'
+angular.module('HH')
+.controller('CarFormController', ['$scope', 'carFactory','$routeParams',
   function($scope, carFactory, $routeParams) {
   $scope.car;
   $scope.status;
@@ -28,7 +28,7 @@ angular.module('H&H')
     })
     .error(function (error) {
       isNew = true;
-      $scope.car = 
+      // $scope.car = 
     })
   }
 

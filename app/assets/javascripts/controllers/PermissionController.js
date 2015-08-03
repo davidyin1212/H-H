@@ -1,5 +1,5 @@
-angular.module('H&H')
-.controller('PermissionController', ['$scope', 'permissionFactory', 'userFactory', '$routeParams'
+angular.module('HH')
+.controller('PermissionController', ['$scope', 'permissionFactory', 'userFactory', '$routeParams',
   function($scope, permissionFactory, userFactory, $routeParams) {
   $scope.user;
   $scope.userPermissions;

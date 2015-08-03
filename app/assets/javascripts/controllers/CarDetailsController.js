@@ -1,5 +1,5 @@
-angular.module('H&H')
-.controller('CarDetailsController', ['$scope', 'userFactory', 'carFactory', '$routeParams'
+angular.module('HH')
+.controller('CarDetailsController', ['$scope', 'userFactory', 'carFactory', '$routeParams',
   function($scope, $routeParams, userFactory, carFactory) {
   $scope.car
   $scope.tax
@@ -34,8 +34,6 @@ angular.module('H&H')
   	.error(function (error) {
 
   	})
-  }
-
-  function 
+  } 
   
 }]);
