@@ -1,15 +1,15 @@
 angular.module('HH')
-.controller('PermissionController', ['$scope', 'permissionFactory', 'userFactory', '$routeParams',
-  function($scope, permissionFactory, userFactory, $routeParams) {
+.controller('PermissionController', ['$scope', '$routeParams', 'permissionFactory', 'userFactory', 
+  function($scope, $routeParams, permissionFactory, userFactory) {
   $scope.user;
   $scope.userPermissions;
   $scope.permissions;
-  $scope.user_id = $routeParams.id
+  var user_id = $routeParams.id;
 
   startUp();
 
   function startUp() {
-
+    getUserPermissions();
   }
 
   function commit() {

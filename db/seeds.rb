@@ -12,6 +12,7 @@ Permission.create(name: "UserModifyPrivilege", description:"Allows creation and 
 Permission.create(name: "CarModifyPrivilege", description:"Allows creation, modification and deletion of cars")
 Permission.create(name: "QueryUserCarsPrivilege", description:"Allows access to query all cars that belong to a user that is not the current user")
 Permission.create(name: "QueryCarPrivilege", description:"Allows for query for status of the car")
+Permission.create(name: "GeneralUsePrivilege", description:"Basic Use Privilege")
 
 #Add Admin User
 

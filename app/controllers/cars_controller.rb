@@ -11,7 +11,7 @@ class CarsController < ApplicationController
 
   def index
     @car = Car.where(status: Status::AVALIABLE)
-    respond_with(@car)
+    respond_with @car
   end
 
   def create

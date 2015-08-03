@@ -1,8 +1,13 @@
 angular.module('HH')
-.controller('UserFormController', ['$scope', 'userFactory', 'carFactory', 
+.controller('DashboardController', ['$scope', 'userFactory', 'carFactory', 
   function($scope, userFactory, carFactory) {
   $scope.users;
 
+  setup();
+
+  function setup() {
+    getUsers();
+  }
 
   function getUsers() {
   	userFactory.getUsers()
@@ -11,7 +16,7 @@ angular.module('HH')
   	})
   	.error(function (error) {
 
-  	})
+  	});
   }
 
   function getUserCars(id) {
@@ -26,7 +31,7 @@ angular.module('HH')
   	})
   	.error(function (data) {
 
-  	})
+  	});
   }
 
   function getUserOfCar(id) {
@@ -36,7 +41,7 @@ angular.module('HH')
   	})
   	.error(function (error) {
 
-  	})
+  	});
   }
 
   function getCarsOrdered() {
@@ -46,7 +51,7 @@ angular.module('HH')
     })
     .error(function (error) {
 
-    })
+    });
   }
 
   function getCarsInProgress() {
@@ -56,7 +61,7 @@ angular.module('HH')
     })
     .error(function (error) {
 
-    })
+    });
   }
 
   function getCarsShipped() {
@@ -66,7 +71,7 @@ angular.module('HH')
     })
     .error(function (error) {
 
-    })
+    });
   }
 
   function setCarToAvaliable (id) {
@@ -76,7 +81,7 @@ angular.module('HH')
   	})
   	.error(function (error) {
 
-  	})
+  	});
   }
 
   function setCarToOrdered (id) {
@@ -86,7 +91,7 @@ angular.module('HH')
   	})
   	.error(function (error) {
   		
-  	})
+  	});
   }
 
   function setCarToInProgress (id) {
@@ -96,7 +101,7 @@ angular.module('HH')
   	})
   	.error(function (error) {
   		
-  	})
+  	});
   }
 
   function setCarToShipped (id) {
@@ -106,6 +111,6 @@ angular.module('HH')
   	})
   	.error(function (error) {
   		
-  	})
+  	});
   }
 }])

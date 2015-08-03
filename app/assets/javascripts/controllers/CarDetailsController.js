@@ -1,39 +1,40 @@
 angular.module('HH')
-.controller('CarDetailsController', ['$scope', 'userFactory', 'carFactory', '$routeParams',
+.controller('CarDetailsController', ['$scope', '$routeParams', 'userFactory', 'carFactory', 
   function($scope, $routeParams, userFactory, carFactory) {
-  $scope.car
-  $scope.tax
+  $scope.car;
+  $scope.tax;
+  var id = $routeParams.id;
 
   getCar();
 
   function getCar() {
-  	carFactory.getCar($routeParams.id)
+  	carFactory.getCar(id)
   	.success(function (data) {
-  		$scope.car = data
+  		$scope.car = data;
   	})
   	.error(function (error) {
 
-  	})
+  	});
   }
 
   function purchaseCar () {
-  	carFactory.addCarToUser($routeParams.id)
+  	carFactory.addCarToUser(id)
   	.success(function (data) {
 
   	})
   	.error(function (error) {
 
-  	})
+  	});
   }
 
   function cancelPurchaseCar () {
-  	carFactory.removeFromUser($routeParams.id)
+  	carFactory.removeFromUser(id)
   	.success(function (data) {
 
   	})
   	.error(function (error) {
 
-  	})
+  	});
   } 
   
 }]);

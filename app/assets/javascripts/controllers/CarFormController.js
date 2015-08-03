@@ -6,8 +6,10 @@ angular.module('HH')
   var isNew = false;
   var id = $routeParams.id;
 
+  startup();
+
   function startup() {
-    if (id >= 0) {
+    if (id > 0) {
       getCar(id);
   	}
   }

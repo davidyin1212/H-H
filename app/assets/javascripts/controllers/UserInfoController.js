@@ -4,6 +4,8 @@ angular.module('HH')
   $scope.userInfo
   $scope.userCars
 
+  getUserCars();
+
   function getUser() {
   	userFactory.getUser()
   	.success(function (data) {

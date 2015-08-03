@@ -8,6 +8,30 @@ angular
                 templateUrl: '<%= asset_path('index.html') %>',
                 controller: 'HomeController'
             })
+            .when('/index', {
+                templateUrl: '<%= asset_path('search.html') %>',
+                controller: 'SearchController'
+            })
+            .when('/dashboard', {
+                templateUrl: '<%= asset_path('dashboard.html') %>',
+                controller: 'DashboardController'
+            })
+            .when('/permission/:id', {
+                templateUrl: '<%= asset_path('permission.html') %>',
+                controller: 'PermissionController'
+            })
+            .when('/car/:id', {
+                templateUrl: '<%= asset_path('car_details.html') %>',
+                controller: 'CarDetailsController'
+            })
+            .when('/profile', {
+                templateUrl: '<%= asset_path('user_details.html') %>',
+                controller: 'UserInfoController'
+            })
+            .when('/car/edit/:id', {
+                templateUrl: '<%= asset_path('car_form.html') %>',
+                controller: 'CarFormController'
+            })
             .otherwise({ 
               redirectTo: '/' 
             });
