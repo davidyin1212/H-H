@@ -6,7 +6,15 @@ angular.module('HH')
   var isNew = false;
   var id = $routeParams.id;
 
+  $scope.commit = function(car) {
+    commit(car);
+  }
+  $scope.reset = function() {
+    startup();
+  }
+
   startup();
+
 
   function startup() {
     if (id > 0) {

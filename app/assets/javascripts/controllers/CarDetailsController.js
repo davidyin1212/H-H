@@ -7,8 +7,14 @@ angular.module('HH')
 
   getCar();
 
-  $scope.purchaseCar = buyCar();
-  $scope.cancelPurchaseCar = removeCar();
+  $scope.purchaseCar = function() {
+    buyCar();
+    window.location = "/";
+  };
+  $scope.cancelPurchaseCar = function() {
+    removeCar();
+    window.location = "/";
+  }
 
   function getCar() {
   	carFactory.getCar(id)
