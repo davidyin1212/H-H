@@ -7,6 +7,9 @@ angular.module('HH')
 
   getCar();
 
+  $scope.purchaseCar = buyCar();
+  $scope.cancelPurchaseCar = removeCar();
+
   function getCar() {
   	carFactory.getCar(id)
   	.success(function (data) {
@@ -17,7 +20,7 @@ angular.module('HH')
   	});
   }
 
-  function purchaseCar () {
+  function buyCar () {
   	carFactory.addCarToUser(id)
   	.success(function (data) {
 
@@ -27,7 +30,7 @@ angular.module('HH')
   	});
   }
 
-  function cancelPurchaseCar () {
+  function removeCar () {
   	carFactory.removeFromUser(id)
   	.success(function (data) {
 
