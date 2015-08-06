@@ -6,12 +6,12 @@
   	  <li ng-repeat="user in users">
         {{user.first_name}}
         {{user.last_name}}
-        <p>Cars: {{user.cars.length}}</p>
         <button>Permissions</button>
         <a href="">Details</a>
         <a href="">Delete User</a>
+        <p>Cars: {{user.cars.length}}</p>
         <ul class="cars">
-          <li ng-cars="car in users.cars">
+          <li ng-repeat="car in user.cars">
             {{ car.name }}
             {{ car.make }}
             {{ car.model }}

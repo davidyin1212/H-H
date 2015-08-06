@@ -21,6 +21,10 @@ angular.module('HH')
   	userFactory.getUsers()
   	.success(function (data) {
   	  $scope.users = data;
+      $scope.users.cars = new Array();
+      for (var i = 0; i < $scope.users.length; i++) {
+        getUserCars($scope.users[i].id);
+      }
   	})
   	.error(function (error) {
 
@@ -32,7 +36,7 @@ angular.module('HH')
   	.success(function (data) {
   	  for (var i = 0; i < $scope.users.length; i++) {
   	  	var user = $scope.users[i]
-  	  	if (user.ID = id) {
+  	  	if (user.id == id) {
   	  	  $scope.users[i].cars = data
   	  	}
   	  }
