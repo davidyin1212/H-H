@@ -1,14 +1,38 @@
 <div class="jumbotron text-center col-md-10 col-md-offset-1">
   <div ng-controller="DashboardController">
-  	<ul>
+    <button>Add User</button>
+    <button>Edit</button>
+  	<ul class="users">
   	  <li ng-repeat="user in users">
         {{user.first_name}}
         {{user.last_name}}
-        <a href=""></a>
-        <a href=""></a>
+        <p>Cars: {{user.cars.length}}</p>
+        <button>Permissions</button>
+        <a href="">Details</a>
+        <a href="">Delete User</a>
+        <ul class="cars">
+          <li ng-cars="car in users.cars">
+            {{ car.name }}
+            {{ car.make }}
+            {{ car.model }}
+            {{ car.engine }}
+            {{ car.exterior }}
+            {{ car.interior }}
+            {{ car.delivery_kms }}
+            {{ car.stock_num }}
+            {{ car.msrp }}
+            {{ car.additional_fees }}
+            {{ car.base_price | currency:"CAD$"}}
+            {{ car.base_price * tax | currency:"CAD$"}}
+            {{ car.base_price * (1 + tax) | currency:"CAD$"}}
+            <p>Change Staus<p>
+            <button>Ordered</button>
+            <button>In Progress</button>
+            <button>Shipped</button>
+          </li>
+        </ul>
   	  </li>
   	</ul>
-  	<button>Add User</button>
   	<div class="btn-group">
         <label class="btn btn-primary" ng-model="radioModel" btn-radio="All" ng-click="setup()" uncheckable>All</label>
         <label class="btn btn-primary" ng-model="radioModel" btn-radio="Ordered" ng-click="setup()" uncheckable>Ordered</label>

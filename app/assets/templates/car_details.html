@@ -15,5 +15,6 @@
     <h1>{{ car.base_price * (1 + tax) | currency:"CAD$"}}</h1>
     <button ng-if="car.status == 0" ng-click="purchaseCar()">Purchase</button>
     <button ng-if="car.status != 0" ng-click="cancelPurchaseCar()">Cancel Purchase</button>
+    <button>Edit</button>
   </div>
 </div>

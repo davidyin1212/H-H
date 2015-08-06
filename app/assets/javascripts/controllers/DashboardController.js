@@ -9,6 +9,14 @@ angular.module('HH')
     getUsers();
   }
 
+  $scope.setStatus = function (status, id) {
+    $scope.users.car[id].status = status;
+  }
+
+  function commit() {
+
+  }
+
   function getUsers() {
   	userFactory.getUsers()
   	.success(function (data) {

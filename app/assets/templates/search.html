@@ -1,9 +1,20 @@
 <div class="jumbotron text-center col-md-10 col-md-offset-1">
   <div ng-controller="SearchController">
+  <button>Add</button>
+  <button>Edit</button>
   	<ul>
   	  <li ng-repeat="car in cars">
         {{car.name}}
         {{car.base_price}}
+        <button>Edit</button>
+        <button>Delete</button>
+        <ul>
+          <li>
+            {{car.name}}
+            {{car.base_price}}
+            <button>Details</button>
+          </li>
+        </ul>
   	  </li>
   	</ul>
   	<div ng-if="" class="btn-group">
