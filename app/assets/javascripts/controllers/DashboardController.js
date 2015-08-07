@@ -2,6 +2,7 @@ angular.module('HH')
 .controller('DashboardController', ['$scope', 'userFactory', 'carFactory', 
   function($scope, userFactory, carFactory) {
   $scope.users;
+  $scope.radioModel;
 
   setup();
 
@@ -37,7 +38,12 @@ angular.module('HH')
   	  for (var i = 0; i < $scope.users.length; i++) {
   	  	var user = $scope.users[i]
   	  	if (user.id == id) {
-  	  	  $scope.users[i].cars = data
+          // for (var j = 0; j < data.length; j++) {
+          //   if (data[j].status == $scope.radioModel) {
+          //     $scope.users[i].cars.push(data[j]);
+          //   }
+          // }
+          $scope.users[i].cars = data;     
   	  	}
   	  }
   	})

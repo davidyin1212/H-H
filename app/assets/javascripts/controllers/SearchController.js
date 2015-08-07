@@ -4,6 +4,10 @@ angular.module('HH')
   $scope.cars;
   $scope.radioModel = "Avaliable";
 
+  $scope.query = function () {
+    setup();
+  }
+
   setup();
 
   function setup() {

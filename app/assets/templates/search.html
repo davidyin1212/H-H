@@ -8,21 +8,26 @@
         {{car.base_price}}
         <button>Edit</button>
         <button>Delete</button>
-        <ul>
-          <li>
-            {{car.name}}
-            {{car.base_price}}
-            <button>Details</button>
-          </li>
-        </ul>
+        <div>
+          {{ car.name }}
+          {{ car.make }}
+          {{ car.model }}
+          {{ car.engine }}
+          {{ car.exterior }}
+          {{ car.interior }}
+          {{ car.delivery_kms }}
+          {{ car.stock_num }}
+          {{ car.msrp }}
+          <button>Details</button>
+        </div>
   	  </li>
   	</ul>
-  	<div ng-if="" class="btn-group">
-        <label class="btn btn-primary" ng-model="radioModel" btn-radio="Avaliable" ng-click="setup()" uncheckable>Avaliable</label>
-        <label class="btn btn-primary" ng-model="radioModel" btn-radio="Ordered" ng-click="setup()" uncheckable>Ordered</label>
-        <label class="btn btn-primary" ng-model="radioModel" btn-radio="InProgress" ng-click="setup()" uncheckable>In Progress</label>
-        <label class="btn btn-primary" ng-model="radioModel" btn-radio="Shipped" ng-click="setup()" uncheckable>Shipped</label>
-        <label class="btn btn-primary" ng-model="radioModel" btn-radio="All" ng-click="setup()" uncheckable>All</label>
+  	<div ng-if="true" class="btn-group">
+        <label class="btn btn-primary" ng-model="radioModel" btn-radio="Avaliable" ng-click="query()" uncheckable>Avaliable</label>
+        <label class="btn btn-primary" ng-model="radioModel" btn-radio="Ordered" ng-click="query()" uncheckable>Ordered</label>
+        <label class="btn btn-primary" ng-model="radioModel" btn-radio="InProgress" ng-click="query()" uncheckable>In Progress</label>
+        <label class="btn btn-primary" ng-model="radioModel" btn-radio="Shipped" ng-click="query()" uncheckable>Shipped</label>
+        <label class="btn btn-primary" ng-model="radioModel" btn-radio="All" ng-click="query()" uncheckable>All</label>
     </div>
   </div>
 </div>
