@@ -1,11 +1,29 @@
 angular.module('HH')
 .controller('SearchController', ['$scope', 'carFactory',
   function($scope, carFactory) {
+  $scope.carsTemplate;
   $scope.cars;
   $scope.radioModel = "Avaliable";
 
   $scope.query = function () {
     setup();
+  }
+
+  $scope.searchCars = function (val) {
+    $scope.cars = $scope.carsTemplate;
+    for (var i = 0; i < $scope.cars.length; i++) {
+      var queryString = $scope.cars[i].name + $scope.cars[i].make + 
+      $scope.cars[i].model + $scope.cars[i].stock_num;
+      var queryArgs = val.split(" ");
+      for (var j = 0; j < queryArgs.length; j++) {
+        if ($scope.cars[i].name.indexOf(queryArgs[j] < 0) &&
+            $scope.cars[i].make.indexOf(queryArgs[j] < 0) &&
+            $scope.cars[i].model.indexOf(queryArgs[j] < 0) &&
+            $scope.cars[i].stock_num.indexOf(queryArgs[j] < 0)) {
+          $scope.cars.splice(i, 1);
+        }
+      }
+    }
   }
 
   setup();
@@ -38,6 +56,7 @@ angular.module('HH')
     carFactory.getAvaliableCars()
     .success(function (data) {
     	$scope.cars = data;
+      $scope.carsTemplate = data;
     })
     .error(function (error) {
 
@@ -48,6 +67,7 @@ angular.module('HH')
     carFactory.carsOrdered()
     .success(function (data) {
     	$scope.cars = data;
+      $scope.carsTemplate = data;
     })
     .error(function (error) {
 
@@ -58,6 +78,7 @@ angular.module('HH')
     carFactory.carsInProgress()
     .success(function (data) {
     	$scope.cars = data;
+      $scope.carsTemplate = data;
     })
     .error(function (error) {
 
@@ -68,6 +89,7 @@ angular.module('HH')
     carFactory.carsShipped()
     .success(function (data) {
     	$scope.cars = data;
+      $scope.carsTemplate = data;
     })
     .error(function (error) {
 
@@ -78,6 +100,7 @@ angular.module('HH')
     carFactory.carsAll()
     .success(function (data) {
     	$scope.cars = data;
+      $scope.carsTemplate = data;
     })
     .error(function (error) {
 
@@ -95,6 +118,7 @@ angular.module('HH')
           break;
         }
       }
+      $scope.carsTemplate = $scope.cars;
     })
     .error(function (error) {
 
