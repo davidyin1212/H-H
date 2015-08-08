@@ -6,7 +6,7 @@
   	  <li ng-repeat="user in users">
         {{user.first_name}}
         {{user.last_name}}
-        <button>Permissions</button>
+        <a href="#permission/{{user.id}}">Permissions</a>
         <a href="">Details</a>
         <a href="">Delete User</a>
         <p>Cars: {{user.cars.length}}</p>

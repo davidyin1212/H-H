@@ -3,6 +3,8 @@ angular
         'ngRoute',
         'templates'
     ]).config(function ($routeProvider, $locationProvider, $httpProvider) {
+        // $locationProvider.html5Mode(enabled: true);
+        
         $routeProvider
             .when('/', {
                 templateUrl: '<%= asset_path('index.html') %>',
@@ -35,10 +37,6 @@ angular
             .otherwise({ 
               redirectTo: '/' 
             });
-        $locationProvider.html5Mode({
-            enabled: true,
-            requireBase: false
-        });
         $httpProvider.defaults.headers.common['X-CSRF-Token'] =
             $('meta[name=csrf-token]').attr('content');
     });
