@@ -40,7 +40,7 @@ class CarsController < ApplicationController
 
   def userCars
     #watch out for permissions issue
-    if params[:user_id] == 0 then
+    if params[:user_id].to_i == 0 then
       @car = Car.where(user_id: current_user.id)
     else
       @car = Car.where(user_id: params[:user_id])

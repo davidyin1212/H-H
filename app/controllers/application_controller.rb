@@ -9,8 +9,11 @@ class ApplicationController < ActionController::Base
   include Pundit
   protect_from_forgery with: :null_session
 
-  respond_to :json
+  respond_to :html, :json
 
   def index
+  	if !user_signed_in?
+  	  redirect_to(new_user_session_path)
+  	end
   end
 end
