@@ -37,6 +37,6 @@ Rails.application.routes.draw do
   end
 
   root 'application#index'
-  get '*path' => 'application#index'
+  # get '*path' => 'application#index'
  
 end

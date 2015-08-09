@@ -54,6 +54,7 @@ class PermissionsController < ApplicationController
 
   def userPermissions
   	if params[:user_id].to_i == 0
+      # permissions_users.user_id
       @permission = Permission.where(user_id: current_user.id)
     else
       @permission = Permission.where(user_id: params[:user_id])
