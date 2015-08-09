@@ -1,8 +1,9 @@
 angular.module('HH')
-.controller('UserInfoController', ['$scope', 'userFactory',
-  function($scope, userFactory) {
+.controller('UserInfoController', ['$scope', '$routeParams', 'userFactory',
+  function($scope, $routeParams, userFactory) {
   $scope.userInfo
   $scope.userCars
+  var user_id = $routeParams.id;
 
   getUserCars();
 
@@ -27,7 +28,7 @@ angular.module('HH')
   }
 
   function getUserCars() {
-  	userFactory.getUserCars(0)
+  	userFactory.getUserCars(user_id)
   	.success(function (data) {
   		$scope.userCars = data
   	})
