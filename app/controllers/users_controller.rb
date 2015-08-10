@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   # before_action :authenticate_user!
-  before_action :set_user, :set_permission, only: [:update, :destroy, :show]
+  before_action :set_user, only: [:update, :destroy, :show]
 
   def index
     @user = User.all
@@ -23,6 +23,11 @@ class UsersController < ApplicationController
 
   def destroy
     # authorize @user
+
+    @car = Car.where(user_id: @user.id)
+    @car.each do |car|
+      Car.removeCarFromUser(car)
+    end
     @user.destroy
     respond_with @user
   end

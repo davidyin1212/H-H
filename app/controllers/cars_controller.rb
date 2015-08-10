@@ -63,9 +63,10 @@ class CarsController < ApplicationController
     if @car.user != current_user
       # authorize @car
     end
-    @car.user = nil
-    @car.status = Status::AVALIABLE
-    @car.save
+    Car.removeCarFromUser(@car)
+    # @car.user = nil
+    # @car.status = Status::AVALIABLE
+    # @car.save
     respond_with(@car)
   end
 

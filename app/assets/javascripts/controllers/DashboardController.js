@@ -14,6 +14,10 @@ angular.module('HH')
     $scope.users.car[id].status = status;
   }
 
+  $scope.removeUser = function (id) {
+    deleteUser(id);
+  }
+
   function commit() {
 
   }
@@ -30,6 +34,20 @@ angular.module('HH')
   	.error(function (error) {
 
   	});
+  }
+
+  function deleteUser(id) {
+    userFactory.deleteUser(id)
+    .success(function (data) {
+      for (var i = 0; i < $scope.users.length; i++) {
+        if ($scope.users[i].id == id) {
+          $scope.users.splice(i, 1);
+        }
+      }
+    })
+    .error(function (error) {
+
+    });
   }
 
   function getUserCars(id) {

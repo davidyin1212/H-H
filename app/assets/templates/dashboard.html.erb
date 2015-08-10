@@ -8,7 +8,7 @@
         {{user.last_name}}
         <a href="#permission/{{user.id}}">Permissions</a>
         <a href="#inventory/{{user.id}}">Details</a>
-        <a href="">Delete User</a>
+        <button ng-click="removeUser(user.id)">Delete User</button>
         <p>Cars: {{user.cars.length}}</p>
         <ul class="cars">
           <li ng-repeat="car in user.cars">
