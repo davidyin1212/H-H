@@ -26,6 +26,10 @@ angular.module('HH')
     }
   }
 
+  $scope.removeCar = function (id) {
+    removeCar(id);
+  }
+
   setup();
 
   function setup() {
@@ -113,7 +117,7 @@ angular.module('HH')
       // $scope.status = 'Deleted Customer! Refreshing customer list.';
       for (var i = 0; i < $scope.cars.length; i++) {
         var car = $scope.cars[i];
-        if (car.ID === id) {
+        if (car.id === id) {
           $scope.cars.splice(i, 1);
           break;
         }

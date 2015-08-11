@@ -5,14 +5,14 @@
     <div ng-show="noResults">
       <i class="glyphicon glyphicon-remove"></i> No Results Found
     </div>
-    <button href="#car/edit/0">Add</button>
+    <a href="#car/edit/0">Add</a>
     <button>Edit</button>
   	<ul>
   	  <li ng-repeat="car in cars">
         {{car.name}}
         {{car.base_price}}
         <a href="#car/edit/{{car.id}}">Edit</a>
-        <button>Delete</button>
+        <button ng-click="removeCar(car.id)">Delete</button>
         <div>
           {{ car.name }}
           {{ car.make }}
