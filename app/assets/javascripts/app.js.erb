@@ -18,6 +18,10 @@ angular
                 templateUrl: '<%= asset_path('dashboard.html') %>',
                 controller: 'DashboardController'
             })
+            .when('/new_user', {
+                templateUrl: '<%= asset_path('user_form.html') %>',
+                controller: 'UserFormController'
+            })
             .when('/permission/:id', {
                 templateUrl: '<%= asset_path('permission.html') %>',
                 controller: 'PermissionController'

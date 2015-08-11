@@ -10,9 +10,9 @@ class UsersController < ApplicationController
 
   def create
     # user_params.permit(:first_name, :last_name, :email, :password, :password_confirmation)
-    @user = User.new(user_params)
+    @user = User.create(user_params)
     # authorize @user
-    @user.save
+    # @user.save
     respond_with @user
   end
 
