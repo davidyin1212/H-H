@@ -33,6 +33,12 @@ when "development"
    Car.create(name: "Range Rover Fullsize", make: "Land Rover", model: "Range Fullsize", engine: "V6", status: 2, user_id: 1)
    Car.create(name: "Maserati Gran Turismo", make: "Maserati", model: "Gran Turismo", engine: "V8", status: 0)
    Car.create(name: "Jaguar XF", make: "Jaguar", model: "XF", engine: "V6", status: 0)
+
+   #Assign Permissions to Users
+   user = User.find(1);
+   user.permissions << Permission.find(1)
+   user.permissions << Permission.find(2)
+   user.permissions << Permission.find(3)
 when "production"
    
 end

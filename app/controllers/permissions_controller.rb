@@ -48,16 +48,17 @@ class PermissionsController < ApplicationController
   def updateUserPermissions
     @user = User.find(params[:user_id])
     # authorize @permission, :permissionAccess?
-    updatePermissions = params
-    @user.permissions = updatePermissions
+    @user.permissions = params[:permissions]
   end
 
   def userPermissions
   	if params[:user_id].to_i == 0
       # permissions_users.user_id
-      @permission = Permission.where(user_id: current_user.id)
+      user = User.find(current_user.id)
+      @permission = user.permissions
     else
-      @permission = Permission.where(user_id: params[:user_id])
+      user = User.find(params[:user_id])
+      @permission = user.permissions
       # authorize @permission, :permissionAccess?
     end
 

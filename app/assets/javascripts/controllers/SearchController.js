@@ -21,6 +21,8 @@ angular.module('HH')
             $scope.cars[i].model.indexOf(queryArgs[j] < 0) &&
             $scope.cars[i].stock_num.indexOf(queryArgs[j] < 0)) {
           $scope.cars.splice(i, 1);
+          i--;
+          break;
         }
       }
     }

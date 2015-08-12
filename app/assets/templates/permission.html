@@ -1,15 +1,19 @@
 <div class="jumbotron text-center col-md-10 col-md-offset-1">
   <div ng-controller="PermissionController">
+    <h1>User Permissions</h1>
     <ul>
     <li ng-repeat="userPermission in userPermissions">
       {{userPermission.name}}
       {{userPermission.description}}
+      <button ng-click="removePermissionFromUser(userPermission.id)">Remove</button>
     </li>
     </ul>
+    <h1>Add Permissions</h1>
     <ul>
     <li ng-repeat="permission in permissions">
       {{permission.name}}
       {{permission.description}}
+      <button ng-click="addPermissionToUser(permission.id)">Add</button>
     </li>
     </ul>
     <button ng-click="commit()">Update</button>
