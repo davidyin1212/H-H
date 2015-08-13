@@ -47,12 +47,12 @@ class PermissionsController < ApplicationController
 
   def updateUserPermissions
     @user = User.find(params[:user_id])
-    # authorize @permission, :permissionAccess?
     permissions = params[:_json]
 
     @user.permissions = Array.new()
     permissions.each do |permission_json|
       permission = Permission.find(permission_json[:id])
+      # authorize permission, :permissionAccess?
       if !(@user.permissions.include?(permission))
         @user.permissions << Permission.find(permission_json[:id])
       end
@@ -68,7 +68,7 @@ class PermissionsController < ApplicationController
     else
       user = User.find(params[:user_id])
       @permission = user.permissions
-      # authorize @permission, :permissionAccess?
+      authorize @permission, :permissionAccess?
     end
 
     respond_with(@permission)
