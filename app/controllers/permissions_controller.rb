@@ -1,7 +1,6 @@
 class PermissionsController < ApplicationController
   # before_action :authenticate_user!
   before_action :set_permission, only: [:update, :destroy, :addToUser, :removeFromUser]
-  respond_to :json
 
   def index
   	@permission = Permission.all
@@ -51,11 +50,8 @@ class PermissionsController < ApplicationController
     # authorize @permission, :permissionAccess?
     permissions = params[:_json]
 
-    puts permissions
-    
     @user.permissions = Array.new()
     permissions.each do |permission_json|
-      puts permission_json
       permission = Permission.find(permission_json[:id])
       if !(@user.permissions.include?(permission))
         @user.permissions << Permission.find(permission_json[:id])
