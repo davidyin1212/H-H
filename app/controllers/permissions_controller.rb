@@ -48,7 +48,8 @@ class PermissionsController < ApplicationController
   def updateUserPermissions
     @user = User.find(params[:user_id])
     # authorize @permission, :permissionAccess?
-    @user.permissions = params[:permissions]
+    puts params[:_json]
+    @user.permissions = params[:_json]
   end
 
   def userPermissions

@@ -76,7 +76,7 @@ angular.module('HH')
   }
 
   function updatePermissionUser(permissions) {
-  	userFactory.addPermissionToUser(user_id, permissions)
+  	userFactory.updateUserPermissions(user_id, permissions)
   	.success(function (data) {
   	  getUserPermissions();
   	}) 

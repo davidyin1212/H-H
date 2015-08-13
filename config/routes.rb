@@ -15,7 +15,7 @@ Rails.application.routes.draw do
       get '/cars' => 'cars#userCars'
       get '/permissions' => 'permissions#userPermissions'
       #combine these 2 operations into one update post operation
-      post '/permissions/:id' => 'permissions#addToUser'
+      post '/permissions' => 'permissions#updateUserPermissions'
       delete '/permissions/:id' => 'permissions#removeFromUser'
     end
 

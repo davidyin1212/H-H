@@ -40,6 +40,10 @@ angular.module('HH')
     return $http.delete(urlBase + '/' + user_id + '/permissions/' + permission_id + '.json');
   }
 
+  userFactory.updateUserPermissions = function (user_id, permissions) {
+    return $http.post(urlBase + '/' + user_id + '/permissions' + '.json', permissions);
+  }
+
   return userFactory;
   
 }]);
