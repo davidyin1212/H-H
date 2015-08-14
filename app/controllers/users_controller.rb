@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:update, :destroy, :show]
 
   def index
-    @user = User.all
+    @user = User.where.not(id: current_user.id)
     authorize @user
     respond_with @user
   end
