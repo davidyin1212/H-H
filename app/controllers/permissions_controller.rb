@@ -4,32 +4,33 @@ class PermissionsController < ApplicationController
 
   def index
   	@permission = Permission.all
-    # authorize @permission
+
+    authorize @permission
   	respond_with @permission
   end
 
   def create
   	@permission = Permission.new(permission_params)
-    # authorize @permission
+    authorize @permission
     @permission.save
     respond_with @permission
   end
 
   def destroy
-    # authorize @permission
+    authorize @permission
   	@permission.destroy
   	respond_with @permission
   end
 
   def update
-    # authorize @permission
+    authorize @permission
   	@permission.update(permission_params)
   	respond_with @permission
   end
 
   def addToUser
   	@user = User.find(params[:user_id])
-    # authorize @permission, :permissionAccess?
+    authorize @permission, :modifyUserPermissionAccess?
   	@user.permissions << @permission
   	@permission.users << @user
 
@@ -38,7 +39,7 @@ class PermissionsController < ApplicationController
 
   def removeFromUser
   	@user = User.find(params[:user_id])
-    # authorize @permission, :permissionAccess?
+    authorize @permission, :modifyUserPermissionAccess?
   	@user.permissions.delete(@permission)
   	@permission.users.delete(@user)
 
@@ -49,10 +50,15 @@ class PermissionsController < ApplicationController
     @user = User.find(params[:user_id])
     permissions = params[:_json]
 
+    puts permissions
+    if permissions != nil
+      authorize Permission.find(permissions[0][:id]), :modifyUserPermissionAccess?
+    else
+      authorize Permission.find(1), :modifyUserPermissionAccess?
+    end
     @user.permissions = Array.new()
     permissions.each do |permission_json|
       permission = Permission.find(permission_json[:id])
-      # authorize permission, :permissionAccess?
       if !(@user.permissions.include?(permission))
         @user.permissions << Permission.find(permission_json[:id])
       end
@@ -65,10 +71,11 @@ class PermissionsController < ApplicationController
       # permissions_users.user_id
       user = User.find(current_user.id)
       @permission = user.permissions
+      authorize @permission, :userPermissionAccess?
     else
       user = User.find(params[:user_id])
       @permission = user.permissions
-      authorize @permission, :permissionAccess?
+      authorize @permission, :userPermissionAccess?
     end
 
     respond_with(@permission)

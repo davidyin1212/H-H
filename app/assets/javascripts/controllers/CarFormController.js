@@ -19,7 +19,9 @@ angular.module('HH')
   function startup() {
     if (id > 0) {
       getCar(id);
-  	}
+  	} else {
+      isNew = true;
+    }
   }
 
   function commit(car) {

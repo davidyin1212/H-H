@@ -4,14 +4,14 @@ class UsersController < ApplicationController
 
   def index
     @user = User.all
-    # authorize @user
+    authorize @user
     respond_with @user
   end
 
   def create
     # user_params.permit(:first_name, :last_name, :email, :password, :password_confirmation)
     @user = User.create(user_params)
-    # authorize @user
+    authorize @user
     # @user.save
     respond_with @user
   end
@@ -22,7 +22,7 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    # authorize @user
+    authorize @user
 
     @car = Car.where(user_id: @user.id)
     @car.each do |car|

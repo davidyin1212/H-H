@@ -22,8 +22,11 @@ class PermissionPolicy < ApplicationPolicy
     @user.permissions.exists?(Permission.find_by(name:"PermissionModifyPrivilege"))
   end
 
-  def permissionAccess?
+  def userPermissionAccess?
     @user.permissions.exists?(Permission.find_by(name:"PermissionPrivilege"))
   end
 
+  def modifyUserPermissionAccess?
+    @user.permissions.exists?(Permission.find_by(name:"ModifyUserPermissionPrivilege"))
+  end
 end
