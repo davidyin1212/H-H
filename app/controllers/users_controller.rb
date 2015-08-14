@@ -3,7 +3,8 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:update, :destroy, :show]
 
   def index
-    @user = User.where.not(id: current_user.id)
+    admin = User.find_by(email: "admin@admin.com")
+    @user = User.where.not(id: admin.id)
     authorize @user
     respond_with @user
   end

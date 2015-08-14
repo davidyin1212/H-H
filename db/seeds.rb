@@ -23,6 +23,7 @@ Permission.create(name: "ModifyUserPermissionPrivilege", description:"Allows edi
 case Rails.env
 when "development"
    #Add Users for testing
+   User.create(first_name: "Admin", last_name: "Admin", email: "Admin@admin.com", password: "12345678")
    User.create(first_name: "User1", last_name: "User1", email: "test1@email.com", password: "12345678")
    User.create(first_name: "User2", last_name: "User2", email: "test2@email.com", password: "12345678")
    User.create(first_name: "User3", last_name: "User3", email: "test3@email.com", password: "12345678")
