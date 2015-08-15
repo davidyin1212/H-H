@@ -33,6 +33,9 @@ gem 'bower-rails'
 # angular tempalates in assets
 gem 'angular-rails-templates'
 
+# use stripe to manage payments
+gem 'stripe'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

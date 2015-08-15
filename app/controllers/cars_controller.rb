@@ -52,10 +52,23 @@ class CarsController < ApplicationController
   end
 
   def addToUser
+    token = params[:stripeToken]
     @car = Car.find(params[:car_id])
-    @car.user = current_user
-    @car.status = Status::ORDER
-    @car.save
+    if token != nil
+      begin
+        charge = Stripe::Charge.create(
+          :amount => 1000, # amount in cents, again
+          :currency => "cad",
+          :source => token,
+          :description => "Example charge"
+        )
+        @car.user = current_user
+        @car.status = Status::ORDER
+        @car.save
+      rescue Stripe::CardError => e
+        # The card has been declined
+      end
+    end
     respond_with(@car)
   end
 
