@@ -10,7 +10,7 @@ class PaymentController < ApplicationController
     @payment = Payment.new()
     descriptionString = current_user.first_name.to_s + " " + current_user.last_name.to_s
     customer = Stripe::Customer.create(
-      :source => params[:stripeToken],
+      :card => params[:stripeToken],
       :description => descriptionString,
       :email => current_user.email
     )

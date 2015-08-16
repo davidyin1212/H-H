@@ -1,4 +1,5 @@
 jQuery(function($) {
+  Stripe.setPublishableKey($('meta[name="stripe-key"]').attr('content'));
   $('#payment-form').submit(function(event) {
     var $form = $(this);
 
