@@ -52,21 +52,23 @@ class CarsController < ApplicationController
   end
 
   def addToUser
-    token = params[:stripeToken]
     @car = Car.find(params[:car_id])
-    if token != nil
+    if @car.status = Status::AVALIABLE
+      customer = Payment.find_by(user_id: current_user.id)
       begin
         charge = Stripe::Charge.create(
-          :amount => 1000, # amount in cents, again
-          :currency => "cad",
-          :source => token,
-          :description => "Example charge"
+          :customer    => customer.stripe_customer_token,
+          :amount      => 100,
+          :description => 'Rails Stripe customer',
+          :currency    => 'cad'
         )
         @car.user = current_user
         @car.status = Status::ORDER
+        @car.charge_id = charge[:id]
         @car.save
       rescue Stripe::CardError => e
         # The card has been declined
+        raise e
       end
     end
     respond_with(@car)
@@ -74,10 +76,16 @@ class CarsController < ApplicationController
 
   def removeFromUser
     @car = Car.find(params[:car_id])
+    adminRemove = false
     if @car.user != current_user
       authorize @car
+      adminRemove = true
     end
-    Car.removeCarFromUser(@car)
+    if @car.status == Status::ORDER || adminRemove
+      Car.removeCarFromUser(@car)
+      ch = Stripe::Charge.retrieve(@car.charge_id)
+      refund = ch.refunds.create
+    end
     # @car.user = nil
     # @car.status = Status::AVALIABLE
     # @car.save

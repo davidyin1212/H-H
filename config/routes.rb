@@ -36,6 +36,9 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :payment, only: [:new, :edit, :create, :show, :update, :destroy] do
+  end
+
   root 'application#index'
   # get '*path' => 'application#index'
  

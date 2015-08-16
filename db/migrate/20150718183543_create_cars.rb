@@ -12,7 +12,9 @@ class CreateCars < ActiveRecord::Migration
       t.decimal :msrp, :precision => 9, :scale => 2
       t.text :additional_fees
       t.decimal :base_price, :precision => 9, :scale => 2
+      t.decimal :price_over, :precision => 9, :scale => 2
       t.belongs_to :user, index: true
+      t.belongs_to :payment, index: true
       t.timestamps null: false
     end
   end
