@@ -5,6 +5,7 @@ class UsersController < ApplicationController
   def index
     admin = User.find_by(email: "admin@admin.com")
     @user = User.where.not(id: admin.id)
+    puts @user[0].payment
     authorize @user
     respond_with @user
   end

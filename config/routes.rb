@@ -36,8 +36,9 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :payment, only: [:new, :edit, :create, :show, :update, :destroy] do
+  resources :payment, only: [:new, :edit, :create, :show, :destroy] do
   end
+  post 'payment/:id' => 'payment#update'
 
   root 'application#index'
   # get '*path' => 'application#index'

@@ -33,4 +33,9 @@
 <% end %>
 
 <%= link_to "Back", :back %>
-<%= link_to "Add Payment Info", new_payment_path %>
+<% if current_user.payment == nil %>
+  <%= link_to "Add Payment Info", new_payment_path %>
+<% else %>
+  <%= link_to "Edit Payment Info", edit_payment_path(current_user.payment) %>
+  <%= link_to "Delete Payment Info", payment_path(current_user.payment), :method => :delete %>
+<% end %>

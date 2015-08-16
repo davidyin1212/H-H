@@ -5,6 +5,8 @@ class Car < ActiveRecord::Base
 
   def self.removeCarFromUser(car)
     car.user = nil
+    car.payment = nil
+    car.charge_id = nil
     car.status = 0
     car.save
   end

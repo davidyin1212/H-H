@@ -1,4 +1,7 @@
 class PaymentController < ApplicationController
+  # before_action :authenticate_user!
+  before_action :set_payment, only: [:update, :destroy, :show]
+
   def new
 
   end
@@ -7,17 +10,21 @@ class PaymentController < ApplicationController
   end
 
   def create
-    @payment = Payment.new()
-    descriptionString = current_user.first_name.to_s + " " + current_user.last_name.to_s
-    customer = Stripe::Customer.create(
-      :card => params[:stripeToken],
-      :description => descriptionString,
-      :email => current_user.email
-    )
-    @payment.stripe_customer_token = customer.id
-    @payment.user_id = current_user.id
-    @payment.email = current_user.email
-    @payment.save
+    if current_user.payment == nil
+      @payment = Payment.new()
+      descriptionString = current_user.first_name.to_s + " " + current_user.last_name.to_s
+      customer = Stripe::Customer.create(
+        :card => params[:stripeToken],
+        :description => descriptionString,
+        :email => current_user.email
+      )
+      @payment.stripe_customer_token = customer.id
+      @payment.user_id = current_user.id
+      @payment.email = current_user.email
+      @payment.save
+    else
+      @payment = current_user.payment
+    end
     respond_with(@payment)
   end
 
@@ -27,14 +34,17 @@ class PaymentController < ApplicationController
   end
 
   def update
-    @payment.update(params[:payment])
-    @payment.update_with_payment
+    customer = Stripe::Customer.retrieve(@payment.stripe_customer_token)
+    customer.source = params[:stripeToken]
+    customer.save
     respond_with(@payment)
   end
 
   def destroy
+    cu = Stripe::Customer.retrieve(@payment.stripe_customer_token)
+    cu.delete
     @payment.destroy
-    respond_with(@payment)
+    # respond_with(@payment)
   end
 
   def getUserPaymentInfo
