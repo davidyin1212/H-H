@@ -5,7 +5,8 @@ angular.module('HH')
   $scope.cars;
   $scope.radioModel = "Avaliable";
 
-  $scope.query = function () {
+  $scope.query = function (val) {
+    $scope.radioModel = val;
     setup();
   }
 
@@ -43,7 +44,7 @@ angular.module('HH')
       getCarsShipped();
     } else if ($scope.radioModel === "All") {
       getCarsAll();
-    } else {
+    } else if ($scope.radioModel === "Avaliable"){
       getCars();
     }
   }

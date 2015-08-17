@@ -2,9 +2,15 @@ angular.module('HH')
 .controller('DashboardController', ['$scope', 'userFactory', 'carFactory', 
   function($scope, userFactory, carFactory) {
   $scope.users;
-  $scope.radioModel;
+  $scope.radioModel = "All";
+  queryParam = 0;
 
   setup();
+
+  $scope.query = function(val) {
+    queryParam = val;
+    setup();
+  }
 
   function setup() {
     getUsers();
@@ -56,12 +62,16 @@ angular.module('HH')
   	  for (var i = 0; i < $scope.users.length; i++) {
   	  	var user = $scope.users[i]
   	  	if (user.id == id) {
-          // for (var j = 0; j < data.length; j++) {
-          //   if (data[j].status == $scope.radioModel) {
-          //     $scope.users[i].cars.push(data[j]);
-          //   }
-          // }
-          $scope.users[i].cars = data;     
+          if (queryParam != 0) {
+            $scope.users[i].cars = new Array();
+            for (var j = 0; j < data.length; j++) {
+              if (data[j].status == queryParam) {
+                $scope.users[i].cars.push(data[j]);
+              }
+            }
+          } else {
+            $scope.users[i].cars = data;
+          }    
   	  	}
   	  }
   	})

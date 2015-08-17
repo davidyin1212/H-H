@@ -5,9 +5,18 @@
     <div ng-show="noResults">
       <i class="glyphicon glyphicon-remove"></i> No Results Found
     </div>
-    <a href="#car/edit/0">Add</a>
-    <button>Edit</button>
-  	<ul>
+    <div ng-show="true" class="btn-group">
+        <label class="btn btn-primary" ng-model="radioModel" btn-radio="'Avaliable'" ng-click="query('Avaliable')">Avaliable</label>
+        <label class="btn btn-primary" ng-model="radioModel" btn-radio="'Ordered'" ng-click="query('Ordered')">Ordered</label>
+        <label class="btn btn-primary" ng-model="radioModel" btn-radio="'InProgress'" ng-click="query('InProgress')">In Progress</label>
+        <label class="btn btn-primary" ng-model="radioModel" btn-radio="'Shipped'" ng-click="query('Shipped')">Shipped</label>
+        <label class="btn btn-primary" ng-model="radioModel" btn-radio="'All'" ng-click="query('All')">All</label>
+    </div>
+    <div>
+      <a href="#car/edit/0">Add</a>
+      <button>Edit</button>
+  	</div>
+    <ul>
   	  <li ng-repeat="car in cars">
         {{car.name}}
         {{car.base_price}}
@@ -27,12 +36,12 @@
         </div>
   	  </li>
   	</ul>
-  	<div ng-if="true" class="btn-group">
-        <label class="btn btn-primary" ng-model="radioModel" btn-radio="Avaliable" ng-click="query()" uncheckable>Avaliable</label>
-        <label class="btn btn-primary" ng-model="radioModel" btn-radio="Ordered" ng-click="query()" uncheckable>Ordered</label>
-        <label class="btn btn-primary" ng-model="radioModel" btn-radio="InProgress" ng-click="query()" uncheckable>In Progress</label>
-        <label class="btn btn-primary" ng-model="radioModel" btn-radio="Shipped" ng-click="query()" uncheckable>Shipped</label>
-        <label class="btn btn-primary" ng-model="radioModel" btn-radio="All" ng-click="query()" uncheckable>All</label>
+  	<div ng-show="true" class="btn-group">
+        <label class="btn btn-primary" ng-model="radioModel" btn-radio="'Avaliable'" ng-click="query('Avaliable')">Avaliable</label>
+        <label class="btn btn-primary" ng-model="radioModel" btn-radio="'Ordered'" ng-click="query('Ordered')">Ordered</label>
+        <label class="btn btn-primary" ng-model="radioModel" btn-radio="'InProgress'" ng-click="query('InProgress')">In Progress</label>
+        <label class="btn btn-primary" ng-model="radioModel" btn-radio="'Shipped'" ng-click="query('Shipped')">Shipped</label>
+        <label class="btn btn-primary" ng-model="radioModel" btn-radio="'All'" ng-click="query('All')">All</label>
     </div>
   </div>
 </div>

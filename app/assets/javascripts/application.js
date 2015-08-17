@@ -15,4 +15,6 @@
 //= require angular
 //= require angular-route
 //= require angular-rails-templates
+//= require angular-bootstrap
+//= require angular-animate
 //= require_tree .

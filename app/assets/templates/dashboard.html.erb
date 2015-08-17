@@ -2,6 +2,12 @@
   <div ng-controller="DashboardController">
     <a href="#new_user">Add User</a>
     <button>Edit</button>
+    <div class="btn-group">
+      <label class="btn btn-primary" ng-model="radioModel" btn-radio="'All'" ng-click="query(0)">All</label>
+      <label class="btn btn-primary" ng-model="radioModel" btn-radio="'Ordered'" ng-click="query(1)">Ordered</label>
+      <label class="btn btn-primary" ng-model="radioModel" btn-radio="'InProgress'" ng-click="query(2)">In Progress</label>
+      <label class="btn btn-primary" ng-model="radioModel" btn-radio="'Shipped'" ng-click="query(3)">Shipped</label>
+    </div>
   	<ul class="users">
   	  <li ng-repeat="user in users">
         {{user.first_name}}
@@ -33,11 +39,5 @@
         </ul>
   	  </li>
   	</ul>
-  	<div class="btn-group">
-      <label class="btn btn-primary" ng-model="radioModel" btn-radio="All" ng-click="setup()" uncheckable>All</label>
-      <label class="btn btn-primary" ng-model="radioModel" btn-radio="Ordered" ng-click="setup()" uncheckable>Ordered</label>
-      <label class="btn btn-primary" ng-model="radioModel" btn-radio="InProgress" ng-click="setup()" uncheckable>In Progress</label>
-      <label class="btn btn-primary" ng-model="radioModel" btn-radio="Shipped" ng-click="setup()" uncheckable>Shipped</label>
-    </div>
   </div>
 </div>
