@@ -4,6 +4,7 @@ angular.module('HH')
   $scope.carsTemplate;
   $scope.cars;
   $scope.radioModel = "Avaliable";
+  $scope.asyncSelected = "";
 
   $scope.query = function (val) {
     $scope.radioModel = val;
@@ -11,21 +12,26 @@ angular.module('HH')
   }
 
   $scope.searchCars = function (val) {
-    $scope.cars = $scope.carsTemplate;
+    $scope.cars = $scope.carsTemplate.slice(0);
     for (var i = 0; i < $scope.cars.length; i++) {
-      var queryString = $scope.cars[i].name + $scope.cars[i].make + 
-      $scope.cars[i].model + $scope.cars[i].stock_num;
       var queryArgs = val.split(" ");
       for (var j = 0; j < queryArgs.length; j++) {
-        if ($scope.cars[i].name.indexOf(queryArgs[j] < 0) &&
-            $scope.cars[i].make.indexOf(queryArgs[j] < 0) &&
-            $scope.cars[i].model.indexOf(queryArgs[j] < 0) &&
-            $scope.cars[i].stock_num.indexOf(queryArgs[j] < 0)) {
+        var queryVal = queryArgs[j].toLowerCase();
+        if ($scope.cars[i].name.toLowerCase().indexOf(queryVal) < 0 &&
+            $scope.cars[i].make.toLowerCase().indexOf(queryVal) < 0 &&
+            $scope.cars[i].model.toLowerCase().indexOf(queryVal) < 0 &&
+            $scope.cars[i].stock_num.toLowerCase().indexOf(queryVal) < 0) {
           $scope.cars.splice(i, 1);
           i--;
           break;
         }
       }
+    }
+  }
+
+  $scope.isEmpty = function() {
+    if ($scope.asyncSelected == "") {
+      $scope.searchCars("");
     }
   }
 
@@ -36,6 +42,7 @@ angular.module('HH')
   setup();
 
   function setup() {
+    $scope.asyncSelected = "";
     if ($scope.radioModel === "Ordered") {
       getCarsOrdered();
     } else if ($scope.radioModel === "InProgress") {
@@ -62,8 +69,8 @@ angular.module('HH')
   function getCars() {
     carFactory.getAvaliableCars()
     .success(function (data) {
-    	$scope.cars = data;
       $scope.carsTemplate = data;
+      $scope.cars = $scope.carsTemplate.slice(0);
     })
     .error(function (error) {
 
@@ -73,8 +80,8 @@ angular.module('HH')
   function getCarsOrdered() {
     carFactory.carsOrdered()
     .success(function (data) {
-    	$scope.cars = data;
       $scope.carsTemplate = data;
+      $scope.cars = $scope.carsTemplate.slice(0);
     })
     .error(function (error) {
 
@@ -84,8 +91,8 @@ angular.module('HH')
   function getCarsInProgress() {
     carFactory.carsInProgress()
     .success(function (data) {
-    	$scope.cars = data;
       $scope.carsTemplate = data;
+      $scope.cars = $scope.carsTemplate.slice(0);
     })
     .error(function (error) {
 
@@ -95,8 +102,8 @@ angular.module('HH')
   function getCarsShipped() {
     carFactory.carsShipped()
     .success(function (data) {
-    	$scope.cars = data;
       $scope.carsTemplate = data;
+      $scope.cars = $scope.carsTemplate.slice(0);
     })
     .error(function (error) {
 
@@ -106,8 +113,8 @@ angular.module('HH')
   function getCarsAll() {
     carFactory.carsAll()
     .success(function (data) {
-    	$scope.cars = data;
       $scope.carsTemplate = data;
+      $scope.cars = $scope.carsTemplate.slice(0);
     })
     .error(function (error) {
 
@@ -118,14 +125,14 @@ angular.module('HH')
   	carFactory.deleteCar(id)
     .success(function (data) {
       // $scope.status = 'Deleted Customer! Refreshing customer list.';
-      for (var i = 0; i < $scope.cars.length; i++) {
-        var car = $scope.cars[i];
-        if (car.id === id) {
-          $scope.cars.splice(i, 1);
+      for (var i = 0; i < $scope.carsTemplate.length; i++) {
+        var car = $scope.carsTemplate[i];
+        if (car.id == id) {
+          $scope.carsTemplate.splice(i, 1);
           break;
         }
       }
-      $scope.carsTemplate = $scope.cars;
+      $scope.cars = $scope.carsTemplate.slice(0);
     })
     .error(function (error) {
 

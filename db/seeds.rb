@@ -31,12 +31,12 @@ when "development"
    User.create(first_name: "User5", last_name: "User5", email: "test5@email.com", password: "12345678")
 
    #Add Cars for testing
-   Car.create(name: "Mercedes Benz GL450", make: "Mercedes Benz", model: "GL450", engine: "3.0L BlueTEC 4MATIC V6 Engine", status: 0)
-   Car.create(name: "Mercedes Benz GL350", make: "Mercedes Benz", model: "GL450", engine: "3.0L BlueTEC 4MATIC V6 Engine", status: 1, user_id: 2)
-   Car.create(name: "Range Rover Sport", make: "Land Rover", model: "Range Sport", engine: "V6", status: 0)
-   Car.create(name: "Range Rover Fullsize", make: "Land Rover", model: "Range Fullsize", engine: "V6", status: 2, user_id: 2)
-   Car.create(name: "Maserati Gran Turismo", make: "Maserati", model: "Gran Turismo", engine: "V8", status: 0)
-   Car.create(name: "Jaguar XF", make: "Jaguar", model: "XF", engine: "V6", status: 0)
+   Car.create(name: "Mercedes Benz GL450", make: "Mercedes Benz", model: "GL450", engine: "3.0L BlueTEC 4MATIC V6 Engine", status: 0, stock_num: "1111")
+   Car.create(name: "Mercedes Benz GL350", make: "Mercedes Benz", model: "GL450", engine: "3.0L BlueTEC 4MATIC V6 Engine", status: 1, user_id: 2, stock_num: "2222")
+   Car.create(name: "Range Rover Sport", make: "Land Rover", model: "Range Sport", engine: "V6", status: 0, stock_num: "3333")
+   Car.create(name: "Range Rover Fullsize", make: "Land Rover", model: "Range Fullsize", engine: "V6", status: 2, user_id: 2, stock_num: "4444")
+   Car.create(name: "Maserati Gran Turismo", make: "Maserati", model: "Gran Turismo", engine: "V8", status: 0, stock_num: "5555")
+   Car.create(name: "Jaguar XF", make: "Jaguar", model: "XF", engine: "V6", status: 0, stock_num: "6666")
 
    #Assign Permissions to Users
    user = User.find(1);
