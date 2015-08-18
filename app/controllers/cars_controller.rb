@@ -1,5 +1,5 @@
 class CarsController < ApplicationController
-	# before_action :authenticate_user!
+	before_action :authenticate_user!
   before_action :set_car, only: [:update, :destroy, :show]
 
   module Status
