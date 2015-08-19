@@ -63,7 +63,6 @@ class CarsController < ApplicationController
           :currency    => 'cad'
         )
         @car.user = current_user
-        @car.payment = customer
         @car.status = Status::ORDER
         @car.charge_id = charge[:id]
         @car.save

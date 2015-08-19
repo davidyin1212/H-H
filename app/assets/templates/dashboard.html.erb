@@ -1,7 +1,9 @@
 <div class="jumbotron text-center col-md-10 col-md-offset-1">
   <div ng-controller="DashboardController">
-    <a href="#new_user">Add User</a>
-    <button>Edit</button>
+    <div>
+      <a href="#new_user">Add User</a>
+      <button>Edit</button>
+    </div>
     <div class="btn-group">
       <label class="btn btn-primary" ng-model="radioModel" btn-radio="'All'" ng-click="query(0)">All</label>
       <label class="btn btn-primary" ng-model="radioModel" btn-radio="'Ordered'" ng-click="query(1)">Ordered</label>
