@@ -9,11 +9,11 @@ angular.module('HH')
 
   $scope.purchaseCar = function() {
     buyCar();
-    // window.location = "/";
+    window.location = "/#/index";
   };
   $scope.cancelPurchaseCar = function() {
     removeCar();
-    // window.location = "/";
+    window.location = "/#/index";
   }
 
   function getCar() {

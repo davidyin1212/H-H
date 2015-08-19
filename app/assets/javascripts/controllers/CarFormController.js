@@ -48,6 +48,7 @@ angular.module('HH')
     carFactory.createCar($scope.car)
     .success(function (data) {
     	$scope.cars.push(data);
+      window.location = "/#/index";
     })
     .error(function (error) {
       // $scope.status = error.message;
