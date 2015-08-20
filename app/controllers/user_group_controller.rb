@@ -4,11 +4,11 @@ class UserGroupController < ApplicationController
 
   def index
     @user_group = UserGroup.all;
-    respond_with @user_group
+    respond_with (@user_group)
   end
 
   def show
-    respond_with @user_group
+    respond_with (@user_group.permissions)
   end
 
   def create

@@ -24,6 +24,7 @@ angular.module('HH')
   }
 
   $scope.addUserGroup = function(userGroup) {
+
     for (var i = 0; i < userGroup.permissions.length; i++) {
       addPermissionToUser(userGroup.permissions[i].id);
     }
@@ -59,6 +60,7 @@ angular.module('HH')
 
   function startUp() {
     getUserPermissions();
+    getUserGroups();
   }
 
   function commit() {
@@ -69,6 +71,23 @@ angular.module('HH')
     userFactory.getUserGroups()
     .success(function (data) {
       $scope.userGroups = data;
+      for (var i = 0; i < $scope.userGroups.length; i++) {
+        getUserGroupPermissions($scope.userGroups[i].id);
+      }
+    })
+    .error(function (error) {
+
+    })
+  }
+
+  function getUserGroupPermissions(id) {
+    userFactory.getUserGroup(id)
+    .success(function (data) {
+      for (var i = 0; i < $scope.userGroups.length; i++) {
+        if ($scope.userGroups[i].id == id) {
+          $scope.userGroups[i].permissions = data;
+        }
+      }
     })
     .error(function (error) {
 

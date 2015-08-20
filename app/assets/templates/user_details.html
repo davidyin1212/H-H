@@ -1,12 +1,19 @@
 <div class="jumbotron text-center col-md-10 col-md-offset-1">
   <div ng-controller="UserInfoController">
-  	<ul ng-show="userCars.length > 0">
-   	  <li ng-repeat="car in userCars">
-        {{car.name}}
-        {{car.base_price}}
-        <a href="#car/{{car.id}}">Details</a>
-   	  </li>
-  	</ul>
-  	<p ng-if="userCars.length == 0">No Cars</p>
+    <div ng=show="$routeParams.id != 0">
+      {{userInfo.first_name}}
+      {{userInfo.last_name}}
+      {{userInfo.email}}
+    </div>
+    <div>
+    	<ul ng-show="userCars.length > 0">
+     	  <li ng-repeat="car in userCars">
+          {{car.name}}
+          {{car.base_price}}
+          <a href="#car/{{car.id}}">Details</a>
+     	  </li>
+    	</ul>
+  	  <p ng-show="userCars.length == 0">No Cars</p>
+    </div>
   </div>
 </div>

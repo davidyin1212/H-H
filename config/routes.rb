@@ -35,7 +35,7 @@ Rails.application.routes.draw do
     resources :permissions, only: [:index, :create, :update, :destroy] do 
     end
 
-    resources :user_groups, only: [:index, :show] do
+    resources :user_group, only: [:index, :show] do
     end
   end
 

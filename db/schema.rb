@@ -28,16 +28,13 @@ ActiveRecord::Schema.define(version: 20150819231752) do
     t.decimal  "msrp",            precision: 9, scale: 2
     t.text     "additional_fees"
     t.decimal  "base_price",      precision: 9, scale: 2
-    t.decimal  "price_over",      precision: 9, scale: 2
     t.integer  "user_id"
-    t.integer  "payment_id"
     t.datetime "created_at",                              null: false
     t.datetime "updated_at",                              null: false
     t.integer  "status"
     t.string   "charge_id"
   end
 
-  add_index "cars", ["payment_id"], name: "index_cars_on_payment_id", using: :btree
   add_index "cars", ["user_id"], name: "index_cars_on_user_id", using: :btree
 
   create_table "payments", force: :cascade do |t|

@@ -9,7 +9,11 @@ angular.module('HH')
   }
 
   userFactory.getUserGroups =function () {
-    return $http.get("/api/user_groups.json")
+    return $http.get("/api/user_group.json")
+  }
+
+  userFactory.getUserGroup =function (id) {
+    return $http.get("/api/user_group/" + id + ".json")
   }
 
   userFactory.createUser = function (user) {

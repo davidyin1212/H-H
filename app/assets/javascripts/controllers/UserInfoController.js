@@ -8,7 +8,7 @@ angular.module('HH')
   getUserCars();
 
   function getUser() {
-  	userFactory.getUser()
+  	userFactory.getUser(user_id)
   	.success(function (data) {
   		$scope.userInfo = data
   	})

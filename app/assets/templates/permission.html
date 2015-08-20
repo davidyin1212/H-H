@@ -27,8 +27,8 @@
           {{permission.description}}
         </li>
       </ul>
-      <button ng-show="userGroup.status == 1" ng-click="addUserGroup(userGroup)">Add</button>
-      <button ng-show="userGroup.status != 1" ng-click="removeUserGroup(userGroup)">Remove</button>
+      <button ng-show="userGroup.status != 1" ng-click="addUserGroup(userGroup)">Add</button>
+      <button ng-show="userGroup.status == 1" ng-click="removeUserGroup(userGroup)">Remove</button>
     </li>
     </ul>
     <button ng-click="reset()">Reset</button>

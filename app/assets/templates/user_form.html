@@ -12,7 +12,11 @@
   </div>
   <div>
     <ul>
-      
+      <li ng-repeat="userGroup in userGroups">
+        {{userGroup.name}}
+        {{userGroup.description}}
+        <button ng-click="addUserGroup(userGroup)">Add</button>
+      </li>
     </ul>
   </div>
 </div>
