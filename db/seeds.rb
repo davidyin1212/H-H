@@ -16,14 +16,52 @@ Permission.create(name: "QueryCarPrivilege", description:"Allows for query for s
 Permission.create(name: "PermissionPrivilege", description:"Allows viewing of permissions as well as viewing user permissions")
 Permission.create(name: "PermissionModifyPrivilege", description:"Allows creation, update, and deletion of permissions")
 Permission.create(name: "ModifyUserPermissionPrivilege", description:"Allows editing of user permissions")
+Permission.create(name: "UserGroupPrivilege", description:"Allows you to view and add Users to User Groups")
+
+# Add all user groups
+admin = UserGroup.create(name: "Admin", description:"Admin has all permissions")
+acqAgen = UserGroup.create(name: "Acquisition Agent", description:"Acquisition Agent are responsible for finding and adding cars therefore they can add cars to the list as well as modifying the list.")
+accExec = UserGroup.create(name: "Account Executive", description:"Account Executive are responsible for managing clients and can therefore edit status of cars purchased by the clients and look up client cars.")
+client = UserGroup.create(name: "Client", description:"Clients are obly able to look for avaliable cars and can check their own inventory")
+
+# Add permissions to user groups
+admin.permissions << Permission.find(1)
+admin.permissions << Permission.find(2)
+admin.permissions << Permission.find(3)
+admin.permissions << Permission.find(4)
+admin.permissions << Permission.find(5)
+admin.permissions << Permission.find(6)
+admin.permissions << Permission.find(7)
+admin.permissions << Permission.find(8)
+admin.permissions << Permission.find(9)
+admin.permissions << Permission.find(10)
+
+acqAgen.permissions << Permission.find(4)
+acqAgen.permissions << Permission.find(6)
+
+accExec.permissions << Permission.find(2)
+accExec.permissions << Permission.find(5)
+accExec.permissions << Permission.find(6)
+
+client.permissions << Permission.find(1)
 
 #Add Admin User
-
+User.create(first_name: "Admin", last_name: "Admin", email: "Admin@admin.com", password: "12345678")
+user = User.find(1);
+user.permissions << Permission.find(1)
+user.permissions << Permission.find(2)
+user.permissions << Permission.find(3)
+user.permissions << Permission.find(4)
+user.permissions << Permission.find(5)
+user.permissions << Permission.find(6)
+user.permissions << Permission.find(7)
+user.permissions << Permission.find(8)
+user.permissions << Permission.find(9)
+user.permissions << Permission.find(10)
 
 case Rails.env
 when "development"
    #Add Users for testing
-   User.create(first_name: "Admin", last_name: "Admin", email: "Admin@admin.com", password: "12345678")
    User.create(first_name: "User1", last_name: "User1", email: "test1@email.com", password: "12345678")
    User.create(first_name: "User2", last_name: "User2", email: "test2@email.com", password: "12345678")
    User.create(first_name: "User3", last_name: "User3", email: "test3@email.com", password: "12345678")
@@ -38,17 +76,6 @@ when "development"
    Car.create(name: "Maserati Gran Turismo", make: "Maserati", model: "Gran Turismo", engine: "V8", status: 0, stock_num: "5555")
    Car.create(name: "Jaguar XF", make: "Jaguar", model: "XF", engine: "V6", status: 0, stock_num: "6666")
 
-   #Assign Permissions to Users
-   user = User.find(1);
-   user.permissions << Permission.find(1)
-   user.permissions << Permission.find(2)
-   user.permissions << Permission.find(3)
-   user.permissions << Permission.find(4)
-   user.permissions << Permission.find(5)
-   user.permissions << Permission.find(6)
-   user.permissions << Permission.find(7)
-   user.permissions << Permission.find(8)
-   user.permissions << Permission.find(9)
 when "production"
    
 end
