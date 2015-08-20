@@ -31,9 +31,11 @@ Rails.application.routes.draw do
       post '/progress' => 'cars#carsUpdateToInProgress'
       post '/shipped' => 'cars#carsUpdateToShipped'
     end
-    
 
     resources :permissions, only: [:index, :create, :update, :destroy] do 
+    end
+
+    resources :user_groups, only: [:index, :show] do
     end
   end
 

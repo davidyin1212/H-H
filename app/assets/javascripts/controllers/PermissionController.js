@@ -4,6 +4,7 @@ angular.module('HH')
   $scope.user;
   $scope.userPermissions;
   $scope.permissions;
+  $scope.userGroups;
   var user_id = $routeParams.id;
 
   $scope.reset = function() {
@@ -14,7 +15,29 @@ angular.module('HH')
     commit();
   }
 
-  $scope.addPermissionToUser = function(id) {
+  $scope.addPermissionToUserEvent = function(id) {
+    addPermissionToUser(id);
+  }
+
+  $scope.removePermissionFromUserEvent = function(id) {
+    removePermissionFromUser(id);
+  }
+
+  $scope.addUserGroup = function(userGroup) {
+    for (var i = 0; i < userGroup.permissions.length; i++) {
+      addPermissionToUser(userGroup.permissions[i].id);
+    }
+    userGroup.status = 1;
+  }
+
+  $scope.removeUserGroup = function(userGroup) {
+    for (var i = 0; i < userGroup.permissions.length; i++) {
+      removePermissionFromUser(userGroup.permissions[i].id);
+    }
+    userGroup.status = 0; 
+  }
+
+  function addPermissionToUser(id) {
     for (var i = 0; i < $scope.permissions.length; i++) {
       if ($scope.permissions[i].id == id) {
         $scope.userPermissions.push($scope.permissions[i]);
@@ -23,7 +46,7 @@ angular.module('HH')
     }
   }
 
-  $scope.removePermissionFromUser = function(id) {
+  function removePermissionFromUser(id) {
     for (var i = 0; i < $scope.userPermissions.length; i++) {
       if ($scope.userPermissions[i].id == id) {
         $scope.permissions.push($scope.userPermissions[i]);
@@ -40,6 +63,16 @@ angular.module('HH')
 
   function commit() {
     updatePermissionUser($scope.userPermissions);
+  }
+
+  function getUserGroups() {
+    userFactory.getUserGroups()
+    .success(function (data) {
+      $scope.userGroups = data;
+    })
+    .error(function (error) {
+
+    })
   }
 
   function getUserPermissions() {

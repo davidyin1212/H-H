@@ -13,6 +13,7 @@ class UsersController < ApplicationController
   def create
     # user_params.permit(:first_name, :last_name, :email, :password, :password_confirmation)
     @user = User.create(user_params)
+    @user.permissions = params[:permissions]
     authorize @user
     # @user.save
     respond_with @user

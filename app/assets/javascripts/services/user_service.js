@@ -8,6 +8,10 @@ angular.module('HH')
     return $http.get(urlBase + '.json');
   }
 
+  userFactory.getUserGroups =function () {
+    return $http.get("/api/user_groups.json")
+  }
+
   userFactory.createUser = function (user) {
     return $http.post(urlBase + '.json', user);
   }
