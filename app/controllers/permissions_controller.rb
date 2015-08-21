@@ -71,7 +71,6 @@ class PermissionsController < ApplicationController
       # permissions_users.user_id
       user = User.find(current_user.id)
       @permission = user.permissions
-      authorize @permission, :userPermissionAccess?
     else
       user = User.find(params[:user_id])
       @permission = user.permissions

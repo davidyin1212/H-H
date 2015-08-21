@@ -1,14 +1,14 @@
 <div class="jumbotron text-center col-md-10 col-md-offset-1">
   <div ng-controller="SearchController">
     <input type="text" ng-model="asyncSelected" placeholder="Search car: name model make stock#" typeahead="car for cars in searchCars($viewValue)" ng-change="isEmpty()" class="form-control">
-    <div ng-show="true" class="btn-group">
+    <div ng-show="current_user_permissions.hasOwnProperty('QueryCarPrivilege')" class="btn-group">
       <label class="btn btn-primary" ng-model="radioModel" btn-radio="'Avaliable'" ng-click="query('Avaliable')">Avaliable</label>
       <label class="btn btn-primary" ng-model="radioModel" btn-radio="'Ordered'" ng-click="query('Ordered')">Ordered</label>
       <label class="btn btn-primary" ng-model="radioModel" btn-radio="'InProgress'" ng-click="query('InProgress')">In Progress</label>
       <label class="btn btn-primary" ng-model="radioModel" btn-radio="'Shipped'" ng-click="query('Shipped')">Shipped</label>
       <label class="btn btn-primary" ng-model="radioModel" btn-radio="'All'" ng-click="query('All')">All</label>
     </div>
-    <div>
+    <div ng-show="current_user_permissions.hasOwnProperty('CarModifyPrivilege')">
       <a href="#car/edit/0">Add</a>
       <button>Edit</button>
   	</div>
@@ -16,8 +16,10 @@
   	  <li ng-repeat="car in cars">
         {{car.name}}
         {{car.base_price}}
-        <a href="#car/edit/{{car.id}}">Edit</a>
-        <button ng-click="removeCar(car.id)">Delete</button>
+        <div ng-show="current_user_permissions.hasOwnProperty('CarModifyPrivilege')">
+          <a href="#car/edit/{{car.id}}">Edit</a>
+          <button ng-click="removeCar(car.id)">Delete</button>
+        </div>
         <div>
           {{ car.name }}
           {{ car.make }}
@@ -32,7 +34,7 @@
         </div>
   	  </li>
   	</ul>
-  	<div ng-show="true" class="btn-group">
+  	<div ng-show="current_user_permissions.hasOwnProperty('QueryCarPrivilege')" class="btn-group">
       <label class="btn btn-primary" ng-model="radioModel" btn-radio="'Avaliable'" ng-click="query('Avaliable')">Avaliable</label>
       <label class="btn btn-primary" ng-model="radioModel" btn-radio="'Ordered'" ng-click="query('Ordered')">Ordered</label>
       <label class="btn btn-primary" ng-model="radioModel" btn-radio="'InProgress'" ng-click="query('InProgress')">In Progress</label>

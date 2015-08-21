@@ -6,7 +6,6 @@ angular
         'ngAnimate'
     ]).config(function ($routeProvider, $locationProvider, $httpProvider) {
         // $locationProvider.html5Mode(enabled: true);
-        
         $routeProvider
             .when('/', {
                 templateUrl: '<%= asset_path('index.html') %>',
@@ -45,4 +44,22 @@ angular
             });
         $httpProvider.defaults.headers.common['X-CSRF-Token'] =
             $('meta[name=csrf-token]').attr('content');
+    }).run(function($rootScope, userFactory){
+        permissions();
+
+        function permissions() {
+            if ($rootScope.current_user_permissions == null) {
+                $rootScope.current_user_permissions = new Array();
+                userFactory.getUserPermissions(0)
+                .success(function (data) {
+                  for (var i = 0; i < data.length; i++) {
+                    var key = data[i].name;
+                    $rootScope.current_user_permissions[key] = data[i].id;
+                  }
+                })
+                .error(function (error) {
+
+                })
+            }
+        }
     });

@@ -1,1 +1,11 @@
 <h1>H&H</h1>
+<ul>
+	<li ng-repeat="current_user_permission in current_user_permissions">
+		{{current_user_permission.name}}
+		{{current_user_permission.description}}
+	</li>
+</ul>
+
+<p>
+	{{current_user_permissions["UserPrivilege"]}}
+</p>

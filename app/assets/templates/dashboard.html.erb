@@ -1,6 +1,6 @@
 <div class="jumbotron text-center col-md-10 col-md-offset-1">
   <div ng-controller="DashboardController">
-    <div>
+    <div ng-show="current_user_permissions.hasOwnProperty('UserModifyPrivilege')">
       <a href="#new_user">Add User</a>
       <button>Edit</button>
     </div>
@@ -10,15 +10,15 @@
       <label class="btn btn-primary" ng-model="radioModel" btn-radio="'InProgress'" ng-click="query(2)">In Progress</label>
       <label class="btn btn-primary" ng-model="radioModel" btn-radio="'Shipped'" ng-click="query(3)">Shipped</label>
     </div>
-  	<ul class="users">
+  	<ul ng-show="current_user_permissions.hasOwnProperty('UserPrivilege')" class="users">
   	  <li ng-repeat="user in users">
         {{user.first_name}}
         {{user.last_name}}
-        <a href="#permission/{{user.id}}">Permissions</a>
+        <a ng-show="current_user_permissions.hasOwnProperty('PermissionPrivilege')" href="#permission/{{user.id}}">Permissions</a>
         <a href="#inventory/{{user.id}}">Details</a>
-        <button ng-click="removeUser(user.id)">Delete User</button>
+        <button ng-show="current_user_permissions.hasOwnProperty('UserModifyPrivilege')" ng-click="removeUser(user.id)">Delete User</button>
         <p>Cars: {{user.cars.length}}</p>
-        <ul class="cars">
+        <ul ng-show="current_user_permissions.hasOwnProperty('QueryUserCarsPrivilege')" class="cars">
           <li ng-repeat="car in user.cars">
             {{ car.name }}
             {{ car.make }}

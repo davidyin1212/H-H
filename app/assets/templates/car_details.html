@@ -13,8 +13,9 @@
     <h2>{{ car.base_price | currency:"CAD$"}}</h2>
     <h2>{{ car.base_price * tax | currency:"CAD$"}}</h2>
     <h1>{{ car.base_price * (1 + tax) | currency:"CAD$"}}</h1>
-    <button ng-if="car.status == 0" ng-click="purchaseCar()">Purchase</button>
-    <button ng-if="car.status != 0" ng-click="cancelPurchaseCar()">Cancel Purchase</button>
-    <button>Edit</button>
+
+    <button ng-show="current_user_permissions.hasOwnProperty('GeneralUsePrivilege')" ng-if="car.status == 0" ng-click="purchaseCar()">Purchase</button>
+    <button ng-show="current_user_permissions.hasOwnProperty('GeneralUsePrivilege')" ng-if="car.status == 0" ng-click="purchaseCar()" ng-if="car.status != 0" ng-click="cancelPurchaseCar()">Cancel Purchase</button>
+    <button ng-show="current_user_permissions.hasOwnProperty('CarModifyPrivilege')" ng-if="car.status == 0" ng-click="purchaseCar()">Edit</button>
   </div>
 </div>
