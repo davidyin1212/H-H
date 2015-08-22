@@ -13,28 +13,30 @@
       <label class="btn btn-primary" ng-model="radioModel" btn-radio="'Shipped'" ng-click="query('Shipped')">Shipped</label>
       <label class="btn btn-primary" ng-model="radioModel" btn-radio="'All'" ng-click="query('All')">All</label>
     </div>
-    <ul>
-  	  <li ng-repeat="car in cars">
-        {{car.name}}
-        {{car.base_price}}
-        <div ng-show="current_user_permissions.hasOwnProperty('CarModifyPrivilege')">
-          <a href="#car/edit/{{car.id}}">Edit</a>
-          <button ng-click="removeCar(car.id)">Delete</button>
-        </div>
-        <div>
-          {{ car.name }}
-          {{ car.make }}
-          {{ car.model }}
-          {{ car.engine }}
-          {{ car.exterior }}
-          {{ car.interior }}
-          {{ car.delivery_kms }}
-          {{ car.stock_num }}
-          {{ car.msrp }}
-          <a href="#car/{{car.id}}">Details</a>
-        </div>
-  	  </li>
-  	</ul>
+    <div class="searchedCars">
+      <ul>
+    	  <li ng-repeat="car in cars">
+          {{car.name}}
+          {{car.base_price}}
+          <div ng-show="current_user_permissions.hasOwnProperty('CarModifyPrivilege')">
+            <a href="#car/edit/{{car.id}}">Edit</a>
+            <button ng-click="removeCar(car.id)">Delete</button>
+          </div>
+          <div>
+            {{ car.name }}
+            {{ car.make }}
+            {{ car.model }}
+            {{ car.engine }}
+            {{ car.exterior }}
+            {{ car.interior }}
+            {{ car.delivery_kms }}
+            {{ car.stock_num }}
+            {{ car.msrp }}
+            <a href="#car/{{car.id}}">Details</a>
+          </div>
+    	  </li>
+    	</ul>
+    </div>
   	<div ng-show="current_user_permissions.hasOwnProperty('QueryCarPrivilege')" class="btn-group">
       <label class="btn btn-primary" ng-model="radioModel" btn-radio="'Avaliable'" ng-click="query('Avaliable')">Avaliable</label>
       <label class="btn btn-primary" ng-model="radioModel" btn-radio="'Ordered'" ng-click="query('Ordered')">Ordered</label>
