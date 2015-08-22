@@ -19,8 +19,8 @@
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
             <li><a href="/#index">Search</a></li>
-             <% if !current_user.permissions.include?(Permission.find_by(name:"UserPrivilege")) && !current_user.permissions.include?(Permission.find_by(name:"UserModifyPrivilege")) %> <li><a href="/#inventory/0">My Cars</a></li> <% end %>
-            <% if current_user.permissions.include?(Permission.find_by(name:"UserPrivilege")) || current_user.permissions.include?(Permission.find_by(name:"UserModifyPrivilege")) %> <li><a href="/#dashboard">Dashboard</a></li> <% end %>
+             <% if current_user.permissions.include?(Permission.find_by(name:"GeneralUsePrivilege"))%> <li><a href="/#inventory/0">My Cars</a></li> <% end %>
+            <% if current_user.permissions.include?(Permission.find_by(name:"UserPrivilege")) || current_user.permissions.include?(Permission.find_by(name:"QueryUserCarsPrivilege")) %> <li><a href="/#dashboard">Dashboard</a></li> <% end %>
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <li dropdown>
