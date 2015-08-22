@@ -1,7 +1,8 @@
 <div class="jumbotron text-center col-md-10 col-md-offset-1">
   <div ng-controller="SearchController">
     <div class="searchBar">
-      <input type="text" ng-model="asyncSelected" placeholder="Search car: name model make stock#" typeahead="car for cars in searchCars($viewValue)" ng-change="isEmpty()" class="form-control">
+      <input type="text" ng-model="asyncSelected" placeholder="Search car: name model make stock#" typeahead="car for cars in searchCars($viewValue)" ng-change="isEmpty()">
+      <a ng-show="current_user_permissions.hasOwnProperty('CarModifyPrivilege')" href="#car/edit/0">Add</a>
     </div>
     <div ng-show="current_user_permissions.hasOwnProperty('QueryCarPrivilege')" class="btn-group">
       <label class="btn btn-primary" ng-model="radioModel" btn-radio="'Avaliable'" ng-click="query('Avaliable')">Avaliable</label>
@@ -10,10 +11,6 @@
       <label class="btn btn-primary" ng-model="radioModel" btn-radio="'Shipped'" ng-click="query('Shipped')">Shipped</label>
       <label class="btn btn-primary" ng-model="radioModel" btn-radio="'All'" ng-click="query('All')">All</label>
     </div>
-    <div ng-show="current_user_permissions.hasOwnProperty('CarModifyPrivilege')">
-      <a href="#car/edit/0">Add</a>
-      <button>Edit</button>
-  	</div>
     <ul>
   	  <li ng-repeat="car in cars">
         {{car.name}}
