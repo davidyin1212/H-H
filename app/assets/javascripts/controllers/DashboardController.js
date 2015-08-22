@@ -28,11 +28,18 @@ angular.module('HH')
 
   }
 
+
   function getUsers() {
   	userFactory.getUsers()
   	.success(function (data) {
   	  $scope.users = data;
       $scope.users.cars = new Array();
+      $scope.users.sort(function(a, b) {
+        nameA = a.last_name + " " + a.first_name;
+        nameB = b.last_name + " " + b.first_name;
+
+        return nameA.localeCompare(nameB);
+      });
       for (var i = 0; i < $scope.users.length; i++) {
         getUserCars($scope.users[i].id);
       }
