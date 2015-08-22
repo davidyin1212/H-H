@@ -1,8 +1,10 @@
-<div class="jumbotron text-center col-md-10 col-md-offset-1">
+<div class="text-center col-md-10 col-md-offset-1">
   <div ng-controller="SearchController">
-    <div class="searchBar">
-      <input type="text" ng-model="asyncSelected" placeholder="Search car: name model make stock#" typeahead="car for cars in searchCars($viewValue)" ng-change="isEmpty()">
-      <a ng-show="current_user_permissions.hasOwnProperty('CarModifyPrivilege')" href="#car/edit/0">Add</a>
+    <div class="searchBarBox">
+      <div class="innerSearch">
+        <span class="add"><a ng-show="current_user_permissions.hasOwnProperty('CarModifyPrivilege')" href="#car/edit/0">Add</a></span>
+        <input type="text" ng-model="asyncSelected" placeholder="Search car: name model make stock#" typeahead="car for cars in searchCars($viewValue)" ng-change="isEmpty()">
+      </div>
     </div>
     <div ng-show="current_user_permissions.hasOwnProperty('QueryCarPrivilege')" class="btn-group">
       <label class="btn btn-primary" ng-model="radioModel" btn-radio="'Avaliable'" ng-click="query('Avaliable')">Avaliable</label>
