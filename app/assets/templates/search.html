@@ -17,7 +17,10 @@
       <ul>
     	  <md-card ng-repeat="car in cars">
           <h1>{{car.name}}</h1>
-          <h2 class="text-right">{{ car.base_price * (1 + tax) | currency:"CAD$"}} + {{ car.price_over }}</h2>
+          <div layout="column">
+            <h2 class="text-right">{{ car.base_price * (1 + tax) | currency:"CAD$"}} +</h2>
+            <h2 class="text-right">{{ car.price_over | currency:"CAD$"}}</h2>
+          </div>
 
           <md-card-content layout="row" layout-margin>
             <div flex flex-order="1">
