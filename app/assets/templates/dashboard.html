@@ -10,7 +10,43 @@
       <label class="btn btn-primary" ng-model="radioModel" btn-radio="'InProgress'" ng-click="query(2)">In Progress</label>
       <label class="btn btn-primary" ng-model="radioModel" btn-radio="'Shipped'" ng-click="query(3)">Shipped</label>
     </div>
-  	<ul ng-show="current_user_permissions.hasOwnProperty('UserPrivilege')" class="users">
+    <div class="paper-collapse">
+      <div ng-repeat="user in users" class="collapse-card" ng-class="{ active: card.$active }">
+        <div class="collapse-card__heading" ng-click="card.$active = !card.$active">
+          <div class="collapse-card__title">
+            {{ user.last_name }}, {{ user.first_name }}
+            <a ng-show="current_user_permissions.hasOwnProperty('PermissionPrivilege')" href="#permission/{{user.id}}">Permissions</a>
+            <a href="#inventory/{{user.id}}">Details</a>
+            <button ng-show="current_user_permissions.hasOwnProperty('UserModifyPrivilege')" ng-click="removeUser(user.id)">Delete User</button>
+            <p>Cars: {{user.cars.length}}</p>
+          </div>
+        </div>
+        <div class="collapse-card__body">
+          <ul ng-show="current_user_permissions.hasOwnProperty('QueryUserCarsPrivilege')" class="cars">
+            <li ng-repeat="car in user.cars">
+              {{ car.name }}
+              {{ car.make }}
+              {{ car.model }}
+              {{ car.engine }}
+              {{ car.exterior }}
+              {{ car.interior }}
+              {{ car.delivery_kms }}
+              {{ car.stock_num }}
+              {{ car.msrp }}
+              {{ car.additional_fees }}
+              {{ car.base_price | currency:"CAD$"}}
+              {{ car.base_price * tax | currency:"CAD$"}}
+              {{ car.base_price * (1 + tax) | currency:"CAD$"}}
+              <p>Change Staus<p>
+              <button>Ordered</button>
+              <button>In Progress</button>
+              <button>Shipped</button>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  	<!-- <ul ng-show="current_user_permissions.hasOwnProperty('UserPrivilege')" class="users">
   	  <li ng-repeat="user in users">
         {{user.first_name}}
         {{user.last_name}}
@@ -40,6 +76,6 @@
           </li>
         </ul>
   	  </li>
-  	</ul>
+  	</ul> -->
   </div>
 </div>

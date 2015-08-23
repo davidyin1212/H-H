@@ -10,7 +10,6 @@
       "angular-animate": "latest",
       "angular-aria": "latest",
       "angular-material": "latest"
-
     }
   },
   "vendor": {
