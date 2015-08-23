@@ -36,8 +36,12 @@
   transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
 }
 
-.searchedCars {
+.searchedCarsQuery {
   margin-top: 60px;
+}
+
+.searchedCarsClient {
+  margin-top: 90px;
 }
 
 .btn-group {

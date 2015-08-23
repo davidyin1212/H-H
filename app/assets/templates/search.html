@@ -1,63 +1,61 @@
-<div class="search col-md-10 col-md-offset-1">
-  <div ng-controller="SearchController">
-    <div class="searchBarBox">
-      <div class="innerSearch">
-        <span class="add"><a ng-show="current_user_permissions.hasOwnProperty('CarModifyPrivilege')" href="#car/edit/0">Add</a></span>
-        <input type="text" ng-model="asyncSelected" placeholder="Search car: name model make stock#" typeahead="car for cars in searchCars($viewValue)" ng-change="isEmpty()">
-      </div>
+<div class="search col-md-10 col-md-offset-1" ng-controller="SearchController">
+  <div class="searchBarBox">
+    <div class="innerSearch">
+      <span class="add"><a ng-show="current_user_permissions.hasOwnProperty('CarModifyPrivilege')" href="#car/edit/0">Add</a></span>
+      <input type="text" ng-model="asyncSelected" placeholder="Search car: name model make stock#" typeahead="car for cars in searchCars($viewValue)" ng-change="isEmpty()">
     </div>
-    <div ng-show="current_user_permissions.hasOwnProperty('QueryCarPrivilege')" class="search-btn-group text-center">
-      <label class="btn btn-primary" ng-model="radioModel" btn-radio="'Avaliable'" ng-click="query('Avaliable')">Avaliable</label>
-      <label class="btn btn-primary" ng-model="radioModel" btn-radio="'Ordered'" ng-click="query('Ordered')">Ordered</label>
-      <label class="btn btn-primary" ng-model="radioModel" btn-radio="'InProgress'" ng-click="query('InProgress')">In Progress</label>
-      <label class="btn btn-primary" ng-model="radioModel" btn-radio="'Shipped'" ng-click="query('Shipped')">Shipped</label>
-      <label class="btn btn-primary" ng-model="radioModel" btn-radio="'All'" ng-click="query('All')">All</label>
-    </div>
-    <div layout="column" layout-align="space-around center" class="searchedCars">
-      <ul>
-    	  <md-card ng-repeat="car in cars">
-          <h1>{{car.name}}</h1>
-          <div layout="column">
-            <h2 class="text-right">{{ car.base_price * (1 + tax) | currency:"CAD$"}} +</h2>
-            <h2 class="text-right">{{ car.price_over | currency:"CAD$"}}</h2>
+  </div>
+  <div ng-show="current_user_permissions.hasOwnProperty('QueryCarPrivilege')" class="search-btn-group text-center">
+    <label class="btn btn-primary" ng-model="radioModel" btn-radio="'Avaliable'" ng-click="query('Avaliable')">Avaliable</label>
+    <label class="btn btn-primary" ng-model="radioModel" btn-radio="'Ordered'" ng-click="query('Ordered')">Ordered</label>
+    <label class="btn btn-primary" ng-model="radioModel" btn-radio="'InProgress'" ng-click="query('InProgress')">In Progress</label>
+    <label class="btn btn-primary" ng-model="radioModel" btn-radio="'Shipped'" ng-click="query('Shipped')">Shipped</label>
+    <label class="btn btn-primary" ng-model="radioModel" btn-radio="'All'" ng-click="query('All')">All</label>
+  </div>
+  <div layout="column" layout-align="space-around center" ng-class="{searchedCarsQuery: current_user_permissions.hasOwnProperty('QueryCarPrivilege'), searchedCarsClient: !current_user_permissions.hasOwnProperty('QueryCarPrivilege')}">
+    <ul>
+  	  <md-card ng-repeat="car in cars">
+        <h1>{{car.name}}</h1>
+        <div layout="column">
+          <h2 class="text-right">{{ car.base_price * (1 + tax) | currency:"CAD$"}} +</h2>
+          <h2 class="text-right">{{ car.price_over | currency:"CAD$"}}</h2>
+        </div>
+
+        <md-card-content layout="row" layout-margin>
+          <div flex flex-order="1">
+            <b>Name:</b> {{ car.name }}
+            <b>Make:</b> {{ car.make }}
+            <b>Model:</b> {{ car.model }}
           </div>
 
-          <md-card-content layout="row" layout-margin>
-            <div flex flex-order="1">
-              <b>Name:</b> {{ car.name }}
-              <b>Make:</b> {{ car.make }}
-              <b>Model:</b> {{ car.model }}
-            </div>
-
-            <div flex flex-order="2">
-              <b>Engine:</b> {{ car.engine }}
-              <b>Exterior:</b> {{ car.exterior }}
-              <b>Interior:</b> {{ car.interior }}
-            </div>
-
-            <div flex flex-order="3">
-              <b>Delivery KMs:</b> {{ car.delivery_kms }}
-              <b>Stock #:</b> {{ car.stock_num }}
-              <b>MSRP:</b> {{ car.msrp | currency:"CAD$"}}
-            </div>
-          </md-card-content>
-          <div class="md-actions text-right" layout="row" layout-align="end center">
-            <span ng-show="current_user_permissions.hasOwnProperty('CarModifyPrivilege')">
-              <md-button><a href="#car/edit/{{car.id}}">Edit</a></md-button>
-              <md-button ng-click="removeCar(car.id)">Delete</md-button>
-            </span>
-            <md-button><a href="#car/{{car.id}}">Details</a></md-button>
+          <div flex flex-order="2">
+            <b>Engine:</b> {{ car.engine }}
+            <b>Exterior:</b> {{ car.exterior }}
+            <b>Interior:</b> {{ car.interior }}
           </div>
 
-    	  </md-card>
-    	</ul>
-    </div>
-  	<div ng-show="current_user_permissions.hasOwnProperty('QueryCarPrivilege')" class="search-btn-group text-center">
-      <label class="btn btn-primary" ng-model="radioModel" btn-radio="'Avaliable'" ng-click="query('Avaliable')">Avaliable</label>
-      <label class="btn btn-primary" ng-model="radioModel" btn-radio="'Ordered'" ng-click="query('Ordered')">Ordered</label>
-      <label class="btn btn-primary" ng-model="radioModel" btn-radio="'InProgress'" ng-click="query('InProgress')">In Progress</label>
-      <label class="btn btn-primary" ng-model="radioModel" btn-radio="'Shipped'" ng-click="query('Shipped')">Shipped</label>
-      <label class="btn btn-primary" ng-model="radioModel" btn-radio="'All'" ng-click="query('All')">All</label>
-    </div>
+          <div flex flex-order="3">
+            <b>Delivery KMs:</b> {{ car.delivery_kms }}
+            <b>Stock #:</b> {{ car.stock_num }}
+            <b>MSRP:</b> {{ car.msrp | currency:"CAD$"}}
+          </div>
+        </md-card-content>
+        <div class="md-actions text-right" layout="row" layout-align="end center">
+          <span ng-show="current_user_permissions.hasOwnProperty('CarModifyPrivilege')">
+            <md-button><a href="#car/edit/{{car.id}}">Edit</a></md-button>
+            <md-button ng-click="removeCar(car.id)">Delete</md-button>
+          </span>
+          <md-button><a href="#car/{{car.id}}">Details</a></md-button>
+        </div>
+
+  	  </md-card>
+  	</ul>
+  </div>
+	<div ng-show="current_user_permissions.hasOwnProperty('QueryCarPrivilege')" class="search-btn-group text-center">
+    <label class="btn btn-primary" ng-model="radioModel" btn-radio="'Avaliable'" ng-click="query('Avaliable')">Avaliable</label>
+    <label class="btn btn-primary" ng-model="radioModel" btn-radio="'Ordered'" ng-click="query('Ordered')">Ordered</label>
+    <label class="btn btn-primary" ng-model="radioModel" btn-radio="'InProgress'" ng-click="query('InProgress')">In Progress</label>
+    <label class="btn btn-primary" ng-model="radioModel" btn-radio="'Shipped'" ng-click="query('Shipped')">Shipped</label>
+    <label class="btn btn-primary" ng-model="radioModel" btn-radio="'All'" ng-click="query('All')">All</label>
   </div>
 </div>
