@@ -7,7 +7,9 @@
       "angular": "latest",
       "angular-route": "latest",
       "angular-bootstrap": "latest",
-      "angular-animate": "latest"
+      "angular-animate": "latest",
+      "angular-aria": "latest",
+      "angular-material": "latest"
 
     }
   },

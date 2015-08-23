@@ -2,7 +2,7 @@ angular.module('HH')
 .controller('CarDetailsController', ['$scope', '$routeParams', 'userFactory', 'carFactory', 
   function($scope, $routeParams, userFactory, carFactory) {
   $scope.car;
-  $scope.tax;
+  $scope.tax = 0.05;
   var id = $routeParams.id;
 
   getCar();
