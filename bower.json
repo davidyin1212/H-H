@@ -9,7 +9,8 @@
       "angular-bootstrap": "latest",
       "angular-animate": "latest",
       "angular-aria": "latest",
-      "angular-material": "latest"
+      "angular-material": "latest",
+      "angular-messages": "latest"
     }
   },
   "vendor": {
