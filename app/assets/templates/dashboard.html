@@ -1,47 +1,58 @@
-<div class="jumbotron text-center col-md-10 col-md-offset-1">
+<div class="jumbotron col-md-10 col-md-offset-1">
   <div ng-controller="DashboardController">
-    <div ng-show="current_user_permissions.hasOwnProperty('UserModifyPrivilege')">
-      <a href="#new_user">Add User</a>
-      <button>Edit</button>
-    </div>
-    <div class="btn-group">
+    <div class="btn-group text-center">
       <label class="btn btn-primary" ng-model="radioModel" btn-radio="'All'" ng-click="query(0)">All</label>
       <label class="btn btn-primary" ng-model="radioModel" btn-radio="'Ordered'" ng-click="query(1)">Ordered</label>
       <label class="btn btn-primary" ng-model="radioModel" btn-radio="'InProgress'" ng-click="query(2)">In Progress</label>
       <label class="btn btn-primary" ng-model="radioModel" btn-radio="'Shipped'" ng-click="query(3)">Shipped</label>
     </div>
+    <a ng-show="current_user_permissions.hasOwnProperty('UserModifyPrivilege')" href="#new_user">Add User</a>
     <div class="paper-collapse">
       <div ng-repeat="user in users" class="collapse-card" ng-class="{ active: card.$active }">
         <div class="collapse-card__heading" ng-click="card.$active = !card.$active">
           <div class="collapse-card__title">
-            {{ user.last_name }}, {{ user.first_name }}
-            <a ng-show="current_user_permissions.hasOwnProperty('PermissionPrivilege')" href="#permission/{{user.id}}">Permissions</a>
-            <a href="#inventory/{{user.id}}">Details</a>
-            <button ng-show="current_user_permissions.hasOwnProperty('UserModifyPrivilege')" ng-click="removeUser(user.id)">Delete User</button>
+            <h2>{{ user.last_name }}, {{ user.first_name }}</h2>
             <p>Cars: {{user.cars.length}}</p>
+            <div class="text-right">
+              <a ng-show="current_user_permissions.hasOwnProperty('PermissionPrivilege')" href="#permission/{{user.id}}">Permissions</a>
+              <a href="#inventory/{{user.id}}">Details</a>
+              <button ng-show="current_user_permissions.hasOwnProperty('UserModifyPrivilege')" ng-click="removeUser(user.id)">Delete User</button>
+            </div>
           </div>
         </div>
         <div class="collapse-card__body">
           <ul ng-show="current_user_permissions.hasOwnProperty('QueryUserCarsPrivilege')" class="cars">
-            <li ng-repeat="car in user.cars">
-              {{ car.name }}
-              {{ car.make }}
-              {{ car.model }}
-              {{ car.engine }}
-              {{ car.exterior }}
-              {{ car.interior }}
-              {{ car.delivery_kms }}
-              {{ car.stock_num }}
-              {{ car.msrp }}
-              {{ car.additional_fees }}
-              {{ car.base_price | currency:"CAD$"}}
-              {{ car.base_price * tax | currency:"CAD$"}}
-              {{ car.base_price * (1 + tax) | currency:"CAD$"}}
-              <p>Change Staus<p>
-              <button>Ordered</button>
-              <button>In Progress</button>
-              <button>Shipped</button>
-            </li>
+            <md-card ng-repeat="car in user.cars">
+              <h2>{{car.name}}</h2>
+              <h3 class="text-right"><b>Stock#:</b> {{ car.stock_num}}</h3>
+
+              <md-card-content layout="row" layout-margin>
+                <div flex flex-order="1">
+                  <b>Make: </b>{{ car.make }}
+                  <b>Model: </b>{{ car.model }}
+                  <b>Engine: </b>{{ car.engine }}
+                </div>
+
+                <div flex flex-order="2">
+                  <b>Exterior: </b>{{ car.exterior }}
+                  <b>Interior: </b>{{ car.interior }}
+                  <b>Delivery KMs: </b>{{ car.delivery_kms }}
+                </div>
+
+                <div flex flex-order="3">
+                  <h4><b>Total + Price Over: </b>{{ car.base_price * (1 + tax) | currency:"CAD$"}} + {{ car.price_over | currency:"CAD$"}}</h4>
+                </div>
+
+              </md-card-content>
+
+              <div class="md-actions" layout="row" layout-align="end center">
+                <p>Change Status<p>
+                <button>Ordered</button>
+                <button>In Progress</button>
+                <button>Shipped</button>
+                <md-button class="pull-right"><a href="#car/{{car.id}}">Details</a></md-button>
+              </div>
+            </md-card>
           </ul>
         </div>
       </div>

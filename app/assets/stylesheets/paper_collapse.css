@@ -27,7 +27,7 @@
 }
 
 .collapse-card__body {
-  overflow: hidden;
+  overflow: scroll;
   transition: .4s;
   max-height: 0px;
   opacity: 0;

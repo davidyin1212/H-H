@@ -1,4 +1,4 @@
-<div class="jumbotron text-center col-md-10 col-md-offset-1">
+<div class="jumbotron col-md-10 col-md-offset-1">
   <div ng-controller="UserInfoController">
     <div ng=show="$routeParams.id != 0">
       {{userInfo.first_name}}
@@ -7,11 +7,37 @@
     </div>
     <div>
     	<ul ng-show="userCars.length > 0">
-     	  <li ng-repeat="car in userCars">
-          {{car.name}}
-          {{car.base_price}}
-          <a href="#car/{{car.id}}">Details</a>
-     	  </li>
+     	  <md-card ng-repeat="car in userCars">
+          <h1>{{car.name}}</h1>
+          <div layout="column">
+            <h2 class="text-right">{{ car.base_price * (1 + tax) | currency:"CAD$"}} +</h2>
+            <h2 class="text-right">{{ car.price_over | currency:"CAD$"}}</h2>
+          </div>
+
+          <md-card-content layout="row" layout-margin>
+            <div flex flex-order="1">
+              <b>Name:</b> {{ car.name }}
+              <b>Make:</b> {{ car.make }}
+              <b>Model:</b> {{ car.model }}
+            </div>
+
+            <div flex flex-order="2">
+              <b>Engine:</b> {{ car.engine }}
+              <b>Exterior:</b> {{ car.exterior }}
+              <b>Interior:</b> {{ car.interior }}
+            </div>
+
+            <div flex flex-order="3">
+              <b>Delivery KMs:</b> {{ car.delivery_kms }}
+              <b>Stock #:</b> {{ car.stock_num }}
+              <b>MSRP:</b> {{ car.msrp | currency:"CAD$"}}
+            </div>
+          </md-card-content>
+          <div class="md-actions text-right" layout="row" layout-align="end center">
+            <md-button><a href="#car/{{car.id}}">Details</a></md-button>
+          </div>
+
+        </md-card>
     	</ul>
   	  <p ng-show="userCars.length == 0">No Cars</p>
     </div>
