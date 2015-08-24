@@ -43,6 +43,6 @@ Rails.application.routes.draw do
   end
   post 'payment/:id' => 'payment#update'
 
-  get '*path' => 'application#index'
+  # get '*path' => 'application#index'
  
 end

@@ -1,21 +1,76 @@
-<div class="jumbotron text-center col-md-10 col-md-offset-1">
+<div class="jumbotron col-md-10 col-md-offset-1">
   <div ng-controller="CarFormController">
-    <form novalidate class="simple-form">
-      Name: <input type="text" ng-model="car.name" /><br />
-      Make: <input type="text" ng-model="car.make" /><br />
-      Model: <input type="text" ng-model="car.model" /><br />
-      Engine: <input type="text" ng-model="car.engine" /><br />
-      Exterior: <input type="text" ng-model="car.exterior" /><br />
-      Interior: <input type="text" ng-model="car.interior" /><br />
-      Delivery KMs: <input type="text" ng-model="car.delivery_kms" /><br />
-      Stock #: <input type="text" ng-model="car.stock_num" /><br />
-      Base MSRP: <input type="text" ng-model="car.msrp " /><br />
-      Vehicle Options & Delivery Fees: <input type="text" ng-model="car.additional_fees " /><br />
-      MSRP Subtotal: <input type="text" ng-model="car.base_price " /><br />
-      Price Over: <input type="text" ng-model="car.price_over " /><br />
+    <md-content layout-padding>
+      <form name="carForm">
+        <md-input-container flex>
+          <label>Name</label>
+          <input required name="name" type="text" ng-model="car.name">
+          <div ng-messages="carForm.name.$error">
+            <div ng-message="required">This is required.</div>
+          </div>
+        </md-input-container>
 
-      <input type="button" ng-click="reset()" value="Reset" />
-      <input type="submit" ng-click="commit(car)" value="Save" />
-    </form>
+        <div layout layout-sm="column">
+          <md-input-container flex>
+            <label>Make</label> 
+            <input type="text" ng-model="car.make">
+          </md-input-container>
+          <md-input-container flex>
+            <label>Model</label> 
+            <input type="text" ng-model="car.model">
+          </md-input-container>
+        </div>
+        
+        <md-input-container flex>
+          <label>Engine</label>
+          <input type="text" ng-model="car.engine">
+        </md-input-container>
+
+        <div layout layout-sm="column">
+          <md-input-container flex>
+            <label>Exterior</label> 
+            <input type="text" ng-model="car.exterior">
+          </md-input-container>
+          <md-input-container flex>
+            <label>Interior</label> 
+            <input type="text" ng-model="car.interior">
+          </md-input-container>
+        </div>
+
+        <div layout layout-sm="column">
+          <md-input-container style="width:25%">
+            <label>Delivery KMs</label> 
+            <input type="text" ng-model="car.delivery_kms">
+          </md-input-container>
+          <md-input-container style="width:25%">
+            <label>Stock #</label> 
+            <input type="text" ng-model="car.stock_num">
+          </md-input-container>
+          <md-input-container style="width:50%">
+            <label>Base MSRP</label> 
+            <input type="text" ng-model="car.msrp">
+          </md-input-container>
+        </div>
+
+        <md-input-container flex>
+          <label>Vehicle Options & Delivery Fees:</label>
+          <textarea ng-model="car.additional_fees" columns="1"></textarea>
+        </md-input-container>
+
+        <div layout layout-sm="column">
+          <md-input-container flex>
+            <label>MSRP Subtotal</label> 
+            <input type="text" ng-model="car.base_price">
+          </md-input-container>
+          <md-input-container flex>
+            <label>Price Over</label> 
+            <input type="text" ng-model="car.price_over">
+          </md-input-container>
+        </div>
+
+        <md-button class="md-raised" ng-click="reset()">Reset</md-button>
+        <md-button class="md-raised md-primary" ng-click="commit(car)">Save</md-button>
+      </form>
+    </md-content>
   </div>
 </div>
