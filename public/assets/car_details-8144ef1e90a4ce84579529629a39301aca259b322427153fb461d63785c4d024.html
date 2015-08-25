@@ -1,0 +1,21 @@
+<div class="jumbotron text-center col-md-10 col-md-offset-1">
+  <div ng-controller="CarDetailsController">
+    <h1>{{ car.name }}</h1>
+    <h2>{{ car.make }}</h2>
+    <h2>{{ car.model }}</h2>
+    <h2>{{ car.engine }}</h2>
+    <h2>{{ car.exterior }}</h2>
+    <h2>{{ car.interior }}</h2>
+    <h2>{{ car.delivery_kms }}</h2>
+    <h2>{{ car.stock_num }}</h2>
+    <h2>{{ car.msrp }}</h2>
+    <p>{{ car.additional_fees }}</p>
+    <h2>{{ car.base_price | currency:"CAD$"}}</h2>
+    <h2>{{ car.base_price * tax | currency:"CAD$"}}</h2>
+    <h1>{{ car.base_price * (1 + tax) | currency:"CAD$"}} + {{ car.price_over }}</h1>
+
+    <button ng-show="current_user_permissions.hasOwnProperty('GeneralUsePrivilege')" ng-if="car.status == 0" ng-click="purchaseCar()">Purchase</button>
+    <button ng-show="current_user_permissions.hasOwnProperty('GeneralUsePrivilege')" ng-if="car.status == 0" ng-click="purchaseCar()" ng-if="car.status != 0" ng-click="cancelPurchaseCar()">Cancel Purchase</button>
+    <button ng-show="current_user_permissions.hasOwnProperty('CarModifyPrivilege')" ng-if="car.status == 0" ng-click="purchaseCar()">Edit</button>
+  </div>
+</div>

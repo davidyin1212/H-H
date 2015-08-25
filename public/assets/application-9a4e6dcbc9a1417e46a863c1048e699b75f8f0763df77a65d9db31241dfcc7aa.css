@@ -1,0 +1,110 @@
+.collapse-card {
+  background-color: #fff;
+  border: 1px solid #eee;
+  color: #777;
+  -webkit-transition: .4s;
+  -moz-transition: .4s;
+  -o-transition: .4s;
+  transition: .4s;
+}
+
+.collapse-card__title {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.collapse-card__heading {
+  font-size: 1em;
+  line-height: 2em;
+  cursor: pointer;
+  padding: 1em;
+  position: relative;
+}
+
+.collapse-card__heading i {
+  float: left;
+}
+
+.collapse-card__body {
+  overflow: scroll;
+  transition: .4s;
+  max-height: 0px;
+  opacity: 0;
+}
+
+.collapse-card.active {
+  -moz-box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.18824);
+  -webkit-box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.18824);
+  box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.18824);
+  z-index: 200;
+  margin: 1rem -1rem;
+}
+
+.collapse-card.active .collapse-card__body {
+  max-height: 400px;
+  padding: 1em;
+  opacity: 1;
+}
+.searchBarBox {
+	position: fixed;
+  width:80%;
+  margin: 0 0 0 -40%;
+  left:52%;
+  z-index: 100;
+  margin-top: 40px;
+}
+
+.searchBarBox .innerSearch .add{
+  position: absolute;
+  top: 20%;
+  right: 0px;
+  padding-right: 15px;
+  z-index: 1;
+}
+
+.searchBarBox .innerSearch input {
+  width: 100%;
+  height: 34px;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #555;
+  background-color: #fff;
+  background-image: none;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+  box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+  -webkit-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+  transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+}
+
+.searchedCarsQuery {
+  margin-top: 60px;
+}
+
+.searchedCarsClient {
+  margin-top: 90px;
+}
+
+.btn-group {
+  width: 100%
+}
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+
+
+ */
+
+body { padding-top: 70px; }
