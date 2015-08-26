@@ -20,4 +20,5 @@
 //= require angular-aria
 //= require angular-material
 //= require angular-messages
+//= require angular-payment
 //= require_tree .

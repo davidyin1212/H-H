@@ -10,7 +10,8 @@
       "angular-animate": "latest",
       "angular-aria": "latest",
       "angular-material": "latest",
-      "angular-messages": "latest"
+      "angular-messages": "latest",
+      "angular-payment": "latest"
     }
   },
   "vendor": {
