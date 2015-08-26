@@ -3,13 +3,26 @@ angular.module('HH')
   function($scope, userFactory, carFactory) {
   $scope.users;
   $scope.radioModel = "All";
+  $scope.statusOptions = ["Ordered", "In Progress", "Shipped"]
   queryParam = 0;
+  var noMatchingQueryCars = new Array();
 
   setup();
 
   $scope.query = function(val) {
-    queryParam = val;
+    if (val != -1) {
+      queryParam = val;
+    }
+    // setup();
+    queryCars(queryParam);
+  }
+
+  $scope.reset = function() {
     setup();
+  }
+
+  $scope.submit = function() {
+    commit();
   }
 
   function setup() {
@@ -25,7 +38,7 @@ angular.module('HH')
   }
 
   function commit() {
-
+    updateStatuses();
   }
 
 
@@ -41,6 +54,7 @@ angular.module('HH')
         return nameA.localeCompare(nameB);
       });
       for (var i = 0; i < $scope.users.length; i++) {
+        noMatchingQueryCars[i] = new Array();
         getUserCars($scope.users[i].id);
       }
   	})
@@ -63,6 +77,35 @@ angular.module('HH')
     });
   }
 
+  function queryCars(param) {
+    for (var i = 0; i < $scope.users.length; i++) {
+      for (var j = 0; j < $scope.users[i].cars.length; j++) {
+        var val = $scope.users[i].cars;
+        if (param != 0) {
+          if (param != val[j].status) {
+            noMatchingQueryCars[i].push(val[j]);
+            $scope.users[i].cars.splice(j, 1);
+            j--;
+          }
+        }
+      }
+      for (var j = 0; j < noMatchingQueryCars[i].length; j++) {
+        var val = noMatchingQueryCars[i];
+        if (param != 0) {
+          if (param == val[j].status) {
+            $scope.users[i].cars.push(val[j]);
+            val.splice(j, 1);
+            j--;
+          }
+        } else {
+          $scope.users[i].cars.push(val[j]);
+          val.splice(j, 1);
+          j--;
+        }
+      }
+    }
+  }
+
   function getUserCars(id) {
   	userFactory.getUserCars(id)
   	.success(function (data) {
@@ -71,9 +114,12 @@ angular.module('HH')
   	  	if (user.id == id) {
           if (queryParam != 0) {
             $scope.users[i].cars = new Array();
+            noMatchingQueryCars[i] = new Array();
             for (var j = 0; j < data.length; j++) {
               if (data[j].status == queryParam) {
                 $scope.users[i].cars.push(data[j]);
+              } else {
+                noMatchingQueryCars[i].push(data[j]);
               }
             }
           } else {
@@ -127,43 +173,17 @@ angular.module('HH')
     });
   }
 
-  function setCarToAvaliable (id) {
-  	carFactory.setCarToAvaliable(id)
-  	.success(function (data) {
+  function updateStatuses() {
+    for (var i = 0; i < $scope.users.length; i++) {
+      for (var j = 0; j < $scope.users[i].cars.length; j++) {
+        carFactory.updateCar($scope.users[i].cars[j].id, $scope.users[i].cars[j])
+        .success(function (data) {
+          setup();
+        })
+        .error(function (error) {
 
-  	})
-  	.error(function (error) {
-
-  	});
-  }
-
-  function setCarToOrdered (id) {
-  	carFactory.setCarToOrdered(id)
-  	.success(function (data) {
-
-  	})
-  	.error(function (error) {
-  		
-  	});
-  }
-
-  function setCarToInProgress (id) {
-  	carFactory.setCarToInProgress(id)
-  	.success(function (data) {
-
-  	})
-  	.error(function (error) {
-  		
-  	});
-  }
-
-  function setCarToShipped (id) {
-  	carFactory.setCarToShipped(id)
-  	.success(function (data) {
-
-  	})
-  	.error(function (error) {
-  		
-  	});
+        });
+      }
+    }
   }
 }])

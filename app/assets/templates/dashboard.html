@@ -7,9 +7,11 @@
       <label class="btn btn-primary" ng-model="radioModel" btn-radio="'Shipped'" ng-click="query(3)">Shipped</label>
     </div>
     <a ng-show="current_user_permissions.hasOwnProperty('UserModifyPrivilege')" href="#new_user">Add User</a>
+    <md-button class="md-raised md-primary" ng-click="reset()">Reset</md-button>
+    <md-button class="md-raised md-primary" ng-click="submit()">Update</md-button>
     <div class="paper-collapse">
       <div ng-repeat="user in users" class="collapse-card" ng-class="{ active: card.$active }">
-        <div class="collapse-card__heading" ng-click="card.$active = !card.$active">
+        <div class="collapse-card__heading" ng-click="card.$active = !card.$active; query(-1);">
           <div class="collapse-card__title">
             <h2>{{ user.last_name }}, {{ user.first_name }}</h2>
             <p>Cars: {{user.cars.length}}</p>
@@ -44,15 +46,13 @@
                 </div>
 
               </md-card-content>
-
-              <div class="pull-left">
-                <p>Change Status<p>
-                <button>Ordered</button>
-                <button>In Progress</button>
-                <button>Shipped</button>
-              </div>
-
               <div class="md-actions" layout="row" layout-align="end center">
+                <md-input-container class="pull-left">
+                  <label>Status</label>
+                  <md-select ng-model="car.status">
+                    <md-option ng-repeat="status in statusOptions" value="{{statusOptions.indexOf(status) + 1}}">{{status}}</md-option>
+                  </md-select>
+                </md-input-container>
                 <md-button class="pull-right"><a href="#car/{{car.id}}">Details</a></md-button>
               </div>
             </md-card>
