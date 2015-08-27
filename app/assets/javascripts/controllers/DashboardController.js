@@ -1,6 +1,6 @@
 angular.module('HH')
-.controller('DashboardController', ['$scope', 'userFactory', 'carFactory', 
-  function($scope, userFactory, carFactory) {
+.controller('DashboardController', ['$scope', '$location', 'userFactory', 'carFactory', 
+  function($scope, $location, userFactory, carFactory) {
   $scope.users;
   $scope.radioModel = "All";
   $scope.statusOptions = ["Ordered", "In Progress", "Shipped"]
@@ -26,15 +26,17 @@ angular.module('HH')
   }
 
   $scope.addUserClicked = function() {
-    window.location = "#new_user";
+    $location.path("/new_user");
   }
 
   $scope.permissionsButtonClicked = function(id) {
-    window.location = "#permission/" + id;
+    $location.path("/permission/" + id);
+    $scope.$apply();
   }
 
   $scope.detailsButtonClicked = function(id) {
-    window.location = "#inventory/" + id;
+    $location.path("/inventory/" + id);
+    $scope.$apply();
   }
 
   function setup() {

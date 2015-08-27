@@ -10,7 +10,7 @@
         </md-tabs>
       </md-content>
       <div class="pull-right">
-        <md-button class="md-raised md-primary" ng-show="current_user_permissions.hasOwnProperty('UserModifyPrivilege')" onclick="location.href='#new_user'">Add User</md-button>
+        <md-button class="md-raised md-primary" ng-show="current_user_permissions.hasOwnProperty('UserModifyPrivilege')" ng-click="addUserClicked()">Add User</md-button>
         <md-button class="md-raised md-accent" ng-click="reset()">Reset</md-button>
         <md-button class="md-raised md-primary" ng-click="submit()">Update</md-button>
       </div>
