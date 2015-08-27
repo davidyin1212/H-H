@@ -5,6 +5,15 @@
       <input type="text" ng-model="asyncSelected" placeholder="Search car: name model make stock#" typeahead="car for cars in searchCars($viewValue)" ng-change="isEmpty()">
     </div>
   </div>
+  <!-- <md-content ng-show="current_user_permissions.hasOwnProperty('QueryCarPrivilege')" class="md-padding">
+    <md-tabs md-border-bottom>
+      <md-tab label="Avaliable" ng-click="query('Avaliable')"></md-tab>
+      <md-tab label="Ordered" ng-click="query('Ordered')"></md-tab>
+      <md-tab label="In Progress" ng-click="query('InProgress')"></md-tab>
+      <md-tab label="Shipped" ng-click="query('Shipped')"></md-tab>
+      <md-tab label="All" ng-click="query('All')"></md-tab>
+    </md-tabs>
+  </md-content> -->
   <div ng-show="current_user_permissions.hasOwnProperty('QueryCarPrivilege')" class="search-btn-group text-center">
     <label class="btn btn-primary" ng-model="radioModel" btn-radio="'Avaliable'" ng-click="query('Avaliable')">Avaliable</label>
     <label class="btn btn-primary" ng-model="radioModel" btn-radio="'Ordered'" ng-click="query('Ordered')">Ordered</label>
@@ -13,7 +22,7 @@
     <label class="btn btn-primary" ng-model="radioModel" btn-radio="'All'" ng-click="query('All')">All</label>
   </div>
   <div layout="column" layout-align="space-around center" ng-class="{searchedCarsQuery: current_user_permissions.hasOwnProperty('QueryCarPrivilege'), searchedCarsClient: !current_user_permissions.hasOwnProperty('QueryCarPrivilege')}">
-    <ul>
+    <ul class="carList">
   	  <md-card ng-repeat="car in cars">
         <h1>{{car.name}}</h1>
         <div layout="column">
@@ -41,16 +50,25 @@
           </div>
         </md-card-content>
         <div class="md-actions text-right" layout="row" layout-align="end center">
+          <md-button><a href="#car/{{car.id}}">Details</a></md-button>
           <span ng-show="current_user_permissions.hasOwnProperty('CarModifyPrivilege')">
             <md-button><a href="#car/edit/{{car.id}}">Edit</a></md-button>
-            <md-button ng-click="removeCar(car.id)">Delete</md-button>
+            <md-button class="md-raised md-warn" ng-click="removeCar(car.id)">Delete</md-button>
           </span>
-          <md-button><a href="#car/{{car.id}}">Details</a></md-button>
         </div>
 
   	  </md-card>
   	</ul>
   </div>
+  <!-- <md-content ng-show="current_user_permissions.hasOwnProperty('QueryCarPrivilege')" class="md-padding">
+    <md-tabs md-border-bottom>
+      <md-tab label="Avaliable" ng-click="query('Avaliable')"></md-tab>
+      <md-tab label="Ordered" ng-click="query('Ordered')"></md-tab>
+      <md-tab label="In Progress" ng-click="query('InProgress')"></md-tab>
+      <md-tab label="Shipped" ng-click="query('Shipped')"></md-tab>
+      <md-tab label="All" ng-click="query('All')"></md-tab>
+    </md-tabs>
+  </md-content> -->
 	<div ng-show="current_user_permissions.hasOwnProperty('QueryCarPrivilege')" class="search-btn-group text-center">
     <label class="btn btn-primary" ng-model="radioModel" btn-radio="'Avaliable'" ng-click="query('Avaliable')">Avaliable</label>
     <label class="btn btn-primary" ng-model="radioModel" btn-radio="'Ordered'" ng-click="query('Ordered')">Ordered</label>

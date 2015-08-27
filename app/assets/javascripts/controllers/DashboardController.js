@@ -25,6 +25,18 @@ angular.module('HH')
     commit();
   }
 
+  $scope.addUserClicked = function() {
+    window.location = "#new_user";
+  }
+
+  $scope.permissionsButtonClicked = function(id) {
+    window.location = "#permission/" + id;
+  }
+
+  $scope.detailsButtonClicked = function(id) {
+    window.location = "#inventory/" + id;
+  }
+
   function setup() {
     getUsers();
   }
