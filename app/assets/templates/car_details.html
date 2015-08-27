@@ -1,4 +1,4 @@
-<div class="jumbotron text-center col-md-10 col-md-offset-1">
+<div class="text-center col-md-10 col-md-offset-1">
   <div ng-controller="CarDetailsController">
     <h1>{{ car.name }}</h1>
     <h2>{{ car.make }}</h2>
@@ -14,8 +14,8 @@
     <h2>{{ car.base_price * tax | currency:"CAD$"}}</h2>
     <h1>{{ car.base_price * (1 + tax) | currency:"CAD$"}} + {{ car.price_over }}</h1>
 
-    <button ng-show="current_user_permissions.hasOwnProperty('GeneralUsePrivilege')" ng-if="car.status == 0" ng-click="purchaseCar()">Purchase</button>
-    <button ng-show="current_user_permissions.hasOwnProperty('GeneralUsePrivilege')" ng-if="car.status == 0" ng-click="purchaseCar()" ng-if="car.status != 0" ng-click="cancelPurchaseCar()">Cancel Purchase</button>
-    <button ng-show="current_user_permissions.hasOwnProperty('CarModifyPrivilege')" ng-if="car.status == 0" ng-click="purchaseCar()">Edit</button>
+    <md-button class="md-raised md-accent" ng-show="current_user_permissions.hasOwnProperty('GeneralUsePrivilege')" ng-if="car.status == 0" ng-click="purchaseCar()">Purchase</md-button>
+    <!-- <button ng-show="current_user_permissions.hasOwnProperty('GeneralUsePrivilege')" ng-if="car.status == 0" ng-click="purchaseCar()" ng-if="car.status != 0" ng-click="cancelPurchaseCar()">Cancel Purchase</button> -->
+    <md-button class="md-raised md-accent" ng-show="current_user_permissions.hasOwnProperty('CarModifyPrivilege')" ng-if="car.status == 0" ng-click="purchaseCar()">Edit</md-button>
   </div>
 </div>
