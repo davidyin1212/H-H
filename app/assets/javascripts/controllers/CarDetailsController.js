@@ -1,6 +1,6 @@
 angular.module('HH')
-.controller('CarDetailsController', ['$scope', '$routeParams', 'userFactory', 'carFactory', 
-  function($scope, $routeParams, userFactory, carFactory) {
+.controller('CarDetailsController', ['$scope', '$routeParams', '$location', 'userFactory', 'carFactory', 
+  function($scope, $routeParams, $location, userFactory, carFactory) {
   $scope.car;
   $scope.tax = 0.05;
   var id = $routeParams.id;
@@ -9,11 +9,13 @@ angular.module('HH')
 
   $scope.purchaseCar = function() {
     buyCar();
-    window.location = "/#/index";
   };
   $scope.cancelPurchaseCar = function() {
     removeCar();
-    window.location = "/#/index";
+  }
+
+  $scope.editButtonClicked = function () {
+    $location.path("/car/edit/" + id);
   }
 
   function getCar() {
@@ -29,7 +31,7 @@ angular.module('HH')
   function buyCar () {
   	carFactory.addCarToUser(id)
   	.success(function (data) {
-
+      window.location = "/#/index";
   	})
   	.error(function (error) {
 
@@ -39,7 +41,7 @@ angular.module('HH')
   function removeCar () {
   	carFactory.removeFromUser(id)
   	.success(function (data) {
-
+      window.location = "/#/index";
   	})
   	.error(function (error) {
 

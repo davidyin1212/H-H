@@ -13,10 +13,12 @@ class UsersController < ApplicationController
   def create
     # user_params.permit(:first_name, :last_name, :email, :password, :password_confirmation)
     @user = User.create(user_params)
-    params[:permissions].each do |arg|
-      permission = Permission.find(arg[:id])
-      if !(@user.permissions.include? permission)
-        @user.permissions << Permission.find(permission[:id])
+    if params[:permissions] != nil
+      params[:permissions].each do |arg|
+        permission = Permission.find(arg[:id])
+        if !(@user.permissions.include? permission)
+          @user.permissions << Permission.find(permission[:id])
+        end
       end
     end
     authorize @user
@@ -41,7 +43,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    if params[:user_id].to_i == 0 then
+    if params[:id].to_i == 0 then
       @user = current_user
     else
       @user = User.find(params[:id])

@@ -31,12 +31,10 @@ angular.module('HH')
 
   $scope.permissionsButtonClicked = function(id) {
     $location.path("/permission/" + id);
-    $scope.$apply();
   }
 
   $scope.detailsButtonClicked = function(id) {
     $location.path("/inventory/" + id);
-    $scope.$apply();
   }
 
   function setup() {

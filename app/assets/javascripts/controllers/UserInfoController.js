@@ -5,11 +5,11 @@ angular.module('HH')
   $scope.userCars
   var user_id = $routeParams.id;
   
-  getUser(); 
+  getUser(user_id); 
   getUserCars();
 
-  function getUser() {
-  	userFactory.getUser(user_id)
+  function getUser(id) {
+  	userFactory.getUser(id)
   	.success(function (data) {
   		$scope.userInfo = data
   	})

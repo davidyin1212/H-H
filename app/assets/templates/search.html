@@ -50,9 +50,9 @@
           </div>
         </md-card-content>
         <div class="md-actions text-right" layout="row" layout-align="end center">
-          <md-button><a href="#car/{{car.id}}">Details</a></md-button>
+          <md-button ng-click="detailsButtonClicked(car.id)">Details</md-button>
           <span ng-show="current_user_permissions.hasOwnProperty('CarModifyPrivilege')">
-            <md-button><a href="#car/edit/{{car.id}}">Edit</a></md-button>
+            <md-button ng-click="editButtonClicked(car.id)">Edit</md-button>
             <md-button class="md-raised md-warn" ng-click="removeCar(car.id)">Delete</md-button>
           </span>
         </div>

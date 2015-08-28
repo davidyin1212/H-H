@@ -1,6 +1,6 @@
 angular.module('HH')
-.controller('CarFormController', ['$scope', 'carFactory','$routeParams',
-  function($scope, carFactory, $routeParams) {
+.controller('CarFormController', ['$scope', '$location', 'carFactory','$routeParams',
+  function($scope, $location, carFactory, $routeParams) {
   $scope.car;
   $scope.status;
   var isNew = false;
@@ -8,6 +8,7 @@ angular.module('HH')
 
   $scope.commit = function(car) {
     commit(car);
+    $location.path("/index");
   }
   $scope.reset = function() {
     startup();

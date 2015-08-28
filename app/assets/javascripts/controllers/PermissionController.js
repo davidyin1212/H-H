@@ -1,6 +1,6 @@
 angular.module('HH')
-.controller('PermissionController', ['$scope', '$routeParams', 'permissionFactory', 'userFactory', 
-  function($scope, $routeParams, permissionFactory, userFactory) {
+.controller('PermissionController', ['$scope', '$routeParams', '$location', 'permissionFactory', 'userFactory', 
+  function($scope, $routeParams, $location, permissionFactory, userFactory) {
   $scope.user;
   $scope.userPermissions;
   $scope.permissions;
@@ -13,6 +13,7 @@ angular.module('HH')
 
   $scope.update = function() {
     commit();
+    $location.path("/dashboard");
   }
 
   $scope.addPermissionToUserEvent = function(id) {

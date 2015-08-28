@@ -16,6 +16,6 @@
 
     <md-button class="md-raised md-accent" ng-show="current_user_permissions.hasOwnProperty('GeneralUsePrivilege')" ng-if="car.status == 0" ng-click="purchaseCar()">Purchase</md-button>
     <!-- <button ng-show="current_user_permissions.hasOwnProperty('GeneralUsePrivilege')" ng-if="car.status == 0" ng-click="purchaseCar()" ng-if="car.status != 0" ng-click="cancelPurchaseCar()">Cancel Purchase</button> -->
-    <md-button class="md-raised md-accent" ng-show="current_user_permissions.hasOwnProperty('CarModifyPrivilege')" ng-if="car.status == 0" ng-click="purchaseCar()">Edit</md-button>
+    <md-button class="md-raised md-accent" ng-show="current_user_permissions.hasOwnProperty('CarModifyPrivilege')" ng-if="car.status == 0" ng-click="editButtonClicked()">Edit</md-button>
   </div>
 </div>

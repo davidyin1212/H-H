@@ -1,9 +1,10 @@
 angular.module('HH')
-.controller('UserFormController', ['$scope', 'userFactory',
-  function($scope, userFactory) {
+.controller('UserFormController', ['$scope', '$location', 'userFactory',
+  function($scope, $location, userFactory) {
   $scope.user;
   $scope.permissions;
   $scope.userGroups;
+  $scope.status;
   
   getUserGroups();
 
@@ -11,10 +12,10 @@ angular.module('HH')
     user.permissions = $scope.permissions;
   	userFactory.createUser(user)
   	.success(function(data) {
-
+      $location.path("/dashboard")
   	})
   	.error(function (error) {
-
+      $scope.status = error;
     })
   }
   

@@ -1,6 +1,6 @@
 angular.module('HH')
-.controller('SearchController', ['$scope', 'carFactory',
-  function($scope, carFactory) {
+.controller('SearchController', ['$scope', '$location', 'carFactory',
+  function($scope, $location, carFactory) {
   $scope.carsTemplate;
   $scope.cars;
   $scope.radioModel = "Avaliable";
@@ -38,6 +38,14 @@ angular.module('HH')
 
   $scope.removeCar = function (id) {
     removeCar(id);
+  }
+
+  $scope.detailsButtonClicked = function (id) {
+    $location.path("/car/" + id);
+  }
+
+  $scope.editButtonClicked = function (id) {
+    $location.path("/car/edit/" + id);
   }
 
   setup();
