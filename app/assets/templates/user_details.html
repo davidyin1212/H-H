@@ -1,17 +1,22 @@
-<div class="jumbotron col-md-10 col-md-offset-1">
+<div class="col-md-10 col-md-offset-1">
   <div ng-controller="UserInfoController">
     <div ng=show="$routeParams.id != 0">
-      {{userInfo.first_name}}
-      {{userInfo.last_name}}
-      {{userInfo.email}}
+      <h1>
+        {{userInfo.first_name}}
+        {{userInfo.last_name}}
+        here's your inventory:
+      </h1>
     </div>
     <div>
     	<ul ng-show="userCars.length > 0">
      	  <md-card ng-repeat="car in userCars">
           <h1>{{car.name}}</h1>
           <div layout="column">
-            <h2 class="text-right">{{ car.base_price * (1 + tax) | currency:"CAD$"}} +</h2>
-            <h2 class="text-right">{{ car.price_over | currency:"CAD$"}}</h2>
+            <h2 class="text-right" ng-if="car.status == 1">Ordered</h2>
+            <h2 class="text-right" ng-if="car.status == 2">In Progress</h2>
+            <h2 class="text-right" ng-if="car.status == 3">Ready for Pickup</h2>
+            <!-- <h2 class="text-right">{{ car.base_price * (1 + tax) | currency:"CAD$"}} +</h2>
+            <h2 class="text-right">{{ car.price_over | currency:"CAD$"}}</h2> -->
           </div>
 
           <md-card-content layout="row" layout-margin>

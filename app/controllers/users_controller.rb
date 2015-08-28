@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_user, only: [:update, :destroy, :show]
+  before_action :set_user, only: [:update, :destroy]
 
   def index
     admin = User.find_by(email: "admin@admin.com")

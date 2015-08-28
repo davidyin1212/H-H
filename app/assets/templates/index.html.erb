@@ -1,11 +1,12 @@
-<h1>H&H</h1>
-<ul>
-	<li ng-repeat="current_user_permission in current_user_permissions">
-		{{current_user_permission.name}}
-		{{current_user_permission.description}}
-	</li>
-</ul>
-
-<p>
-	{{current_user_permissions["UserPrivilege"]}}
-</p>
+<div ng-controller="UserInfoController">
+	<h1>Welcome back {{userInfo.first_name}}</h1>
+	<h2>Check My Status: </h2>
+	<ul>
+	  <li ng-repeat="car in userCars">
+	  	<b>{{car.name}}:</b>
+	  	<p ng-if="car.status == 1">Ordered</p>
+	  	<p ng-if="car.status == 2">In Progress</p>
+	  	<p ng-if="car.status == 3">Ready for Pickup</p>
+	  </li>
+	</ul>
+</div>

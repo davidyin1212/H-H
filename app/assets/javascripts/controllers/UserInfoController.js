@@ -4,7 +4,8 @@ angular.module('HH')
   $scope.userInfo
   $scope.userCars
   var user_id = $routeParams.id;
-
+  
+  getUser(); 
   getUserCars();
 
   function getUser() {
