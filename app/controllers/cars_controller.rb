@@ -53,8 +53,8 @@ class CarsController < ApplicationController
 
   def addToUser
     @car = Car.find(params[:car_id])
+    customer = Payment.find_by(user_id: current_user.id)
     if @car.status = Status::AVALIABLE
-      customer = Payment.find_by(user_id: current_user.id)
       begin
         charge = Stripe::Charge.create(
           :customer    => customer.stripe_customer_token,
@@ -66,12 +66,14 @@ class CarsController < ApplicationController
         @car.status = Status::ORDER
         @car.charge_id = charge[:id]
         @car.save
-      rescue Stripe::CardError => e
+        respond_with(@car)
+      rescue
         # The card has been declined
-        raise e
+        customer = Payment.find_by(user_id: current_user.id)
+        customer.destroy
+        render :json => {:errors => "card was invalid"}
       end
     end
-    respond_with(@car)
   end
 
   def removeFromUser

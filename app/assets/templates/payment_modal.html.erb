@@ -1,0 +1,33 @@
+<div class="jumbotron col-md-8 col-md-offset-2" ng-controller="CheckoutFormController">
+  <md-content layout-padding>
+    <h2>Please enter your payment information</h2>
+    <form action="/payment" name="paymentForm" method="POST" id="payment-form">
+      <span class="payment-errors"></span>
+      <div>
+        <img src="<%= asset_path('visa-curved-32px.png') %>" alt="Visa" ng-show="cardType == 'visa' || cardType == undefined"/>
+        <img src="<%= asset_path('mastercard-curved-32px.png') %>" alt="MasterCard" ng-show="cardType == 'mastercard' || cardType == undefined"/>
+        <img src="<%= asset_path('american-express-curved-32px.png') %>" alt="Amex" ng-show="cardType == 'amex' || cardType == undefined"/>
+        <img src="<%= asset_path('UnionPay.png') %>" height="32px" alt="UnionPay" ng-show="cardType == 'unionpay' || cardType == undefined"/>
+        <img src="<%= asset_path('discover-curved-32px.png') %>" alt="Discover" ng-show="cardType == 'discover' || cardType == undefined"/>
+      </div>
+      <div layout layout-sm="column">
+        <md-input-container style="width:80%">
+          <label>Card Number</label>
+          <input type="text" size="20" restrict-numeric card-number-formatter card-number-validator ng-model="cardNumber" card-type="cardType" data-stripe="number"/>
+        </md-input-container>
+
+        <md-input-container style="width:20%">
+          <label>CVC</label>
+          <input type="text" size="4" restrict-numeric card-cvc-formatter card-cvc-validator ng-model="cardCvc" data-stripe="cvc"/>
+        </md-input-container>
+      </div>
+
+      <md-input-container style="width:20%">
+        <label>Expiration (MM/YYYY)</label>
+        <input type="text" class="expiry-date" size="6" restrict-numeric card-expiry-validator card-expiry-formatter ng-model="cardExpiry"/>
+      </md-input-container>
+
+      <md-button type="submit" class="md-raised md-primary" ng-click="submitClicked()">Submit Payment</md-button>
+    </form>
+  </md-content>
+</div>

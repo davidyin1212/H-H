@@ -1,6 +1,6 @@
 angular.module('HH')
-.controller('CarDetailsController', ['$scope', '$routeParams', '$location', 'userFactory', 'carFactory', 
-  function($scope, $routeParams, $location, userFactory, carFactory) {
+.controller('CarDetailsController', ['$scope', '$routeParams', '$location', '$modal', 'userFactory', 'carFactory', 
+  function($scope, $routeParams, $location, $modal, userFactory, carFactory) {
   $scope.car;
   $scope.tax = 0.05;
   var id = $routeParams.id;
@@ -31,11 +31,26 @@ angular.module('HH')
   function buyCar () {
   	carFactory.addCarToUser(id)
   	.success(function (data) {
-      window.location = "/#/index";
+      if (data.error == undefined) {
+        window.location = "/#/index";
+      } else {
+        window.location = "/payment/new";
+      }
   	})
   	.error(function (error) {
-
-  	});
+      // var modalInstance = $modal.open({
+      //   animation: true,
+      //   templateUrl: '<%= asset_path('payment_modal.html') %>',
+      //   controller: 'CheckoutFormController',
+      //   size: 'lg',
+      //   resolve: {
+      //     items: function () {
+      //       return $scope.items;
+      //     }
+      //   }
+      // });
+      window.location = "/payment/new";
+    });
   }
 
   function removeCar () {
