@@ -22,4 +22,5 @@
 //= require angular-messages
 //= require angular-payment
 //= require angular-devise
+//= require angular-svg-round-progressbar
 //= require_tree .

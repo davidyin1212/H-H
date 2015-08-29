@@ -1,10 +1,11 @@
 angular.module('HH')
-.controller('UserInfoController', ['$scope', '$routeParams', 'userFactory',
-  function($scope, $routeParams, userFactory) {
+.controller('UserInfoController', ['$scope', '$routeParams', '$interval', 'userFactory',
+  function($scope, $routeParams, $interval, userFactory) {
   $scope.userInfo
   $scope.userCars
+  $scope.determinateValue = new Array();
   var user_id = $routeParams.id;
-  
+
   getUser(user_id); 
   getUserCars();
 
@@ -31,7 +32,14 @@ angular.module('HH')
   function getUserCars() {
   	userFactory.getUserCars(user_id)
   	.success(function (data) {
-  		$scope.userCars = data
+      $scope.userCars = new Array();
+      for (var i = 3; i > 0; i--) {
+        for (var j = 0; j < data.length; j++) {
+          if (data[j].status == i) {
+            $scope.userCars.push(data[j]);
+          }
+        }
+      }
   	})
   	.error(function (error) {
   		
