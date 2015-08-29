@@ -2,6 +2,7 @@ angular.module('HH')
   .factory('userFactory', ['$http', function($http) {
 
   var urlBase = '/api/users';
+  var signInUrlBase = '/users/sign_in';
   var userFactory = {};
 
   userFactory.getUsers = function () {

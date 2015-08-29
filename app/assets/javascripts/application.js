@@ -21,4 +21,5 @@
 //= require angular-material
 //= require angular-messages
 //= require angular-payment
+//= require angular-devise
 //= require_tree .
