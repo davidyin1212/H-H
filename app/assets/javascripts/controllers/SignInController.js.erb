@@ -1,0 +1,29 @@
+angular.module('HH')
+.controller('SignInController', ['$scope', '$rootScope', '$location', '$mdToast', '$animate', 'Auth',
+  function($scope, $rootScope, $location, $mdToast, $animate, Auth) {
+  $scope.user;
+  $scope.messages;
+  var config = {
+    headers: {
+      'X-HTTP-Method-Override': 'POST'
+    }
+  };
+  $scope.status;
+  $scope.signIn = function() {
+    Auth.login($scope.user, config).then(function(data){
+      window.location = '/#/';
+    }, function(error) {
+	  $scope.messages = "Invalid email and password combination";
+	  $rootScope.$broadcast('update_parent_controller', $scope.message);
+	  showToast();
+    });
+  }
+  function showToast() {
+    $mdToast.show({
+      controller: 'ToastController',
+      templateUrl: "<%= asset_path('toast-template.html') %>",
+      hideDelay: 6000,
+      position: 'bottom right'
+    });
+  };
+}]);
