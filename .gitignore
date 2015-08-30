@@ -13,3 +13,4 @@
 /tmp
 
 config/initializers/stripe.rb
+rootkey.csv
