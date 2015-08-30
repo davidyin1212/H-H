@@ -12,6 +12,7 @@
 !/log/.keep
 /tmp
 
+config/initializers/stripe.rb
 rootkey.csv
 credentials.csv
 # Elastic Beanstalk Files
