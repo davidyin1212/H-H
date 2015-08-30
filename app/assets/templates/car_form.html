@@ -1,4 +1,4 @@
-<div class="jumbotron col-md-6 col-md-offset-3">
+<div class="col-md-6 col-md-offset-3">
   <div ng-controller="CarFormController">
     <md-content layout-padding>
       <form name="carForm">
@@ -13,42 +13,66 @@
         <div layout layout-sm="column">
           <md-input-container flex>
             <label>Make</label> 
-            <input type="text" ng-model="car.make">
+            <input required name="make" type="text" ng-model="car.make">
+            <div ng-messages="carForm.make.$error">
+              <div ng-message="required">This is required.</div>
+            </div>
           </md-input-container>
           <md-input-container flex>
             <label>Model</label> 
-            <input type="text" ng-model="car.model">
+            <input required name="model" type="text" ng-model="car.model">
+            <div ng-messages="carForm.model.$error">
+              <div ng-message="required">This is required.</div>
+            </div>
           </md-input-container>
         </div>
         
         <md-input-container flex>
           <label>Engine</label>
-          <input type="text" ng-model="car.engine">
+          <input required name="engine" type="text" ng-model="car.engine">
+          <div ng-messages="carForm.engine.$error">
+            <div ng-message="required">This is required.</div>
+          </div>
         </md-input-container>
 
         <div layout layout-sm="column">
           <md-input-container flex>
             <label>Exterior</label> 
-            <input type="text" ng-model="car.exterior">
+            <input required name="exterior" type="text" ng-model="car.exterior">
+            <div ng-messages="carForm.exterior.$error">
+              <div ng-message="required">This is required.</div>
+            </div>
           </md-input-container>
           <md-input-container flex>
             <label>Interior</label> 
-            <input type="text" ng-model="car.interior">
+            <input required name="interior" type="text" ng-model="car.interior">
+            <div ng-messages="carForm.interior.$error">
+              <div ng-message="required">This is required.</div>
+            </div>
           </md-input-container>
         </div>
 
         <div layout layout-sm="column">
           <md-input-container style="width:25%">
             <label>Delivery KMs</label> 
-            <input type="text" ng-model="car.delivery_kms">
+            <input required name="delivery_kms" type="text" ng-model="car.delivery_kms">
+            <div ng-messages="carForm.delivery_kms.$error">
+              <div ng-message="required">This is required.</div>
+            </div>
           </md-input-container>
           <md-input-container style="width:25%">
             <label>Stock #</label> 
-            <input type="text" ng-model="car.stock_num">
+            <input required name="stock_num" type="text" ng-model="car.stock_num">
+            <div ng-messages="carForm.stock_num.$error">
+              <div ng-message="required">This is required.</div>
+            </div>
           </md-input-container>
           <md-input-container style="width:50%">
             <label>Base MSRP</label> 
-            <input type="text" ng-model="car.msrp">
+            <input required type="number" pattern="^\d+(\.|\,)\d{2}$" name="msrp" ng-model="car.msrp">
+            <div ng-messages="carForm.msrp.$error">
+              <div ng-message="required">This is required.</div>
+            </div>
           </md-input-container>
         </div>
 
@@ -60,11 +84,17 @@
         <div layout layout-sm="column">
           <md-input-container flex>
             <label>MSRP Subtotal</label> 
-            <input type="text" ng-model="car.base_price">
+            <input required type="number" pattern="^\d+(\.|\,)\d{2}$" name="base_price" ng-model="car.base_price">
+            <div ng-messages="carForm.base_price.$error">
+              <div ng-message="required">This is required.</div>
+            </div>
           </md-input-container>
           <md-input-container flex>
             <label>Price Over</label> 
-            <input type="text" ng-model="car.price_over">
+            <input required type="number" pattern="^\d+(\.|\,)\d{2}$" name="price_over" ng-model="car.price_over">
+            <div ng-messages="carForm.price_over.$error">
+              <div ng-message="required">This is required.</div>
+            </div>
           </md-input-container>
         </div>
 
