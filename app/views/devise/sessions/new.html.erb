@@ -16,18 +16,24 @@
   .sign-in-form md-content {
     background-color: transparent;
   }
+  input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 1000px white inset;
+  }
+  .md-input-container label {
+    -color: white;
+  }
 </style>
 <div class="sign-in-form col-md-2 col-md-offset-5" ng-controller="SignInController">
   <h2>Log in</h2>
   <md-content layout-padding>
-    <form ng-submit="signIn()" name="userForm" novalidate>
+    <form autocomplete="off" ng-submit="signIn()" name="userForm" novalidate>
       <md-input-container flex>
         <label>Email</label>
         <input type="email" ng-model="user.email">
       </md-input-container>
       <md-input-container flex>
         <label>Password</label>
-        <input type="password" ng-model="user.password">
+        <input autocomplete="false" type="password" ng-model="user.password">
       </md-input-container>
       <md-checkbox ng-model="user.remember_me" aria-label="Remember me">
         <b>Remember me</b>
