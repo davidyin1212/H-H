@@ -13,3 +13,9 @@
 /tmp
 
 config/initializers/stripe.rb
+rootkey.csv
+credentials.csv
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml
