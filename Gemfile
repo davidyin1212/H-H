@@ -36,6 +36,9 @@ gem 'angular-rails-templates'
 # use stripe to manage payments
 gem 'stripe'
 
+# user puma webserver
+gem 'puma'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
