@@ -7,4 +7,4 @@ Decided to use permissons and user groups exposed through the API to drive templ
 Responsive search bar that would update search quries immediatly on text input rather than clicking search. Done by filtering results based upon input on each user input change.
 Users can only be created by Admin's to the system. This was a contraint that the client wanted since user create is exposed by Rails via there MVC architecture it was pretty easy to do this.
 
-Live Site:
+Live Site: https://powerful-citadel-2565.herokuapp.com (note still in alpha not ready for full production will deploy production on Elasticbeanstalk)
