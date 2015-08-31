@@ -6,7 +6,7 @@
   },
   "engine": {
     "node": "0.12.x",
-    "npm": "latest"
+    "npm": "2.x"
   },
   "scripts": {
     "postinstall": "./node_modules/bower/bin/bower install"
