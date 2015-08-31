@@ -1,0 +1,100 @@
+<!-- <div class="col-md-8 col-md-offset-2" ng-controller="UserInfoController">
+	<h1>Welcome back {{userInfo.first_name}}</h1>
+	<div ng-show="current_user_permissions.hasOwnProperty('GeneralUsePrivilege')">
+		<ul>
+			<h2>Check My Status:</h2>
+			<li ng-repeat="car in userCars">
+				<div class="circle-ordered" class="pull-right"></div>
+			</li>
+		  <li ng-repeat="car in userCars">
+		  	<div class="ordered" ng-show="car.status == 1">
+			  	<div class="circle-ordered" class="pull-right"></div>
+		  		<b><h3>{{car.name}}:</h3></b>
+			  	<b><h4>Ordered</h4></b>
+		  	</div>
+		  	<div class="inProgress" ng-show="car.status == 2">
+			  	<span><div class="circle-inProgress" class="pull-right"></div></span>
+		  		<b><h3>{{car.name}}:</h3></b>
+			  	<b><h4>In Progress</h4></b>
+		  	</div>
+		  	<div class="shipped" ng-show="car.status == 3">
+			  	<span><div class="circle-shipped" class="pull-right"></div></span>
+		  		<b><h3>{{car.name}}:</h3></b>
+			  	<b><h4>Ready for Pickup</h4></b>
+		  	</div>
+		  	<p>Stock #: {{car.stock_num}}</p>
+		  </li>
+		</ul>
+	</div>
+</div> -->
+<div class="col-md-8 col-md-offset-2" ng-controller="UserInfoController">
+	<h1>Welcome back {{userInfo.first_name}}</h1>
+	<div ng-show="current_user_permissions.hasOwnProperty('GeneralUsePrivilege')">
+		<md-list>
+			<md-subheader class="md-no-sticky">Check My Status:</md-subheader>
+		  <md-list-item class="md-3-line" ng-repeat="car in userCars">
+		  <img src="http://www.suplugins.com/podium/images/placeholder-03.png" class="md-avatar" alt="img" />
+		  	<div class="md-list-item-text">
+			  	<div class="ordered" ng-if="car.status == 1">
+				  	<span>
+				  		<div
+						    round-progress
+						    max="100"
+						    current="33"
+						    color="#F44336"
+						    bgcolor="#eaeaea"
+						    radius="25"
+						    stroke="8"
+						    semi="false"
+						    responsive="false"
+						    duration="800"
+						    animation="easeInOutQuart"
+						    class="pull-right"></div>
+				  	</span>
+			  		<b><h3>{{car.name}}:</h3></b>
+				  	<b><h4>Ordered</h4></b>
+			  	</div>
+			  	<div class="inProgress" ng-if="car.status == 2">
+				  	<span>
+				  		<div
+						    round-progress
+						    max="100"
+						    current="67"
+						    color="#FBC02D"
+						    bgcolor="#eaeaea"
+						    radius="25"
+						    stroke="8"
+						    semi="false"
+						    responsive="false"
+						    duration="800"
+						    animation="easeInOutQuart"
+						    class="pull-right"></div>
+				  	</span>
+			  		<b><h3>{{car.name}}:</h3></b>
+				  	<b><h4>In Progress</h4></b>
+			  	</div>
+			  	<div class="shipped" ng-if="car.status == 3">
+				  	<span>
+				  		<div
+						    round-progress
+						    max="100"
+						    current="100"
+						    color="#009688"
+						    bgcolor="#eaeaea"
+						    radius="25"
+						    stroke="8"
+						    semi="false"
+						    responsive="false"
+						    duration="800"
+						    animation="easeInOutQuart"
+						    class="pull-right"></div>
+				  	</span>
+			  		<b><h3>{{car.name}}:</h3></b>
+				  	<b><h4>Ready for Pickup</h4></b>
+			  	</div>
+			  	<p>Stock #: {{car.stock_num}}</p>
+		  	</div>
+		  </md-list-item>
+		</md-list>
+	</div>
+</div>

@@ -1,0 +1,103 @@
+<div class="dashboard col-md-10 col-md-offset-1">
+  <div ng-controller="DashboardController">
+    <div class="btn-group">
+      <md-content class="md-padding">
+        <md-tabs md-border-bottom>
+          <md-tab label="All" ng-click="query(0)"></md-tab>
+          <md-tab label="Ordered" ng-click="query(1)"></md-tab>
+          <md-tab label="In Progress" ng-click="query(2)"></md-tab>
+          <md-tab label="Shipped" ng-click="query(3)"></md-tab>
+        </md-tabs>
+      </md-content>
+      <div class="pull-right">
+        <md-button class="md-raised md-primary" ng-show="current_user_permissions.hasOwnProperty('UserModifyPrivilege')" ng-click="addUserClicked()">Add User</md-button>
+        <md-button class="md-raised md-accent" ng-click="reset()">Reset</md-button>
+        <md-button class="md-raised md-primary" ng-click="submit()">Update</md-button>
+      </div>
+    </div>
+    <div class="paper-collapse">
+      <div ng-repeat="user in users" class="collapse-card" ng-class="{ active: card.$active }">
+        <div class="collapse-card__heading" ng-click="card.$active = !card.$active; query(-1);">
+          <div class="collapse-card__title">
+            <h2>{{ user.last_name }}, {{ user.first_name }}</h2>
+            <p>Cars: {{user.cars.length}}</p>
+            <div class="md-actions" layout="row" layout-align="end center">
+              <!-- <md-button class="md-raised md-primary" ng-show="current_user_permissions.hasOwnProperty('PermissionPrivilege')" href="#permission/{{user.id}}">Permissions</md-button>
+              <md-button class="md-raised md-primary" href="#inventory/{{user.id}}">Details</md-button> -->
+              <md-button ng-show="current_user_permissions.hasOwnProperty('PermissionPrivilege')" ng-click="permissionsButtonClicked(user.id)">Permissions</md-button>
+              <md-button ng-click="detailsButtonClicked(user.id)">Details</md-button>
+              <md-button class="md-raised md-warn" ng-show="current_user_permissions.hasOwnProperty('UserModifyPrivilege')" ng-click="removeUser(user.id)">Delete User</md-button>
+            </div>
+          </div>
+        </div>
+        <div class="collapse-card__body">
+          <ul ng-show="current_user_permissions.hasOwnProperty('QueryUserCarsPrivilege')" class="carList">
+            <md-card ng-repeat="car in user.cars">
+              <h2>{{car.name}}</h2>
+              <h3 class="text-right"><b>Stock#:</b> {{ car.stock_num}}</h3>
+
+              <md-card-content layout="column" layout-margin>
+                <div flex flex-order="1">
+                  <b>Make: </b>{{ car.make }}
+                  <b>Model: </b>{{ car.model }}
+                  <b>Engine: </b>{{ car.engine }}
+                </div>
+
+                <div flex flex-order="2">
+                  <b>Exterior: </b>{{ car.exterior }}
+                  <b>Interior: </b>{{ car.interior }}
+                  <b>Delivery KMs: </b>{{ car.delivery_kms }}
+                </div>
+
+                <div flex flex-order="3">
+                  <h4><b>Total + Price Over: </b>{{ car.base_price * (1 + tax) | currency:"CAD$"}} + {{ car.price_over | currency:"CAD$"}}</h4>
+                </div>
+
+              </md-card-content>
+              <div class="md-actions" layout="row" layout-align="end center">
+                <md-input-container class="pull-left">
+                  <label>Status</label>
+                  <md-select ng-model="car.status">
+                    <md-option ng-repeat="status in statusOptions" value="{{statusOptions.indexOf(status) + 1}}">{{status}}</md-option>
+                  </md-select>
+                </md-input-container>
+                <md-button class="pull-right"><a href="#car/{{car.id}}">Details</a></md-button>
+              </div>
+            </md-card>
+          </ul>
+        </div>
+      </div>
+    </div>
+  	<!-- <ul ng-show="current_user_permissions.hasOwnProperty('UserPrivilege')" class="users">
+  	  <li ng-repeat="user in users">
+        {{user.first_name}}
+        {{user.last_name}}
+        <a ng-show="current_user_permissions.hasOwnProperty('PermissionPrivilege')" href="#permission/{{user.id}}">Permissions</a>
+        <a href="#inventory/{{user.id}}">Details</a>
+        <button ng-show="current_user_permissions.hasOwnProperty('UserModifyPrivilege')" ng-click="removeUser(user.id)">Delete User</button>
+        <p>Cars: {{user.cars.length}}</p>
+        <ul ng-show="current_user_permissions.hasOwnProperty('QueryUserCarsPrivilege')" class="cars">
+          <li ng-repeat="car in user.cars">
+            {{ car.name }}
+            {{ car.make }}
+            {{ car.model }}
+            {{ car.engine }}
+            {{ car.exterior }}
+            {{ car.interior }}
+            {{ car.delivery_kms }}
+            {{ car.stock_num }}
+            {{ car.msrp }}
+            {{ car.additional_fees }}
+            {{ car.base_price | currency:"CAD$"}}
+            {{ car.base_price * tax | currency:"CAD$"}}
+            {{ car.base_price * (1 + tax) | currency:"CAD$"}}
+            <p>Change Staus<p>
+            <button>Ordered</button>
+            <button>In Progress</button>
+            <button>Shipped</button>
+          </li>
+        </ul>
+  	  </li>
+  	</ul> -->
+  </div>
+</div>
