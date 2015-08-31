@@ -1,3 +1,1 @@
-https://github.com/heroku/heroku-buildpack-nodejs.git
-https://github.com/heroku/heroku-buildpack-ruby.git
-https://github.com/mynewsdesk/heroku-buildpack-bower
+https://github.com/qnyp/heroku-buildpack-ruby-bower
