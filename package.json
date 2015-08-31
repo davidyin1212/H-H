@@ -2,7 +2,7 @@
   "name": "my-project",
   "version": "1.0.0",
   "dependencies": {
-    "bower": "~1.2"
+    "bower": "latest"
   },
   "engine": {
     "node": "0.12.x",
