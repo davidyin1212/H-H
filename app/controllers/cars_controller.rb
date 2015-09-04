@@ -18,6 +18,7 @@ class CarsController < ApplicationController
   def create
     @car = Car.new(car_params)
     @car.status = Status::AVALIABLE
+    @car.acq_agent = current_user
     authorize @car
     @car.save
     respond_with(@car)
@@ -26,6 +27,11 @@ class CarsController < ApplicationController
   def update
     authorize @car
     @car.update(car_params)
+    if params[:status] == Status::PROGRESS && @car.acc_exc == nil
+      @car.acc_exc = current_user
+    elsif params[:status] == Status::ORDER
+      @car.acc_exc = nil
+    end
     respond_with(@car)
   end
 
@@ -136,6 +142,7 @@ class CarsController < ApplicationController
     @car = Car.find(params[:car_id])
     authorize @car, :carsQuery?
     @car.status = Status::ORDER
+    @car.acc_exc = nil;
     respond_with(@car)
   end
 
@@ -143,6 +150,7 @@ class CarsController < ApplicationController
     @car = Car.find(params[:car_id])
     authorize @car, :carsQuery?
     @car.status = Status::PROGRESS
+    @car.acc_exc = current_user;
     respond_with(@car)
   end
 
