@@ -32,6 +32,10 @@ angular.module('HH')
     return $http.get(urlBase + '/progress' + '.json');
   }
 
+  carFactory.carsReady = function () {
+    return $http.get(urlBase + '/ready' + '.json');
+  }
+
   carFactory.carsShipped = function () {
     return $http.get(urlBase + '/shipped' + '.json');
   }

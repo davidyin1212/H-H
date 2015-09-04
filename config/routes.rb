@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     #map to query parameters
     get 'cars/orders' => 'cars#carsOrdered'
     get 'cars/progress' => 'cars#carsInProgress'
+    get 'cars/ready' => 'cars#carsReady'
     get 'cars/shipped' => 'cars#carsShipped'
     get 'cars/all' => 'cars#carsAll'
 

@@ -40,6 +40,11 @@ angular.module('HH')
           }
         }
       }
+      for (var i = 0; i < data.length; i++) {
+        if (data[i].status == 4) {
+          $scope.userCars.push(data[i]);
+        }
+      }
   	})
   	.error(function (error) {
   		

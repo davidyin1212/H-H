@@ -60,9 +60,11 @@ angular.module('HH')
       getCarsShipped();
     } else if ($scope.radioModel === "All") {
       getCarsAll();
+    } else if ($scope.radioModel === "Ready"){
+      getCarsReady();
     } else if ($scope.radioModel === "Avaliable"){
       getCars();
-    }
+    } 
   }
 
   function getUserPermissions() {
@@ -99,6 +101,17 @@ angular.module('HH')
 
   function getCarsInProgress() {
     carFactory.carsInProgress()
+    .success(function (data) {
+      $scope.carsTemplate = data;
+      $scope.cars = $scope.carsTemplate.slice(0);
+    })
+    .error(function (error) {
+
+    })
+  }
+
+  function getCarsReady() {
+    carFactory.carsReady()
     .success(function (data) {
       $scope.carsTemplate = data;
       $scope.cars = $scope.carsTemplate.slice(0);

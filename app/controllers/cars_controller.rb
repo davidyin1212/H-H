@@ -6,7 +6,8 @@ class CarsController < ApplicationController
     AVALIABLE = 0
     ORDER = 1
     PROGRESS = 2
-    SHIPPED = 3
+    READY = 3
+    SHIPPED = 4
   end
 
   def index
@@ -108,6 +109,12 @@ class CarsController < ApplicationController
 
   def carsInProgress
     @car = Car.where(status: Status::PROGRESS)
+    authorize @car, :carsQuery?
+    respond_with(@car)
+  end
+
+  def carsReady
+    @car = Car.where(status: Status::READY)
     authorize @car, :carsQuery?
     respond_with(@car)
   end
