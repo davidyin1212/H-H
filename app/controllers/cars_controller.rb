@@ -27,11 +27,12 @@ class CarsController < ApplicationController
   def update
     authorize @car
     @car.update(car_params)
-    if params[:status] == Status::PROGRESS && @car.acc_exc == nil
+    if params[:status].to_i == Status::PROGRESS && @car.acc_exc == nil
       @car.acc_exc = current_user
-    elsif params[:status] == Status::ORDER
+    elsif params[:status].to_i == Status::ORDER
       @car.acc_exc = nil
     end
+    @car.save
     respond_with(@car)
   end
 
