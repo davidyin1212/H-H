@@ -34,11 +34,11 @@
         <div class="collapse-card__body">
           <ul ng-show="current_user_permissions.hasOwnProperty('QueryUserCarsPrivilege')" class="carList">
             <div ng-repeat="cars in user.cars">
-              <h2 ng-show="$index == 1 && cars.length > 0">Work</h2>
-              <h2 ng-show="$index == 2 && cars.length > 0">Cars Added</h2>
+              <h1 ng-show="$index == 1 && cars.length > 0"><b><u>Work</u></b></h1>
+              <h1 ng-show="$index == 2 && cars.length > 0"><b><u>Cars Added</u></b></h1>
               <md-card ng-repeat="car in cars">
                 <h2>{{car.name}}</h2>
-                <h3 class="text-right"><b>Stock#:</b> {{ car.stock_num}}</h3>
+                <h3 class="text-right"><b>Stock#:</b> {{ car.stock_num}}</h3>x
 
                 <md-card-content layout="column" layout-margin>
                   <div flex flex-order="1">
@@ -61,7 +61,7 @@
                 <div class="md-actions" layout="row" layout-align="end center">
                   <md-input-container class="pull-left">
                     <label>Status</label>
-                    <md-select ng-model="car.status">
+                    <md-select ng-disabled="($parent.$index == 1 || $parent.$index == 2) && current_user_permissions.hasOwnProperty('QueryShowAllUserCarsPrivilege')" ng-model="car.status">
                       <md-option ng-repeat="status in statusOptions" value="{{statusOptions.indexOf(status) + 1}}">{{status}}</md-option>
                     </md-select>
                   </md-input-container>
