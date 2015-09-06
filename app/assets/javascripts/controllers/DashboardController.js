@@ -144,6 +144,7 @@ angular.module('HH')
           }
         } else {
           user.cars[a] = data[a];
+          user.notMatchingCars[a] = new Array();
         }    
   	  }
   	})
