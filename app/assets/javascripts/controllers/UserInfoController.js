@@ -33,16 +33,19 @@ angular.module('HH')
   	userFactory.getUserCars(user_id)
   	.success(function (data) {
       $scope.userCars = new Array();
-      for (var i = 3; i > 0; i--) {
-        for (var j = 0; j < data.length; j++) {
-          if (data[j].status == i) {
-            $scope.userCars.push(data[j]);
+      for (var a = 0; a < data.length; a++) {
+        $scope.userCars[a] = new Array();
+        for (var i = 3; i > 0; i--) {
+          for (var j = 0; j < data[a].length; j++) {
+            if (data[a][j].status == i) {
+              $scope.userCars[a].push(data[a][j]);
+            }
           }
         }
-      }
-      for (var i = 0; i < data.length; i++) {
-        if (data[i].status == 4) {
-          $scope.userCars.push(data[i]);
+        for (var i = 0; i < data[a].length; i++) {
+          if (data[a][i].status == 4) {
+            $scope.userCars[a].push(data[a][i]);
+          }
         }
       }
   	})

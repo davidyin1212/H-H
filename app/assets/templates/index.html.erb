@@ -1,10 +1,12 @@
 <div class="col-md-8 col-md-offset-2" ng-controller="UserInfoController">
 	<h1>Welcome back {{userInfo.first_name}}</h1>
-	<div ng-show="current_user_permissions.hasOwnProperty('GeneralUsePrivilege')">
-		<md-list>
-			<md-subheader class="md-no-sticky">Check My Status:</md-subheader>
-		  <md-list-item class="md-3-line" ng-repeat="car in userCars">
-		  <img src="http://www.suplugins.com/podium/images/placeholder-03.png" class="md-avatar" alt="img" />
+	<div>
+		<md-list ng-repeat="cars in userCars">
+			<md-subheader ng-show="$index == 0 && cars.length > 0" class="md-no-sticky">Check My Status:</md-subheader>
+			<md-subheader ng-show="$index == 1 && cars.length > 0" class="md-no-sticky">Currently Working On:</md-subheader>
+			<md-subheader ng-show="$index == 2 && cars.length > 0" class="md-no-sticky">Cars Added:</md-subheader>
+		  <md-list-item class="md-3-line" ng-repeat="car in cars">
+		  	<img src="http://www.suplugins.com/podium/images/placeholder-03.png" class="md-avatar" alt="img" />
 		  	<div class="md-list-item-text">
 			  	<div class="ordered" ng-if="car.status == 1">
 				  	<span>
