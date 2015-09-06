@@ -17,9 +17,9 @@ class Car < ActiveRecord::Base
     car = Array.new
     if user_id == 0 
       if has_full_dashboard_access
+        car.push(Car.where(user_id: current_user))
         car.push(Car.where(["status > :status", {status: 0}]))
-        car.push([])
-        car.push([])
+        car.push(Car.where(acq_agent_id: current_user))
       else
         car.push(Car.where(user_id: current_user))
         car.push(Car.where(acc_exc_id: current_user))

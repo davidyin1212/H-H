@@ -9,15 +9,13 @@
     </div>
     <div>
     	<ul ng-show="userCars.length > 0">
-     	  <md-card ng-repeat="car in userCars">
+     	  <md-card ng-repeat="car in userCars[0]">
           <h1>{{car.name}}</h1>
           <div layout="column">
             <h2 class="text-right" ng-if="car.status == 1">Ordered</h2>
             <h2 class="text-right" ng-if="car.status == 2">In Progress</h2>
             <h2 class="text-right" ng-if="car.status == 3">Ready for Pickup</h2>
             <h2 class="text-right" ng-if="car.status == 4">Shipped</h2>
-            <!-- <h2 class="text-right">{{ car.base_price * (1 + tax) | currency:"CAD$"}} +</h2>
-            <h2 class="text-right">{{ car.price_over | currency:"CAD$"}}</h2> -->
           </div>
 
           <md-card-content layout="row" layout-margin>
