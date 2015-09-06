@@ -195,15 +195,30 @@ angular.module('HH')
 
   function updateStatuses() {
     for (var i = 0; i < $scope.users.length; i++) {
-      for (var j = 0; j < $scope.users[i].cars.length; j++) {
-        carFactory.updateCar($scope.users[i].cars[j].id, $scope.users[i].cars[j])
-        .success(function (data) {
-          setup();
-        })
-        .error(function (error) {
+      //update all cars in current filter
+      for (var a = 0; a < $scope.users[i].cars.length; a++) {
+        for (var j = 0; j < $scope.users[i].cars[a].length; j++) {
+          carFactory.updateCar($scope.users[i].cars[a][j].id, $scope.users[i].cars[a][j])
+          .success(function (data) {
 
-        });
+          })
+          .error(function (error) {
+
+          });
+        }
+      }
+      for (var a = 0; a < $scope.users[i].notMatchingCars.length; a++) {
+        for (var j = 0; j < $scope.users[i].notMatchingCars[a].length; j++) {
+          carFactory.updateCar($scope.users[i].notMatchingCars[a][j].id, $scope.users[i].notMatchingCars[a][j])
+          .success(function (data) {
+            
+          })
+          .error(function (error) {
+
+          });
+        }
       }
     }
+    setup();    
   }
 }])
