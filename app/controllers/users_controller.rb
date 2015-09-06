@@ -4,7 +4,7 @@ class UsersController < ApplicationController
 
   def index
     admin = User.find_by(email: "admin@admin.com")
-    @user = User.where.not(id: admin.id, id: current_user.id)
+    @user = User.where("id != ? and id != ?", admin.id, current_user.id)
     authorize @user
     respond_with @user
   end
