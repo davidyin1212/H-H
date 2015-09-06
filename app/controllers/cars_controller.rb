@@ -49,13 +49,13 @@ class CarsController < ApplicationController
 
   def userCars
     #watch out for permissions issue
-    if params[:user_id].to_i == 0 then
-      @car = Car.where(["user_id = :user_id OR acq_agent_id = :user_id OR acc_exc_id = :user_id", {user_id: current_user.id}])
-    else
-      @car = Car.where(["user_id = :user_id OR acq_agent_id = :user_id OR acc_exc_id = :user_id", {user_id: params[:user_id]}])
-      authorize @car
-    end
-
+    # if params[:user_id].to_i == 0 then
+    #   @car = Car.where(["user_id = :user_id OR acq_agent_id = :user_id OR acc_exc_id = :user_id", {user_id: current_user.id}])
+    # else
+    #   @car = Car.where(["user_id = :user_id OR acq_agent_id = :user_id OR acc_exc_id = :user_id", {user_id: params[:user_id]}])
+    #   authorize @car
+    # end
+    @car = Car.getUserCar(params[:user_id].to_i, current_user.id, current_user.permissions.exists?(Permission.find_by(name:"QueryShowAllUserCarsPrivilege")), current_user.permissions.exists?(Permission.find_by(name:"QueryUserCarsPrivilege")))
     respond_with(@car)
   end
 

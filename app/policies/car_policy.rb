@@ -22,6 +22,10 @@ class CarPolicy < ApplicationPolicy
     @user.permissions.exists?(Permission.find_by(name:"QueryUserCarsPrivilege"))
   end
 
+  def showAllUserCars?
+    @user.permissions.exists?(Permission.find_by(name:"QueryShowAllUserCarsPrivilege"))
+  end
+
   def carsQuery?
     @user.permissions.exists?(Permission.find_by(name:"QueryCarPrivilege"))
   end

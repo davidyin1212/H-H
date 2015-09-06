@@ -4,8 +4,7 @@ class UsersController < ApplicationController
 
   def index
     admin = User.find_by(email: "admin@admin.com")
-    @user = User.where.not(id: admin.id)
-    puts @user[0].payment
+    @user = User.where.not(id: admin.id, id: current_user.id)
     authorize @user
     respond_with @user
   end
@@ -33,7 +32,7 @@ class UsersController < ApplicationController
 
   def destroy
     authorize @user
-
+    raise "calling delete"
     @car = Car.where(user_id: @user.id)
     @car.each do |car|
       Car.removeCarFromUser(car)

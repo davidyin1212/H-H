@@ -11,7 +11,8 @@ Permission.create(name: "GeneralUsePrivilege", description:"Basic Use Privilege"
 Permission.create(name: "UserPrivilege", description:"Allows viewing of all users")
 Permission.create(name: "UserModifyPrivilege", description:"Allows creation and deletion of users")
 Permission.create(name: "CarModifyPrivilege", description:"Allows creation, modification and deletion of cars")
-Permission.create(name: "QueryUserCarsPrivilege", description:"Allows access to query all cars that belong to a user that is not the current user")
+Permission.create(name: "QueryUserCarsPrivilege", description:"Allows access to query all cars that belong to a clients that is not the current user does not show cars being worked on unless by current user")
+Permission.create(name: "QueryShowAllUserCarsPrivilege", description:"Allows access to query all cars that belong to a user currently being worked on that is not the current user")
 Permission.create(name: "QueryCarPrivilege", description:"Allows for query for status of the car")
 Permission.create(name: "PermissionPrivilege", description:"Allows viewing of permissions as well as viewing user permissions")
 Permission.create(name: "PermissionModifyPrivilege", description:"Allows creation, update, and deletion of permissions")
@@ -35,13 +36,14 @@ admin.permissions << Permission.find(7)
 admin.permissions << Permission.find(8)
 admin.permissions << Permission.find(9)
 admin.permissions << Permission.find(10)
+admin.permissions << Permission.find(11)
 
 acqAgen.permissions << Permission.find(4)
-acqAgen.permissions << Permission.find(6)
+acqAgen.permissions << Permission.find(7)
 
 accExec.permissions << Permission.find(2)
 accExec.permissions << Permission.find(5)
-accExec.permissions << Permission.find(6)
+accExec.permissions << Permission.find(7)
 
 client.permissions << Permission.find(1)
 

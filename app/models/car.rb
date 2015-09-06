@@ -12,4 +12,22 @@ class Car < ActiveRecord::Base
     car.status = 0
     car.save
   end
+
+  def self.getUserCar(user_id, current_user, has_full_dashboard_access, has_dashboard_access)
+    car = Array.new
+    if user_id == 0
+      car.push(Car.where(user_id: current_user))
+      car.push(Car.where(acc_exc_id: current_user))
+      car.push(Car.where(acq_agent_id: current_user))
+    elsif has_full_dashboard_access
+      car.push(Car.where(user_id: user_id))
+      car.push(Car.where(acc_exc_id: user_id))
+      car.push(Car.where(acq_agent_id: user_id))
+    elsif has_dashboard_access
+      car.push(Car.where(user_id: user_id, acc_exc_id: nil))
+      car.push(Car.where(user_id: user_id, acc_exc_id: current_user))
+      car.push(Car.where(user_id: user_id, acq_agent_id:current_user));
+    end
+    return car
+  end
 end
