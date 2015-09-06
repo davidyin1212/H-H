@@ -15,10 +15,16 @@ class Car < ActiveRecord::Base
 
   def self.getUserCar(user_id, current_user, has_full_dashboard_access, has_dashboard_access)
     car = Array.new
-    if user_id == 0
-      car.push(Car.where(user_id: current_user))
-      car.push(Car.where(acc_exc_id: current_user))
-      car.push(Car.where(acq_agent_id: current_user))
+    if user_id == 0 
+      if has_full_dashboard_access
+        car.push(Car.where(["status > :status", {status: 0}]))
+        car.push([])
+        car.push([])
+      else
+        car.push(Car.where(user_id: current_user))
+        car.push(Car.where(acc_exc_id: current_user))
+        car.push(Car.where(acq_agent_id: current_user))
+      end
     elsif has_full_dashboard_access
       car.push(Car.where(user_id: user_id))
       car.push(Car.where(acc_exc_id: user_id))
