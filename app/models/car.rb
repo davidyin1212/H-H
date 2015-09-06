@@ -26,7 +26,7 @@ class Car < ActiveRecord::Base
     elsif has_dashboard_access
       car.push(Car.where(user_id: user_id, acc_exc_id: nil))
       car.push(Car.where(user_id: user_id, acc_exc_id: current_user))
-      car.push(Car.where(user_id: user_id, acq_agent_id:current_user));
+      car.push(Car.where(user_id: user_id, acq_agent_id:current_user, acc_exc_id: current_user));
     end
     return car
   end

@@ -66,7 +66,6 @@ angular.module('HH')
         return nameA.localeCompare(nameB);
       });
       for (var i = 0; i < $scope.users.length; i++) {
-        noMatchingQueryCars[i] = new Array();
         getUserCars($scope.users[i].id);
       }
   	})
@@ -91,28 +90,30 @@ angular.module('HH')
 
   function queryCars(param) {
     for (var i = 0; i < $scope.users.length; i++) {
-      for (var j = 0; j < $scope.users[i].cars.length; j++) {
-        var val = $scope.users[i].cars;
-        if (param != 0) {
-          if (param != val[j].status) {
-            noMatchingQueryCars[i].push(val[j]);
-            $scope.users[i].cars.splice(j, 1);
-            j--;
+      for (var a = 0; a < $scope.users[i].cars.length; a++) {
+        for (var j = 0; j < $scope.users[i].cars[a].length; j++) {
+          var val = $scope.users[i].cars[a];
+          if (param != 0) {
+            if (param != val[j].status) {
+              $scope.users[i].notMatchingCars[a].push(val[j]);
+              $scope.users[i].cars[a].splice(j, 1);
+              j--;
+            }
           }
         }
-      }
-      for (var j = 0; j < noMatchingQueryCars[i].length; j++) {
-        var val = noMatchingQueryCars[i];
-        if (param != 0) {
-          if (param == val[j].status) {
-            $scope.users[i].cars.push(val[j]);
+        for (var j = 0; j < $scope.users[i].notMatchingCars[a].length; j++) {
+          var val = $scope.users[i].notMatchingCars[a];
+          if (param != 0) {
+            if (param == val[j].status) {
+              $scope.users[i].cars[a].push(val[j]);
+              val.splice(j, 1);
+              j--;
+            }
+          } else {
+            $scope.users[i].cars[a].push(val[j]);
             val.splice(j, 1);
             j--;
           }
-        } else {
-          $scope.users[i].cars.push(val[j]);
-          val.splice(j, 1);
-          j--;
         }
       }
     }
@@ -121,23 +122,29 @@ angular.module('HH')
   function getUserCars(id) {
   	userFactory.getUserCars(id)
   	.success(function (data) {
-  	  for (var i = 0; i < $scope.users.length; i++) {
-  	  	var user = $scope.users[i]
-  	  	if (user.id == id) {
-          if (queryParam != 0) {
-            $scope.users[i].cars = new Array();
-            noMatchingQueryCars[i] = new Array();
-            for (var j = 0; j < data.length; j++) {
-              if (data[j].status == queryParam) {
-                $scope.users[i].cars.push(data[j]);
-              } else {
-                noMatchingQueryCars[i].push(data[j]);
-              }
+      var user;
+    	for (var i = 0; i < $scope.users.length; i++) {
+        user = $scope.users[i];
+        if (user.id == id) {
+          break;
+        }
+      }
+      user.cars = new Array();
+      user.notMatchingCars = new Array();
+      for (var a = 0; a < data.length; a++) {
+        if (queryParam != 0) {
+          user.cars[a] = new Array();
+          user.notMatchingCars[a] = new Array();
+          for (var j = 0; j < data[a].length; j++) {
+            if (data[a][j].status == queryParam) {
+              user.cars[a].push(data[a][j]);
+            } else {
+              user.notMatchingCars[a].push(data[a][j]);
             }
-          } else {
-            $scope.users[i].cars = data;
-          }    
-  	  	}
+          }
+        } else {
+          user.cars[a] = data[a];
+        }    
   	  }
   	})
   	.error(function (data) {

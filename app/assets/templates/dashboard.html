@@ -21,7 +21,7 @@
         <div class="collapse-card__heading" ng-click="card.$active = !card.$active; query(-1);">
           <div class="collapse-card__title">
             <h2>{{ user.last_name }}, {{ user.first_name }}</h2>
-            <p>Cars: {{user.cars.length}}</p>
+            <p>Cars: {{user.cars[0].length + user.cars[1].length + user.cars[2].length}}</p>
             <div class="md-actions" layout="row" layout-align="end center">
               <!-- <md-button class="md-raised md-primary" ng-show="current_user_permissions.hasOwnProperty('PermissionPrivilege')" href="#permission/{{user.id}}">Permissions</md-button>
               <md-button class="md-raised md-primary" href="#inventory/{{user.id}}">Details</md-button> -->
@@ -33,8 +33,10 @@
         </div>
         <div class="collapse-card__body">
           <ul ng-show="current_user_permissions.hasOwnProperty('QueryUserCarsPrivilege')" class="carList">
-            <div>
-              <md-card ng-repeat="car in user.cars">
+            <div ng-repeat="cars in user.cars">
+              <h2 ng-show="$index == 1 && cars.length > 0">Work</h2>
+              <h2 ng-show="$index == 2 && cars.length > 0">Cars Added</h2>
+              <md-card ng-repeat="car in cars">
                 <h2>{{car.name}}</h2>
                 <h3 class="text-right"><b>Stock#:</b> {{ car.stock_num}}</h3>
 
@@ -56,17 +58,17 @@
                   </div>
 
                 </md-card-content>
-              </div>
-              <div class="md-actions" layout="row" layout-align="end center">
-                <md-input-container class="pull-left">
-                  <label>Status</label>
-                  <md-select ng-model="car.status">
-                    <md-option ng-repeat="status in statusOptions" value="{{statusOptions.indexOf(status) + 1}}">{{status}}</md-option>
-                  </md-select>
-                </md-input-container>
-                <md-button class="pull-right"><a href="#car/{{car.id}}">Details</a></md-button>
-              </div>
-            </md-card>
+                <div class="md-actions" layout="row" layout-align="end center">
+                  <md-input-container class="pull-left">
+                    <label>Status</label>
+                    <md-select ng-model="car.status">
+                      <md-option ng-repeat="status in statusOptions" value="{{statusOptions.indexOf(status) + 1}}">{{status}}</md-option>
+                    </md-select>
+                  </md-input-container>
+                  <md-button class="pull-right"><a href="#car/{{car.id}}">Details</a></md-button>
+                </div>
+              </md-card>
+            </div>
           </ul>
         </div>
       </div>
