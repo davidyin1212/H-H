@@ -48,7 +48,7 @@ angular.module('HH')
           var val = $scope.users[i].notMatchingCars[0];
           $scope.users[i].cars[0] = $scope.users[i].cars[0].concat(val);
           $scope.users[i].notMatchingCars[0].splice(0, val.length);
-          queryCars(queryParam);
+          queryCars(queryParam, 'client');
         } else if ($scope.filterOptions.client == 'Show'){
           var val = $scope.users[i].cars[0];
           $scope.users[i].notMatchingCars[0] = $scope.users[i].notMatchingCars[0].concat(val);
@@ -62,7 +62,7 @@ angular.module('HH')
           val = $scope.users[i].notMatchingCars[2];
           $scope.users[i].cars[2] = $scope.users[i].cars[2].concat(val);
           $scope.users[i].notMatchingCars[2].splice(0, val.length);
-          queryCars(queryParam);
+          queryCars(queryParam, 'employee');
         } else if ($scope.filterOptions.employee == 'Show'){
           var val = $scope.users[i].cars[1];
           $scope.users[i].notMatchingCars[1] = $scope.users[i].notMatchingCars[1].concat(val);
@@ -126,15 +126,15 @@ angular.module('HH')
     });
   }
 
-  function queryCars(param) {
+  function queryCars(param, filter) {
     for (var i = 0; i < $scope.users.length; i++) {
       for (var a = 0; a < $scope.users[i].cars.length; a++) {
-        if ($scope.filterOptions.client == 'Hide' && a == '0') {
-          break;
-        } else if ($scope.filterOptions.employee == 'Hide' && (a == '1' || a == '2')) {
-          break;
-        }
         for (var j = 0; j < $scope.users[i].cars[a].length; j++) {
+          if ($scope.filterOptions.client == 'Hide' && a == '0' && filter != 'client') {
+            break;
+          } else if ($scope.filterOptions.employee == 'Hide' && (a == '1' || a == '2') && filter != 'employee') {
+            break;
+          }
           var val = $scope.users[i].cars[a];
           if (param != 0) {
             if (param != val[j].status) {
@@ -145,6 +145,11 @@ angular.module('HH')
           }
         }
         for (var j = 0; j < $scope.users[i].notMatchingCars[a].length; j++) {
+          if ($scope.filterOptions.client == 'Hide' && a == '0' && filter != 'client') {
+            break;
+          } else if ($scope.filterOptions.employee == 'Hide' && (a == '1' || a == '2') && filter != 'employee') {
+            break;
+          }
           var val = $scope.users[i].notMatchingCars[a];
           if (param != 0) {
             if (param == val[j].status) {
