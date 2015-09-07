@@ -3,6 +3,7 @@ angular.module('HH')
   function($scope, $location, userFactory) {
   $scope.user;
   $scope.permissions;
+  $scope.selectedUserGroups;
   $scope.userGroups;
   $scope.status;
   
@@ -20,12 +21,31 @@ angular.module('HH')
   }
   
   $scope.addUserGroup = function(userGroup) {
+    $scope.selectedUserGroups[userGroup] = !$scope.selectedUserGroups[userGroup];
+    updatePermission();
+  }
+
+  function updatePermission() {
     if ($scope.permissions == null) {
       $scope.permissions = new Array();
     }
-    for (var i = 0; i < userGroup.permissions.length; i++) {
-      if ($scope.permissions.indexOf(userGroup.permissions[i]) == -1) {
-        $scope.permissions.push(userGroup.permissions[i]);
+    for (var j = 0; j < $scope.selectedUserGroups.length; j++) {
+      if ($scope.selectedUserGroups[j] == true) {
+        userGroup = $scope.userGroups[j];
+        for (var i = 0; i < userGroup.permissions.length; i++) {
+          if ($scope.permissions.indexOf(userGroup.permissions[i]) == -1) {
+            $scope.permissions.push(userGroup.permissions[i]);
+          }
+        }
+      } else {
+        userGroup = $scope.userGroups[j];
+        for (var i = 0; i < userGroup.permissions.length; i++) {
+          var index = $scope.permissions.indexOf(userGroup.permissions[i]);
+          while (index != -1) {
+            $scope.permissions.splice(index, 1);
+            index = $scope.permissions.indexOf(userGroup.permissions[i]);
+          }
+        }
       }
     }
   }
@@ -37,6 +57,7 @@ angular.module('HH')
       for (var i = 0; i < $scope.userGroups.length; i++) {
         getUserGroupPermissions($scope.userGroups[i].id);
       }
+      $scope.selectedUserGroups = [false, false, false, false];
     })
     .error(function (error) {
 

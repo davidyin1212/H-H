@@ -39,17 +39,12 @@
             <div ng-message="required">This is required.</div>
           </div>
         </md-input-container>
+        <div>
+          <h2>Select User Groups</h2>
+          <md-checkbox ng-repeat="userGroup in userGroups" ng-click="addUserGroup($index)">{{userGroup.name}}: {{userGroup.description}}</md-checkbox>
+        </div>
         <md-button class="md-raised md-primary" ng-click="createUser(user)">Submit</md-button>
       </form>
     </md-content>
-  </div>
-  <div>
-    <ul>
-      <li ng-repeat="userGroup in userGroups">
-        {{userGroup.name}}
-        {{userGroup.description}}
-        <button ng-click="addUserGroup(userGroup)">Add</button>
-      </li>
-    </ul>
   </div>
 </div>
