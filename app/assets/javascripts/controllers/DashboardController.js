@@ -41,6 +41,18 @@ angular.module('HH')
     $location.path("/inventory/" + id);
   }
 
+  $scope.update = function(id, status) {
+    for (var i = 0; i < $scope.users.length; i++) {
+      for (var a = 0; a < $scope.users[i].cars.length; a++) {
+        for (var j = 0; j < $scope.users[i].cars[a].length; j++) {
+          if ($scope.users[i].cars[a][j].id == id) {
+            $scope.users[i].cars[a][j].status = status;
+          }
+        }
+      }
+    }
+  }
+
   $scope.filterUsers = function(userType) {
     for (var i = 0; i < $scope.users.length; i++) {
       if (userType == 'client') {

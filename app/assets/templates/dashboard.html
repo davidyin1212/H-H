@@ -69,7 +69,7 @@
                 <div class="md-actions" layout="row" layout-align="end center">
                   <md-input-container class="pull-left">
                     <label>Status</label>
-                    <md-select ng-disabled="($parent.$index == 1 || $parent.$index == 2) && current_user_permissions.hasOwnProperty('QueryShowAllUserCarsPrivilege')" ng-model="car.status">
+                    <md-select ng-disabled="($parent.$index == 1 || $parent.$index == 2) && current_user_permissions.hasOwnProperty('QueryShowAllUserCarsPrivilege')" ng-model="car.status" ng-change="update(car.id, car.status)">
                       <md-option ng-repeat="status in statusOptions" value="{{statusOptions.indexOf(status) + 1}}">{{status}}</md-option>
                     </md-select>
                   </md-input-container>
