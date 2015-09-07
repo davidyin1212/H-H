@@ -42,8 +42,8 @@
         <div class="collapse-card__body">
           <ul ng-show="current_user_permissions.hasOwnProperty('QueryUserCarsPrivilege')" class="carList">
             <div ng-repeat="cars in user.cars">
-              <h1 ng-show="$index == 1 && cars.length > 0"><b><u>Work</u></b></h1>
-              <h1 ng-show="$index == 2 && cars.length > 0"><b><u>Cars Added</u></b></h1>
+              <h2 ng-show="$index == 1 && cars.length > 0"><b><u>Work</u></b></h2>
+              <h2 ng-show="$index == 2 && cars.length > 0"><b><u>Cars Added</u></b></h2>
               <md-card ng-repeat="car in cars">
                 <h2>{{car.name}}</h2>
                 <h3 class="text-right"><b>Stock#:</b> {{ car.stock_num}}</h3>
