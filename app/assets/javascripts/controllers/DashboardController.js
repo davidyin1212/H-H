@@ -43,10 +43,12 @@ angular.module('HH')
 
   $scope.update = function(id, status) {
     for (var i = 0; i < $scope.users.length; i++) {
-      for (var a = 0; a < $scope.users[i].cars.length; a++) {
-        for (var j = 0; j < $scope.users[i].cars[a].length; j++) {
-          if ($scope.users[i].cars[a][j].id == id) {
-            $scope.users[i].cars[a][j].status = status;
+      if ($scope.users[i].cars != undefined) {
+        for (var a = 0; a < $scope.users[i].cars.length; a++) {
+          for (var j = 0; j < $scope.users[i].cars[a].length; j++) {
+            if ($scope.users[i].cars[a][j].id == id) {
+              $scope.users[i].cars[a][j].status = status;
+            }
           }
         }
       }
