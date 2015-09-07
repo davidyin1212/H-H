@@ -3,7 +3,11 @@ angular.module('HH')
   function($scope, $location, userFactory, carFactory) {
   $scope.users;
   $scope.radioModel = "All";
-  $scope.statusOptions = ["Ordered", "In Progress", "Ready", "Shipped"]
+  $scope.statusOptions = ["Ordered", "In Progress", "Ready", "Shipped"];
+  $scope.filterOptions = {};
+  $scope.filterOptions.client = 'Show';
+  $scope.filterOptions.employee = 'Show';
+
   queryParam = 0;
   var noMatchingQueryCars = new Array();
 

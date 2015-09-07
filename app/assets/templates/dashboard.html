@@ -10,6 +10,14 @@
           <md-tab label="Shipped" ng-click="query(4)"></md-tab>
         </md-tabs>
       </md-content>
+      <div ng-show="current_user_permissions.hasOwnProperty('QueryShowAllUserCarsPrivilege')" class="pull-left" layout="row" layout-wrap>
+          <md-checkbox ng-model="filterOptions.client" aria-label="Client" ng-true-value="'Show'" ng-false-value="'Hide'">
+            Client: {{filterOptions.client}}
+          </md-checkbox>
+          <md-checkbox ng-model="filterOptions.employee" aria-label="Employee" ng-true-value="'Show'" ng-false-value="'Hide'">
+            Employee: {{filterOptions.employee}}
+          </md-checkbox>
+      </div>
       <div class="pull-right">
         <md-button class="md-raised md-primary" ng-show="current_user_permissions.hasOwnProperty('UserModifyPrivilege')" ng-click="addUserClicked()">Add User</md-button>
         <md-button class="md-raised md-accent" ng-click="reset()">Reset</md-button>
