@@ -41,6 +41,43 @@ angular.module('HH')
     $location.path("/inventory/" + id);
   }
 
+  $scope.filterUsers = function() {
+    for (var i = 0; i < $scope.users.length; i++) {
+      var val = $scope.users[i].cars[a];
+      if (param != 0) {
+        if (param != val[j].status) {
+          $scope.users[i].notMatchingCars[a].push(val[j]);
+          $scope.users[i].cars[a].splice(j, 1);
+          j--;
+        }
+      }
+      var val = $scope.users[i].notMatchingCars[a];
+      if (param != 0) {
+        if (param == val[j].status) {
+          $scope.users[i].cars[a].push(val[j]);
+          val.splice(j, 1);
+          j--;
+        }
+      } else {
+        $scope.users[i].cars[a].push(val[j]);
+        val.splice(j, 1);
+        j--;
+      }
+    }
+    if ($scope.filterOptions.client == 'Show') {
+
+    } else if ($scope.filterOptions.client == 'Hide'){
+
+    }
+
+    if ($scope.filterOptions.employee == 'Show') {
+
+    } else if ($scope.filterOptions.employee == 'Hide'){
+
+    }
+    queryCars(queryParam);
+  }
+
   function setup() {
     getUsers();
   }
