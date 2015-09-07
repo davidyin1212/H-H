@@ -32,7 +32,6 @@ class UsersController < ApplicationController
 
   def destroy
     authorize @user
-    raise "calling delete"
     @car = Car.where(user_id: @user.id)
     @car.each do |car|
       Car.removeCarFromUser(car)
