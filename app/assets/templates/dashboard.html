@@ -11,10 +11,10 @@
         </md-tabs>
       </md-content>
       <div ng-show="current_user_permissions.hasOwnProperty('QueryShowAllUserCarsPrivilege')" class="pull-left" layout="row" layout-wrap>
-          <md-checkbox ng-model="filterOptions.client" aria-label="Client" ng-true-value="'Show'" ng-false-value="'Hide'">
+          <md-checkbox ng-model="filterOptions.client" aria-label="Client" ng-true-value="'Show'" ng-false-value="'Hide'" ng-click="filterUsers('client')">
             Client: {{filterOptions.client}}
           </md-checkbox>
-          <md-checkbox ng-model="filterOptions.employee" aria-label="Employee" ng-true-value="'Show'" ng-false-value="'Hide'">
+          <md-checkbox ng-model="filterOptions.employee" aria-label="Employee" ng-true-value="'Show'" ng-false-value="'Hide'" ng-click="filterUsers('employee')">
             Employee: {{filterOptions.employee}}
           </md-checkbox>
       </div>
