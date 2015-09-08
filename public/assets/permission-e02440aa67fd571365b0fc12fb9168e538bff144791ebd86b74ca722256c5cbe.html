@@ -1,0 +1,41 @@
+<div class="col-md-10 col-md-offset-1">
+  <div ng-controller="PermissionController">
+      <b><h1>User Permissions</h1></b>
+      <h4 ng-repeat="userPermission in userPermissions">
+        <img src="/assets/minus-97933db6b8e8838861488161945151eb4572031d83dab710fe96e8e79585bf55.svg" ng-click="removePermissionFromUserEvent(userPermission.id)" height="24px">
+        <u><b>{{userPermission.name}}:</b></u>
+        {{userPermission.description}}
+        <br>
+        <br>
+      </h4>
+    <div ng-show="current_user_permissions.hasOwnProperty('ModifyUserPermissionPrivilege')">
+      <b><h1>Add Permissions</h1></b>
+      <h4 ng-repeat="permission in permissions">
+        <img src="/assets/add-1eeb1aa72e78edf92f82d1a209bb269e05da1f69f3ce31368bf59c41f27e0b86.svg" ng-click="addPermissionToUserEvent(permission.id)" height="24px">
+        <u><b>{{permission.name}}:</b></u> 
+        {{permission.description}}
+        <br>
+        <br>
+      </h4>
+    </div>
+    <div ng-show="current_user_permissions.hasOwnProperty('UserGroupPrivilege') || current_user_permissions.hasOwnProperty('ModifyUserPermissionPrivilege')">
+      <b><h1>User Groups</h1></b>
+      <h4 ng-repeat="userGroup in userGroups">
+        <u><b>{{userGroup.name}}: </u></b>
+        {{userGroup.description}}
+        <ul>
+          <li ng-repeat="permission in userGroups.permissions">
+            {{permission.name}}
+            {{permission.description}}
+          </li>
+        </ul>
+        <md-button ng-disabled="userGroup.status == 1" class="md-raised" ng-click="addUserGroup(userGroup)">Add</md-button>
+        <md-button ng-disabled="userGroup.status != 1" class="md-raised md-warn" ng-click="removeUserGroup(userGroup)">Remove</md-button>
+      </h4>
+    </div>
+    <div ng-show="current_user_permissions.hasOwnProperty('ModifyUserPermissionPrivilege')">
+      <md-button class="md-raised md-accent" ng-click="reset()">Reset</md-button>
+      <md-button class="md-raised md-primary" ng-click="submit()">Update</md-button>
+    </div>
+  </div>
+</div>

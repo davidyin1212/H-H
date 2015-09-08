@@ -1,0 +1,50 @@
+<div class="col-md-4 col-md-offset-4">
+  <div ng-controller="UserFormController">
+    <md-content layout-padding>
+      <form name="userForm">
+        <md-input-container>
+          <label>Email</label>
+          <input type="email" required name="email" ng-model="user.user.email">
+          <div ng-messages="userForm.email.$error">
+            <div ng-message="required">This is required.</div>
+          </div>
+        </md-input-container>
+        <div layout layout-sm="column">
+          <md-input-container flex>
+            <label>First Name</label>
+            <input type="text" required name="first_name" ng-model="user.user.first_name">
+            <div ng-messages="userForm.first_name.$error">
+              <div ng-message="required">This is required.</div>
+            </div>
+          </md-input-container>
+          <md-input-container flex>
+            <label>Last Name</label>
+            <input type="text" required name="last_name" ng-model="user.user.last_name">
+            <div ng-messages="userForm.last_name.$error">
+              <div ng-message="required">This is required.</div>
+            </div>
+          </md-input-container>
+        </div>
+        <md-input-container>
+          <label>Password</label>
+          <input type="password" required name="password" ng-model="user.user.password">
+          <div ng-messages="userForm.password.$error">
+            <div ng-message="required">This is required.</div>
+          </div>
+        </md-input-container>
+        <md-input-container>
+          <label>Password Confirmation</label>
+          <input type="password" required name="password_confirmation" ng-model="user.user.password_confirmation">
+          <div ng-messages="userForm.password_confirmation.$error">
+            <div ng-message="required">This is required.</div>
+          </div>
+        </md-input-container>
+        <div>
+          <h2>Select User Groups</h2>
+          <md-checkbox ng-repeat="userGroup in userGroups" ng-click="addUserGroup($index)">{{userGroup.name}}: {{userGroup.description}}</md-checkbox>
+        </div>
+        <md-button class="md-raised md-primary" ng-click="createUser(user)">Submit</md-button>
+      </form>
+    </md-content>
+  </div>
+</div>

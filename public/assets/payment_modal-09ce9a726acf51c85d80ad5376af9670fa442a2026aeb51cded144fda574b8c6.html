@@ -1,0 +1,33 @@
+<div class="col-md-8 col-md-offset-2" ng-controller="CheckoutFormController">
+  <md-content layout-padding>
+    <h2>Please enter your payment information</h2>
+    <form action="/payment" name="paymentForm" method="POST" id="payment-form">
+      <span class="payment-errors"></span>
+      <div>
+        <img src="/assets/visa-curved-32px-0191e856d92ebaf9caed8c1800aad02b03bcad49cbf5d1cf2ee4e96bbd786255.png" alt="Visa" ng-show="cardType == 'visa' || cardType == undefined"/>
+        <img src="/assets/mastercard-curved-32px-5ff235fb47e996e83d2d852787db0716b6304b764c9dd5717c253bdad9f209b3.png" alt="MasterCard" ng-show="cardType == 'mastercard' || cardType == undefined"/>
+        <img src="/assets/american-express-curved-32px-84f1cd856056195856097139da960fb09e00477c05ffe69c55d3fdf39bbcbf59.png" alt="Amex" ng-show="cardType == 'amex' || cardType == undefined"/>
+        <img src="/assets/UnionPay-8bfad2a6990091eb84b4d9c742b16d4b17e33dca349bca577a8427da10588ee6.png" height="32px" alt="UnionPay" ng-show="cardType == 'unionpay' || cardType == undefined"/>
+        <img src="/assets/discover-curved-32px-79fedc2d070f0d340262ddfd9101f1b96e998fdbcba4831d8f53e2805e62a103.png" alt="Discover" ng-show="cardType == 'discover' || cardType == undefined"/>
+      </div>
+      <div layout layout-sm="column">
+        <md-input-container style="width:80%">
+          <label>Card Number</label>
+          <input type="text" size="20" restrict-numeric card-number-formatter card-number-validator ng-model="cardNumber" card-type="cardType" data-stripe="number"/>
+        </md-input-container>
+
+        <md-input-container style="width:20%">
+          <label>CVC</label>
+          <input type="text" size="4" restrict-numeric card-cvc-formatter card-cvc-validator ng-model="cardCvc" data-stripe="cvc"/>
+        </md-input-container>
+      </div>
+
+      <md-input-container style="width:20%">
+        <label>Expiration (MM/YYYY)</label>
+        <input type="text" class="expiry-date" size="6" restrict-numeric card-expiry-validator card-expiry-formatter ng-model="cardExpiry"/>
+      </md-input-container>
+
+      <md-button type="submit" class="md-raised md-primary" ng-click="submitClicked()">Submit Payment</md-button>
+    </form>
+  </md-content>
+</div>
