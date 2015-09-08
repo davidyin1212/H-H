@@ -81,36 +81,5 @@
         </div>
       </div>
     </div>
-  	<!-- <ul ng-show="current_user_permissions.hasOwnProperty('UserPrivilege')" class="users">
-  	  <li ng-repeat="user in users">
-        {{user.first_name}}
-        {{user.last_name}}
-        <a ng-show="current_user_permissions.hasOwnProperty('PermissionPrivilege')" href="#permission/{{user.id}}">Permissions</a>
-        <a href="#inventory/{{user.id}}">Details</a>
-        <button ng-show="current_user_permissions.hasOwnProperty('UserModifyPrivilege')" ng-click="removeUser(user.id)">Delete User</button>
-        <p>Cars: {{user.cars.length}}</p>
-        <ul ng-show="current_user_permissions.hasOwnProperty('QueryUserCarsPrivilege')" class="cars">
-          <li ng-repeat="car in user.cars">
-            {{ car.name }}
-            {{ car.make }}
-            {{ car.model }}
-            {{ car.engine }}
-            {{ car.exterior }}
-            {{ car.interior }}
-            {{ car.delivery_kms }}
-            {{ car.stock_num }}
-            {{ car.msrp }}
-            {{ car.additional_fees }}
-            {{ car.base_price | currency:"CAD$"}}
-            {{ car.base_price * tax | currency:"CAD$"}}
-            {{ car.base_price * (1 + tax) | currency:"CAD$"}}
-            <p>Change Staus<p>
-            <button>Ordered</button>
-            <button>In Progress</button>
-            <button>Shipped</button>
-          </li>
-        </ul>
-  	  </li>
-  	</ul> -->
   </div>
 </div>
