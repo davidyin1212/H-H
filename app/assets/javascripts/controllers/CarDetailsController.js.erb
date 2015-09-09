@@ -2,7 +2,9 @@ angular.module('HH')
 .controller('CarDetailsController', ['$scope', '$routeParams', '$location', '$modal', 'userFactory', 'carFactory', 
   function($scope, $routeParams, $location, $modal, userFactory, carFactory) {
   $scope.car;
-  $scope.tax = 0.05;
+  $scope.tax = 0.13;
+  $scope.ammountPaid;
+  $scope.ammountOwing;
   var id = $routeParams.id;
 
   getCar();
@@ -22,6 +24,8 @@ angular.module('HH')
   	carFactory.getCar(id)
   	.success(function (data) {
   		$scope.car = data;
+      $scope.ammountPaid = (0.05*parseFloat(data.base_price))*(1 + $scope.tax)*1.025;
+      $scope.ammountOwing = ((parseFloat(data.base_price) + parseFloat(data.price_over)) * (1 + $scope.tax)) - $scope.ammountPaid;
   	})
   	.error(function (error) {
 

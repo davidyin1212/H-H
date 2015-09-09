@@ -5,7 +5,7 @@ angular.module('HH')
   $scope.cars;
   $scope.radioModel = "Avaliable";
   $scope.asyncSelected = "";
-  $scope.tax = 0.05;
+  $scope.tax = 0.13;
 
   $scope.query = function (val) {
     $scope.radioModel = val;

@@ -62,11 +62,13 @@ class CarsController < ApplicationController
   def addToUser
     @car = Car.find(params[:car_id])
     customer = Payment.find_by(user_id: current_user.id)
+    tax = 0.13;
+
     if @car.status = Status::AVALIABLE
       begin
         charge = Stripe::Charge.create(
           :customer    => customer.stripe_customer_token,
-          :amount      => 100,
+          :amount      => (0.05*@car.base_price*100)*(1+tax)*1.025,
           :description => 'Rails Stripe customer',
           :currency    => 'cad'
         )

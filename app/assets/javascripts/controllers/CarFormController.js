@@ -8,7 +8,6 @@ angular.module('HH')
 
   $scope.commit = function(car) {
     commit(car);
-    $location.path("/index");
   }
   $scope.reset = function() {
     startup();
@@ -29,7 +28,7 @@ angular.module('HH')
     $scope.car = angular.copy(car);
   	if (!isNew) {
   	  updateCar(id);
-  	} else {
+  	} else { 
   	  createCar();
   	}
   }
@@ -49,7 +48,7 @@ angular.module('HH')
     carFactory.createCar($scope.car)
     .success(function (data) {
     	$scope.cars.push(data);
-      window.location = "/#/index";
+      $location.path("/index");
     })
     .error(function (error) {
       // $scope.status = error.message;
@@ -59,7 +58,7 @@ angular.module('HH')
   function updateCar() {
   	carFactory.updateCar(id, $scope.car)
     .success(function (data) {
-
+      $location.path("/index");
     })
     .error(function (error) {
 

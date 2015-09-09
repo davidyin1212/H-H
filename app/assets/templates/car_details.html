@@ -1,18 +1,21 @@
-<div class="text-center col-md-10 col-md-offset-1">
+<div class="col-md-6 col-md-offset-4">
   <div ng-controller="CarDetailsController">
-    <h1>{{ car.name }}</h1>
-    <h2>{{ car.make }}</h2>
-    <h2>{{ car.model }}</h2>
-    <h2>{{ car.engine }}</h2>
-    <h2>{{ car.exterior }}</h2>
-    <h2>{{ car.interior }}</h2>
-    <h2>{{ car.delivery_kms }}</h2>
-    <h2>{{ car.stock_num }}</h2>
-    <h2>{{ car.msrp }}</h2>
+    <b><h2>Name: {{ car.name }}</h2></b>
+    <h2>Make: {{ car.make }}</h2>
+    <h2>Model: {{ car.model }}</h2>
+    <h2>Engine: {{ car.engine }}</h2>
+    <h2>Exterior: {{ car.exterior }}</h2>
+    <h2>Interior: {{ car.interior }}</h2>
+    <h2>Delivery KMs: {{ car.delivery_kms }}</h2>
+    <h2>Stock #: {{ car.stock_num }}</h2>
+    <h2>Base MSRP: {{ car.msrp }}</h2>
+    <h2>Vehicle Options and Delivery Fees:</h2>
     <p>{{ car.additional_fees }}</p>
-    <h2>{{ car.base_price | currency:"CAD$"}}</h2>
-    <h2>{{ car.base_price * tax | currency:"CAD$"}}</h2>
-    <h1>{{ car.base_price * (1 + tax) | currency:"CAD$"}} + {{ car.price_over }}</h1>
+    <h2>MSRP Subtotal: {{ car.base_price | currency:"CAD$"}}</h2>
+    <h2>Tax (13% HST): {{ car.base_price * tax | currency:"CAD$"}}</h2>
+    <b></b><h2>Total + Price Over: {{ car.base_price * (1 + tax) | currency:"CAD$"}} + {{ car.price_over | currency:"CAD$"}}</h2></b>
+    <h2 ng-show="car.user_id != null">Amount Paid: {{ ammountPaid | currency:"CAD$"}}</h2>
+    <h2 ng-show="car.user_id != null">Amount Owing: {{ ammountOwing | currency:"CAD$"}}</h2>
 
     <md-button class="md-raised md-accent" ng-show="current_user_permissions.hasOwnProperty('GeneralUsePrivilege')" ng-if="car.status == 0" ng-click="purchaseCar()">Purchase</md-button>
     <!-- <button ng-show="current_user_permissions.hasOwnProperty('GeneralUsePrivilege')" ng-if="car.status == 0" ng-click="purchaseCar()" ng-if="car.status != 0" ng-click="cancelPurchaseCar()">Cancel Purchase</button> -->
