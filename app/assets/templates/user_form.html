@@ -43,7 +43,7 @@
           <h2>Select User Groups</h2>
           <md-checkbox ng-repeat="userGroup in userGroups" ng-click="addUserGroup($index)">{{userGroup.name}}: {{userGroup.description}}</md-checkbox>
         </div>
-        <md-button class="md-raised md-primary" ng-click="createUser(user)">Submit</md-button>
+        <md-button class="md-raised md-primary" ng-disabled="disableForm" ng-click="createUser(user)">Submit</md-button>
       </form>
     </md-content>
   </div>

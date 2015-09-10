@@ -3,6 +3,7 @@ angular.module('HH')
   function($scope, $location, carFactory, $routeParams) {
   $scope.car;
   $scope.status;
+  $scope.disableForm;
   var isNew = false;
   var id = $routeParams.id;
 
@@ -26,6 +27,8 @@ angular.module('HH')
 
   function commit(car) {
     $scope.car = angular.copy(car);
+    $scope.disableForm = true;
+
   	if (!isNew) {
   	  updateCar(id);
   	} else { 
@@ -37,6 +40,7 @@ angular.module('HH')
   	carFactory.getCar(id)
     .success(function (data) {
     	$scope.car = data;
+      $scope.disableForm = false;
     })
     .error(function (error) {
       isNew = true;
@@ -47,11 +51,11 @@ angular.module('HH')
   function createCar() {
     carFactory.createCar($scope.car)
     .success(function (data) {
-    	$scope.cars.push(data);
       $location.path("/index");
     })
     .error(function (error) {
       // $scope.status = error.message;
+      $scope.disableForm = false;
     })
   }
 
@@ -61,7 +65,7 @@ angular.module('HH')
       $location.path("/index");
     })
     .error(function (error) {
-
+      $scope.disableForm = false;
     })
   }
 }])

@@ -6,6 +6,7 @@ angular.module('HH')
   $scope.selectedUserGroups;
   $scope.userGroups;
   $scope.status;
+  $scope.disableForm;
   
   getUserGroups();
 
@@ -13,9 +14,11 @@ angular.module('HH')
     user.permissions = $scope.permissions;
   	userFactory.createUser(user)
   	.success(function(data) {
+      $scope.disableForm = true;
       $location.path("/dashboard")
   	})
   	.error(function (error) {
+      $scope.disableForm = false;
       $scope.status = error;
     })
   }
@@ -58,6 +61,7 @@ angular.module('HH')
         getUserGroupPermissions($scope.userGroups[i].id);
       }
       $scope.selectedUserGroups = [false, false, false, false];
+      $scope.disableForm = false;
     })
     .error(function (error) {
 

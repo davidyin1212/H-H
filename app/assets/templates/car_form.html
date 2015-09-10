@@ -99,7 +99,7 @@
         </div>
 
         <md-button class="md-raised" ng-click="reset()">Reset</md-button>
-        <md-button class="md-raised md-primary" ng-click="commit(car)">Save</md-button>
+        <md-button class="md-raised md-primary" ng-disabled="disableForm" ng-click="commit(car)">Save</md-button>
       </form>
     </md-content>
   </div>
